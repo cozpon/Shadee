@@ -1,21 +1,13 @@
 import { combineReducers } from 'redux';
 
-let initialState = { WHATEVER: [], loading: true }; // set loading to true initially
+import messages from './messages';
+import message from './message';
+import users from './users';
+import user from './user';
 
-const Reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case WHATEVER_CASE:
-            state = Object.assign({}, state, { WHATEVER: action.WHATEVER, loading: false });
-            return state;
-        default:
-            return state;
-    }
-};
-
-// Combine all the reducers
-const rootReducer = combineReducers({
-    Reducer
-    // ,[ANOTHER REDUCER], [ANOTHER REDUCER] ....
-})
-
-export default rootReducer;
+export default combineReducers({
+  messages,
+  message,
+  users,
+  user
+});
