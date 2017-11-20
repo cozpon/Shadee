@@ -3,9 +3,8 @@ import {
   Button,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
   TouchableHighlight,
+  Vibration,
   View
 } from 'react-native';
 import t from 'tcomb-form-native';
@@ -20,10 +19,15 @@ const User = t.struct({
     terms: t.Boolean
 });
 
+
 class Register extends Component {
   handleSubmit = () => {
     const value = this._form.getValue();
-    console.log('value: ', value);
+
+  }
+
+  componentDidMount(){
+    //mount emoji for drop down menu
   }
 
 
@@ -49,13 +53,20 @@ class Register extends Component {
 export default Register;
 
 
+//front-end error handling for form
 const options = {
   fields: {
+    username: {
+      error: "Create a username so we can follow your Shade!"
+    },
     email: {
       error: "Don't miss out on all this Shade! Enter an email to stay connected."
     },
     password: {
       error: "Enter your super secret password and check if someone's throwing Shade!"
+    },
+    emoji: {
+      error: "Choose an emoji as your avatar."
     },
     terms: {
       label: 'Agree to Terms',
@@ -63,6 +74,7 @@ const options = {
   },
 };
 
+//form stylesheet
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
