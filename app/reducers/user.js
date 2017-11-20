@@ -19,5 +19,10 @@ const user = (state = initialState, action) => {
 
     case LOGOUT_USER:
       return Object.assign({}, state, action.user);
+
+    default:
+      return state
   }
 }
+
+export default user;

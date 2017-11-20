@@ -8,6 +8,7 @@ const db = require('../models');
 const User = db.user;
 const Message = db.message;
 const Status = db.status;
+const Emoji = db.emoji;
 
 
 //api/users gets you JUST the users
@@ -29,7 +30,8 @@ router.get('/all', (req, res) => {
     include: [
       { model: Message, as: 'offense' },
       { model: Message, as: 'defense' },
-      { model: Status, as: 'user_status' }
+      { model: Status, as: 'user_status' },
+      { model: Emoji, as: 'icon' }
     ]
   })
   .then((users) => {
@@ -46,7 +48,8 @@ router.get('/:id', (req, res) => {
     include:[
       { model: Message, as: 'offense' },
       { model: Message, as: 'defense' },
-      { model: Status, as: 'user_status' }
+      { model: Status, as: 'user_status' },
+      { model: Emoji, as: 'icon' }
     ]
   })
   .then((user) => {
