@@ -22,5 +22,10 @@ const users = (state = initialState, action) => {
         return user.id !== Number(action.user.id)
       });
       return [...users, action.user];
+
+    default:
+      return state
   }
 }
+
+export default users;
