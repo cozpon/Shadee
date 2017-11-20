@@ -57,6 +57,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
+//register
 router.post('/', (req, res) => {
   //note: req.body will need an emoji field w/ emoji id.
   bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -71,6 +72,35 @@ router.post('/', (req, res) => {
       })
       .catch((err) => {
         console.log(err);
+      });
+    });
+  });
+});
+
+router.put('/:id', (req, res) => {
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
+      return User.findOne({
+        where: {
+          id: req.user.id
+        }
+      })
+      .then((user) => {
+        return User.update({
+          username: req.body.username || user.username,
+          password: hash || user.password,
+          email: req.body.email || user.email
+        })
+        .then((response) => {
+          return User.findOne({
+            where: {
+              id: req.user.id
+            }
+          })
+          .then((updatedUser) => {
+            return res.json(updatedUser);
+          });
+        });
       });
     });
   });
