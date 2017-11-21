@@ -43,7 +43,6 @@ class Register extends Component {
   // }
 
   _onChange = (value) => {
-    console.log(value, 'value')
     this.setState({
       value: value
     })
@@ -78,7 +77,6 @@ class Register extends Component {
         body: json
       })
       .then((response) => {
-        console.log(response, 'promise response')
         response.json();
       })
       .then(() => {
