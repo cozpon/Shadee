@@ -49,21 +49,39 @@ router.get('/', (req, res) => {
   })
 });
 
+
+//note: key in upload form for video must be upl
 router.post('/', upload.array('upl', 1), (req, res) => {
 
+  if(req.files[0]){
+    Message.create({
+      body: req.body.body,
+      shader_id: req.body.shader_id,
+      victim_id: req.body.victim_id,
+      media: req.files[0].key
+    })
+    .then((message) => {
+      return res.json(message);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }else{
+     Message.create({
+      body: req.body.body,
+      shader_id: req.body.shader_id,
+      victim_id: req.body.victim_id
+    })
+    .then((message) => {
+      return res.json(message);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   //note: shader_id will be req.user.id once we can actually log in. otherwise, we can always provide the shader_id in the request body, amiright guys?
-  Message.create({
-    body: req.body.body,
-    shader_id: req.body.shader_id,
-    victim_id: req.body.victim_id,
-    media: req.files[0].key
-  })
-  .then((message) => {
-    return res.json(message);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
 });
 
 router.get('/:id', (req, res) => {
