@@ -1,21 +1,19 @@
 'use strict';
-
 import React, { Component } from 'react';
 const { StyleSheet, ListView, View, Text,
         ActivityIndicator, Animated, ScrollView, Image } = require('react-native');
 
 import { connect } from 'react-redux';
-
 import * as Actions from '../actions'; //Import your actions
 import Register from '../containers/register.js';
 import Login from '../containers/login.js';
+
 
 class Home extends Component {
   constructor(props) {
         super(props);
 
       };
-
 
   componentDidMount() {
         //this.props.getData(); //call our action
@@ -32,6 +30,7 @@ class Home extends Component {
         <Register />
         <Login />
         <Image style={styles.logo} source={require("../assets/logo.png")}/>
+
       </ScrollView>
     );
   };
