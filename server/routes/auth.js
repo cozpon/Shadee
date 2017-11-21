@@ -13,8 +13,6 @@ const Status = db.status;
 const Emoji = db.emoji;
 
 
-
-
 passport.serializeUser((user, done) => {
   //console.log('USER', user);
   console.log('serializing');
@@ -78,10 +76,9 @@ router.post('/register', (req, res) => {
   bcrypt.genSalt(saltRounds, function(err, salt){
     bcrypt.hash(req.body.password, salt, function(err, hash){
       console.log(hash);
-      console.log(req.body, 'reqbody')
       User.create({
         username: req.body.username,
-        password: req.body.password,
+        password: hash,
         email: req.body.email,
         emoji_id: 1
       })
@@ -91,7 +88,7 @@ router.post('/register', (req, res) => {
         username: user.username,
         password: user.password,
         email: user.email,
-        emoji_id: 1
+        emoji_id: user.emoji_id
         });
       })
       .catch((error) => {
