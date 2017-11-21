@@ -3,6 +3,7 @@ import {
   Button,
   ScrollView,
   StyleSheet,
+  Text,
   TouchableHighlight,
   Vibration,
   View
@@ -10,8 +11,9 @@ import {
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
+console.log(Form, 'form')
 
-const User = t.struct({
+const newUser = t.struct({
     username: t.String,
     password: t.String,
     email: t.String,
@@ -21,34 +23,98 @@ const User = t.struct({
 
 
 class Register extends Component {
-  handleSubmit = () => {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      value: {
+        username: 'check',
+        password: '',
+        email: '',
+        emoji: '',
+        terms: false
+      }
+    }
+
+  }
+
+  // componentDidMount(){
+  //   //mount emoji for drop down menu
+  // }
+
+  _onChange = (value) => {
+    console.log(value, 'value')
+    this.setState({
+      value: value
+    })
+
+    console.log(value, '2nd one set on state')
+  }
+
+  _handleAdd = () => {
     const value = this._form.getValue();
+    console.log(value, 'handle add getvalue')
 
+    if(value) {
+      const data = {
+        username: value.username,
+        password: value.password,
+        email: value.email,
+        emoji: value.emoji,
+        terms: value.terms
+      }
+
+      console.log(data, 'form data')
+
+      const json = JSON.stringify(data);
+      console.log('string json data', json)
+      fetch('/auth/register',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then((response) => {
+        console.log(response, 'promise response')
+        response.json();
+      })
+      .then(() => {
+        alert('Success! You may now log in.');
+        //Redirect to home screen
+        this.props.navigator.pop();
+      })
+      .catch((error) => {
+        alert('There was an error creating your account.');
+      })
+      .done()
+    } else {
+      //Form validation error
+      alert('Please fix the errors listed and try again.')
+     }
   }
 
-  componentDidMount(){
-    //mount emoji for drop down menu
-  }
-
-
-  render() {
+   render() {
     return(
 
       <View style={styles.container}>
         <Form
-          ref={c => this._form = c} //assign a ref
-          type={User}
+          ref={c => this._form = c}
+          type={newUser}
           options={options}
+          value={this.state.value}
+          onChange={this._onChange.bind(this)}
         />
-        <Button
-          title="Throw Shade!"
-          onPress={this.handleSubmit}
-        />
+        <TouchableHighlight onPress={this._handleAdd}>
+          <Text style={styles.button}>Throw Shade!</Text>
+        </TouchableHighlight>
       </View>
 
     );
   }
-}
+ }
 
 export default Register;
 
@@ -80,5 +146,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
-  }
+  },
+  button: {
+    fontSize: 20,
+    borderRadius: 4,
+    padding: 20,
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#ffb6c1'
+  },
 });

@@ -60,65 +60,68 @@ router.get('/:id', (req, res) => {
   });
 });
 
-//register
-router.post('/', (req, res) => {
-  //note: req.body will need an emoji field w/ emoji id.
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      User.create({
-        username: req.body.username,
-        password: hash,
-        emoji_id: req.body.emoji
-      })
-      .then((user) => {
-        return res.json(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    });
-  });
-});
 
-router.put('/:id', (req, res) => {
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      return User.findOne({
-        where: {
-          id: req.user.id
-        }
-      })
-      .then((user) => {
-        return User.update({
-          username: req.body.username || user.username,
-          password: hash || user.password,
-          email: req.body.email || user.email
-        })
-        .then((response) => {
-          return User.findOne({
-            where: {
-              id: req.user.id
-            }
-          })
-          .then((updatedUser) => {
-            return res.json(updatedUser);
-          });
-        });
-      });
-    });
-  });
-});
 
-router.post('/auth', (req, res) => {
-  return res.json('Authenticate and retrieve the access and refresh tokens in exchange of email/password');
-});
+// //register
+// router.post('/register', (req, res) => {
+//   //note: req.body will need an emoji field w/ emoji id.
+//   console.log(req.body);
+//   bcrypt.genSalt(saltRounds, (err, salt) => {
+//     bcrypt.hash(req.body.password, salt, (err, hash) => {
+//       User.create({
+//         username: req.body.username,
+//         password: hash,
+//         emoji_id: req.body.emoji
+//       })
+//       .then((user) => {
+//         return res.json(user);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//     });
+//   });
+// });
 
-router.post('/auth/refresh', (req, res) => {
-  return res.json('Authenticate and retriece the access token in exchange of the refresh token.');
-});
+// router.put('/:id', (req, res) => {
+//   bcrypt.genSalt(saltRounds, (err, salt) => {
+//     bcrypt.hash(req.body.password, salt, (err, hash) => {
+//       return User.findOne({
+//         where: {
+//           id: req.user.id
+//         }
+//       })
+//       .then((user) => {
+//         return User.update({
+//           username: req.body.username || user.username,
+//           password: hash || user.password,
+//           email: req.body.email || user.email
+//         })
+//         .then((response) => {
+//           return User.findOne({
+//             where: {
+//               id: req.user.id
+//             }
+//           })
+//           .then((updatedUser) => {
+//             return res.json(updatedUser);
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
 
-router.post('/auth/revoke', (req, res) => {
-  return res.json('Log out, revoke access by destroying the user tokens');
-});
+// router.post('/auth', (req, res) => {
+//   return res.json('Authenticate and retrieve the access and refresh tokens in exchange of email/password');
+// });
+
+// router.post('/auth/refresh', (req, res) => {
+//   return res.json('Authenticate and retriece the access token in exchange of the refresh token.');
+// });
+
+// router.post('/auth/revoke', (req, res) => {
+//   return res.json('Log out, revoke access by destroying the user tokens');
+// });
 
 module.exports = router;
