@@ -1,14 +1,16 @@
 
 import React, { Component } from 'react';
 import { Animated, ScrollView, Image, Dimensions, StyleSheet, Text, View } from 'react-native';
-import Home from './app/components/home' //Import the component file
-import { Tabs } from './app/config/routes';
+
+import Home from './app/components/home'; //Import the component file
+import { Tabs } from './config/routes';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs />
+        <Home/>
+        <Tabs/>
       </View>
     );
   }
