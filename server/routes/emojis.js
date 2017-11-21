@@ -1,5 +1,5 @@
 const express = require('express');
-const router =. express.Router();
+const router = express.Router();
 
 const db = require('../models');
 const Emoji = db.emoji;
@@ -11,4 +11,4 @@ router.get('/', (req, res) => {
   });
 });
 
-module.exports = emojis;
+module.exports = router;
