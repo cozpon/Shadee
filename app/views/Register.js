@@ -79,7 +79,7 @@ class Register extends Component {
     }
   render() {
     return(
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Form
           ref='form' //assign a ref
           type={newUser}
@@ -90,7 +90,7 @@ class Register extends Component {
         <TouchableHighlight onPress={this._handleAdd}>
           <Text style={[styles.button, styles.greenButton]}>Throw Shade!</Text>
         </TouchableHighlight>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -119,7 +119,6 @@ const options = {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     marginTop: 50,
     padding: 20,
   },
