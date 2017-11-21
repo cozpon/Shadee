@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { AsyncStorage, Button, KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
@@ -9,29 +9,91 @@ const User = t.struct({
   password: t.String
 });
 
+
+
 export default class Home extends Component {
-  handleSubmit = () => {
-    const value = this._form.getValue();
-    console.log('value: ', value);
+    constructor(props){
+    super(props);
+    this.state = {
+      value: {
+        username: '',
+        password: ''
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    this.setState = {
+      value: {
+        username: '',
+        password: null
+      }
+    }
+  }
+
+  _onChange = (value) => {
+    this.setState({
+      value
+    })
+  }
+
+  _handleSubmit = () => {
+    const value = this.refs.form.getValue();
+    console.log(value, 'login form data')
+      const data = {
+        username: value.username,
+        password: value.password,
+      }
+      // Serialize and post the data
+      const json = JSON.stringify(data)
+      fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: json
+      })
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.error) {
+          alert(res.error)
+        } else {
+          AsyncStorage.setItem('jwt', res.token)
+          console.log(AsyncStorage)
+          console.log(res.token, 'token')
+          alert(`Success! You may now access protected content.`)
+          // Redirect to home screen
+          this.props.navigator.pop()
+        }
+      })
+      .catch(() => {
+        alert('There was an error logging in.');
+      })
+      .done()
+
   }
 
   static navigationOptions = {
     tabBarLabel: 'Home'
   }
+
   render () {
     return(
       <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")}/>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Form
-          ref={c => this._form = c} //assign a ref
+          ref='form'
           type={User}
           options={options}
+          value={this.state.value}
+          onChange={this._onChange}
         />
-        <TouchableOpacity
-          onPress={this.handleSubmit}
-          style={styles.button}>
-          <Text style={styles.buttonText}>Throw Shade!</Text>
-        </TouchableOpacity>
+        <TouchableHighlight onPress={this._handleSubmit}>
+          <Text style={styles.button}>Throw Shade!</Text>
+        </TouchableHighlight>
+      </KeyboardAvoidingView>
         <Text style={styles.paragraph}>
           Welcome to SHADE, the greatest app created by the Backyard Boiz
         </Text>
@@ -42,10 +104,17 @@ export default class Home extends Component {
 
 const options = {
   fields: {
-    email: {
+    username: {
+      autoCapitalize: 'none',
+      autoCorrect: false,
+      returnKeyType: "next",
       error: "Don't miss out on all this Shade! Enter an email."
     },
     password: {
+      autoCapitalize: 'none',
+      password: true,
+      autoCorrect: false,
+      returnKeyType: "go",
       error: "Oops! Try Again. Enter your super secret password."
     }
   }
@@ -74,7 +143,7 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 20,
-    backgroundColor:'dodgerblue',
+    // backgroundColor:'dodgerblue',
     justifyContent: 'center',
   },
   buttonText: {
