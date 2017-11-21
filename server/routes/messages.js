@@ -50,7 +50,9 @@ router.get('/', (req, res) => {
 });
 
 
-//note: key in upload form for video must be upl
+//note: key in upload form for media must be upl. like when i'm using postman the file's key has to be 'upl'
+//also note: shader_id will be req.user.id once we can actually log in. otherwise, we can always provide the shader_id in the request body, amiright guys?
+
 router.post('/', upload.array('upl', 1), (req, res) => {
 
   if(req.files[0]){
@@ -79,8 +81,6 @@ router.post('/', upload.array('upl', 1), (req, res) => {
       console.log(err);
     });
   }
-
-  //note: shader_id will be req.user.id once we can actually log in. otherwise, we can always provide the shader_id in the request body, amiright guys?
 
 });
 
