@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableHighlight,
-  View
-} from 'react-native';
+import React, {Component} from "react";
+import { View, ScrollView, StyleSheet,
+  TouchableHighlight, } from "react-native";
+import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import { onSignIn } from "../auth";
+
 import t from 'tcomb-form-native';
+
 const Form = t.form.Form;
+
 const newUser = t.struct({
     username: t.String,
     password: t.String,
@@ -42,14 +40,13 @@ class Register extends Component {
   }
 
   _onChange = (value) => {
-    console.log(value);
     this.setState({
       value
     })
   }
 
   _handleAdd = () => {
-    console.log(this.refs);
+    const navigation = this.props.navigation;
     const value = this.refs.form.getValue();
       const data = {
         username: value.username,
@@ -68,9 +65,7 @@ class Register extends Component {
       })
       .then((response) => response.json())
       .then(() => {
-        alert('Success! You may now log in.');
-        // Redirect to home screen
-        this.props.navigator.pop();
+        onSignIn().then(() => navigation.navigate("SignedIn"))
       })
       .catch((error) => {
         alert('There was an error creating your account.');
@@ -78,7 +73,12 @@ class Register extends Component {
       .done()
     }
   render() {
+
+    const navigation = this.props.navigation;
+
     return(
+
+
       <ScrollView style={styles.container}>
         <Form
           ref='form' //assign a ref
@@ -87,9 +87,22 @@ class Register extends Component {
           value={this.state.value}
           onChange={this._onChange}
         />
-        <TouchableHighlight onPress={this._handleAdd}>
-          <Text style={[styles.button, styles.greenButton]}>Throw Shade!</Text>
-        </TouchableHighlight>
+
+          <Button
+            buttonStyle={{ marginTop: 20 }}
+            backgroundColor="#03A9F4"
+            title="SIGN UP"
+            onPress=
+              {this._handleAdd}
+          />
+          <Button
+            buttonStyle={{ marginTop: 20 }}
+            backgroundColor="transparent"
+            textStyle={{ color: "#bcbec1" }}
+            title="Sign In"
+            onPress={() => navigation.navigate("SignIn")}
+          />
+
       </ScrollView>
     );
   }
@@ -128,10 +141,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     color: '#fff'
-  },
-  greenButton: {
-    backgroundColor: '#4CD964'
-  },
+  }
 });
 
 export default Register;

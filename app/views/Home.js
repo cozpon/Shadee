@@ -80,7 +80,9 @@ export default class Home extends Component {
 
   render () {
     return(
+
       <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.container}>
+      <ScrollView>
       <Image style={styles.logo} source={require("../assets/logo.png")}/>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <Form
@@ -97,7 +99,9 @@ export default class Home extends Component {
         <Text style={styles.paragraph}>
           Welcome to SHADE, the greatest app created by the Backyard Boiz
         </Text>
+        </ScrollView>
       </ImageBackground>
+
     );
   }
 }
