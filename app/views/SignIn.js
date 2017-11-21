@@ -63,11 +63,7 @@ class Login extends Component {
         response.json()
       })
       .then((res) => {
-        if (res.error) {
-          alert(res.error)
-        } else {
           onSignIn().then(() => navigation.navigate("SignedIn"));
-        }
        })
       .catch(() => {
         alert('There was an error logging in.');
