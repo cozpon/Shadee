@@ -63,11 +63,7 @@ class Login extends Component {
         response.json()
       })
       .then((res) => {
-        if (res.error) {
-          alert(res.error)
-        } else {
           onSignIn().then(() => navigation.navigate("SignedIn"));
-        }
        })
       .catch(() => {
         alert('There was an error logging in.');
@@ -103,14 +99,10 @@ class Login extends Component {
 const options = {
   fields: {
     email: {
-      autoCapitalize: 'none',
-      autoCorrect: false,
       error: "Don't miss out on all this Shade! Enter an email."
     },
     password: {
-      autoCapitalize: 'none',
       password: true,
-      autoCorrect: false,
       error: "Oops! Try Again. Enter your super secret password."
     }
   }
@@ -126,22 +118,3 @@ const styles = StyleSheet.create({
 
 export default Login;
 
-// export default ({ navigation }) => (
-//   <View style={{ paddingVertical: 20 }}>
-//     <Card>
-//       <FormLabel>Email</FormLabel>
-//       <FormInput placeholder="Email address..." />
-//       <FormLabel>Password</FormLabel>
-//       <FormInput secureTextEntry placeholder="Password..." />
-
-//       <Button
-//         buttonStyle={{ marginTop: 20 }}
-//         backgroundColor="#03A9F4"
-//         title="SIGN IN"
-//         onPress={() => {
-//           onSignIn().then(() => navigation.navigate("SignedIn"));
-//         }} // if onSignIn allows it, navigate to the route "SignedIn"
-//       />
-//     </Card>
-//   </View>
-// );
