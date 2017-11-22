@@ -114,12 +114,10 @@ const options = {
       autoCorrect: false
     },
     email: {
-      autoCapitalize: 'none',
       autoCorrect: false,
       error: "Don't miss out on all this Shade! Enter an email to stay connected."
     },
     password: {
-      autoCapitalize: 'none',
       password: true,
       autoCorrect: false,
       error: "Enter your super secret password and check if someone's throwing Shade!"
