@@ -39,7 +39,8 @@ class ShadeCamera extends Component {
           <TouchableHighlight
             onPressIn={this._switchCamera.bind(this)}
           >
-            <Icon name="ios-reverse-camera"
+            <Icon
+              name="ios-reverse-camera"
               style={ styles.basic }
               size={70}
             />
@@ -50,7 +51,11 @@ class ShadeCamera extends Component {
             <TouchableHighlight
               onPressIn={this._endVideo.bind(this)}
             >
-              <Icon name="ios-cloud-upload" style={ styles.basic } size={90} />
+              <Icon
+                name="ios-cloud-upload"
+                style={ styles.basic }
+                size={90}
+              />
             </TouchableHighlight>
 
           </View>
@@ -60,7 +65,11 @@ class ShadeCamera extends Component {
               onPressIn={this._startRecord.bind(this)}
               onPressOut={this._nowRecording.bind(this)}
             >
-              <Icon name="ios-radio-button-on-outline" style={ this.state.recording ? styles.recording : styles.basic } size={90} />
+              <Icon
+                name="ios-radio-button-on-outline"
+                style={ this.state.recording ? styles.recording : styles.basic }
+                size={90}
+              />
             </TouchableHighlight>
           </View>
 
