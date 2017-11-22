@@ -5,8 +5,8 @@ import Moment from 'react-moment';
 const Message = ({id, body, points, media, shader, victim, status, posted}) => {
   return (
     <View style={styles.container}>
-      <Text>{points} upvotes. So {status}.</Text>
       <Text>{body}</Text>
+      <Text>{points} upvotes? So {status}.</Text>
       <Text>{shader} threw shade at {victim}</Text>
       <Text>{posted}</Text>
     </View>
