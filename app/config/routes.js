@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Home from "../views/Home";
 import SecondScreen from "../views/SecondScreen";
 import Register from '../views/Register';
+import Feed from '../views/Feed';
 //import Login from '../views/Login';
 
 export const Tabs = TabNavigator({
@@ -22,6 +23,14 @@ export const Tabs = TabNavigator({
       tabBarLabel: 'Sign Up',
       tabBarIcon: ({ tintColor }) =>
           <Icon name="ios-partly-sunny" size={30} color={tintColor} />
+    }
+  },
+  Feed: {
+    screen: Feed,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) =>
+          <Icon name="ios-chatboxes" size={30} color={tintColor} />
     }
   }
 }, {

@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import {
+import React, {Component} from "react";
+import { View, ScrollView, StyleSheet, Text,
+  TouchableHighlight, } from "react-native";
+import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+import { onSignIn } from "../auth";
 
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View
-} from 'react-native';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
@@ -30,7 +27,7 @@ class Login extends Component {
   componentWillUnmount() {
     this.setState = {
       value: {
-        email: '',
+        username: '',
         password: null
       }
     }
@@ -44,14 +41,16 @@ class Login extends Component {
 
   _handleSubmit = () => {
     const value = this.refs.form.getValue();
-
+    console.log(value)
+    const navigation = this.props.navigation;
       const data = {
-        email: value.email,
+        username: value.username,
         password: value.password,
       }
       // Serialize and post the data
       const json = JSON.stringify(data)
-      fetch('/auth/login', {
+      console.log(json, 'json')
+      fetch('http://localhost:8080/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,17 +58,13 @@ class Login extends Component {
         },
         body: json
       })
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.error) {
-          alert(res.error)
-        } else {
-          AsyncStorage.setItem('jwt', res.token)
-          alert(`Success! You may now access protected content.`)
-          // Redirect to home screen
-          this.props.navigator.pop()
-        }
+      .then((response) => {
+        console.log(response, 'response')
+        response.json()
       })
+      .then((res) => {
+          onSignIn().then(() => navigation.navigate("SignedIn"));
+       })
       .catch(() => {
         alert('There was an error logging in.');
       })
@@ -87,9 +82,12 @@ class Login extends Component {
         value={this.state.value}
         onChange={this._onChange}
       />
-      <TouchableHighlight onPress={this._handleSubmit}>
-        <Text style={styles.button}>Throw Shade!</Text>
-      </TouchableHighlight>
+      <Button
+        buttonStyle={{ marginTop: 20 }}
+        backgroundColor="#03A9F4"
+        title="SIGN IN"
+        onPress={this._handleSubmit}
+      />
     </View>
 
     );
@@ -101,14 +99,10 @@ class Login extends Component {
 const options = {
   fields: {
     email: {
-      autoCapitalize: 'none',
-      autoCorrect: false,
       error: "Don't miss out on all this Shade! Enter an email."
     },
     password: {
-      autoCapitalize: 'none',
       password: true,
-      autoCorrect: false,
       error: "Oops! Try Again. Enter your super secret password."
     }
   }

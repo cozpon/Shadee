@@ -1,24 +1,28 @@
 
-import React, { Component } from 'react';
-import { Animated, ScrollView, Image, Dimensions, StyleSheet, Text, View } from 'react-native';
-import Home from './app/components/home' //Import the component file
-import { Tabs } from './app/config/routes';
+// import React, { Component } from 'react';
+// import { Animated, ScrollView, Image, Dimensions, StyleSheet, Text, View } from 'react-native';
+// import Home from './app/components/home' //Import the component file
+// import { Tabs } from './app/config/routes';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Tabs />
-      </View>
-    );
-  }
-}
+// export default class App extends Component {
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <Tabs />
+//       </View>
+//     );
+//   }
+// }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
+
+import App from './app/index';
+export default App;
+

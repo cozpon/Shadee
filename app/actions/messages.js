@@ -8,7 +8,7 @@ export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
 export const loadMessages = () => {
   return function(dispatch){
-    return axios.get('/api/messages')
+    return axios.get('http://localhost:8080/api/messages')
     .then( messages => {
       dispatch({
         type: LOAD_MESSAGES,
@@ -20,7 +20,7 @@ export const loadMessages = () => {
 
 export const loadMessage = (id) => {
   return function(dispatch){
-    return axios.get(`/api/messages/${id}`)
+    return axios.get(`http://localhost:8080/api/messages/${id}`)
     .then( message => {
       dispatch({
         type: LOAD_MESSAGE,
@@ -32,7 +32,7 @@ export const loadMessage = (id) => {
 
 export const addMessage = (newMessage) => {
   return function(dispatch){
-    return axios.post('/api/messages', newMessage)
+    return axios.post('http://localhost:8080/api/messages', newMessage)
     .then( message => {
       dispatch({
         type: ADD_MESSAGE,
@@ -46,7 +46,7 @@ export const addMessage = (newMessage) => {
 
 export const editMessage = (newInfo) => {
   return function(dispatch){
-    return axios.put(`/api/messages/${newInfo.id}`, newInfo)
+    return axios.put(`http://localhost:8080/api/messages/${newInfo.id}`, newInfo)
     .then ( message => {
       dispatch({
         type: EDIT_MESSAGE,
@@ -58,7 +58,7 @@ export const editMessage = (newInfo) => {
 
 export const deleteMessage = (id) => {
   return function(dispatch){
-    return axios.delete(`/api/messages/${id}`)
+    return axios.delete(`http://localhost:8080/api/messages/${id}`)
     .then( message => {
       dispatch({
         type: DELETE_MESSAGE,
