@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import { StackNavigator, TabNavigator } from "react-navigation";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
@@ -29,31 +29,40 @@ export const SignedOut = StackNavigator({
 });
 
 export const SignedIn = TabNavigator({
-  FirstScreen: {
+  Feed: {
     screen: Feed,
     navigationOptions: {
-      tabBarLabel: "FirstScreen",
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="home" size={30} color={tintColor} />
-      )
+      tabBarLabel: "Feed",
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
   },
   Logout: {
     screen: Logout,
     navigationOptions: {
       tabBarLabel: "Logout",
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="flag" size={30} color={tintColor} />
-      )
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="ios-partly-sunny" size={30} color={tintColor} />
     }
   },
-  SecondScreen: {
+  Camera: {
     screen: SecondScreen,
     navigationOptions: {
-      tabBarLabel: "SecondScreen",
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="user-secret" size={30} color={tintColor} />
-      )
+      tabBarLabel: "Camera",
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="ios-camera" size={30} color={tintColor} />
+    }
+  }
+}, {
+  tabBarPosition: 'bottom',
+  swipeEnabled: true,
+  tabBarOptions: {
+    activeTintColor: '#e6e6e6',
+    activeBackgroundColor: "#ffb6c1",
+    inactiveTintColor: '#666',
+    labelStyle: {
+      fontSize: 12,
+      padding: 0
     }
   }
 });
@@ -73,8 +82,7 @@ export const createRootNavigator = (signedIn = false) => {
           gesturesEnabled: false
         }
       }
-    },
-    {
+    }, {
       headerMode: "none",
       mode: "modal", // not sure what this does
       initialRouteName: signedIn ? "SignedIn" : "SignedOut"
