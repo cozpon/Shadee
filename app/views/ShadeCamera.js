@@ -6,6 +6,9 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
+
+// import { connect } from 'react-redux';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import RNFS from 'react-native-fs';
@@ -18,10 +21,11 @@ class ShadeCamera extends Component {
     this.state = {
       cameraType : 'back',
       mirrorMode: false,
-      pressStatus: false
+      recording: false
     }
   }
   render() {
+
     return (
       <View style={styles.container}>
         <Camera
@@ -34,22 +38,31 @@ class ShadeCamera extends Component {
 
           <TouchableHighlight
             onPressIn={this._switchCamera.bind(this)}
-            onHideUnderlay={this._onHideUnderlay.bind(this)}
-            onShowUnderlay={this._onShowUnderlay.bind(this)}
           >
             <Icon name="ios-reverse-camera"
-              style={ this.state.pressStatus ? styles.switchPress : styles.capture }
-              size={90}
+              style={ styles.basic }
+              size={70}
             />
           </TouchableHighlight>
 
-          <TouchableHighlight
-            onPressIn={this._startRecord.bind(this)}
-            onPressOut={this._endVideo.bind(this)}
-          >
-            <Icon name="ios-radio-button-on-outline" style={styles.capture} size={90} />
-          </TouchableHighlight>
+          <View style={ this.state.recording ? styles.basic : styles.noUpload }>
 
+            <TouchableHighlight
+              onPressIn={this._endVideo.bind(this)}
+            >
+              <Icon name="ios-cloud-upload" style={ styles.basic } size={90} />
+            </TouchableHighlight>
+
+          </View>
+
+          <View style={ styles.recordButton }>
+            <TouchableHighlight
+              onPressIn={this._startRecord.bind(this)}
+              onPressOut={this._nowRecording.bind(this)}
+            >
+              <Icon name="ios-radio-button-on-outline" style={ this.state.recording ? styles.recording : styles.basic } size={90} />
+            </TouchableHighlight>
+          </View>
 
         </Camera>
       </View>
@@ -70,22 +83,17 @@ class ShadeCamera extends Component {
     }
   }
 
-  _onHideUnderlay(){
-    this.setState({ pressStatus: false });
+  _nowRecording(){
+    this.setState({
+      recording: true
+    })
   }
-
-  _onShowUnderlay(){
-    this.setState({ pressStatus: true });
-  }
-
 
   _startRecord(){
-    console.log('start recording');
     startVideo = setTimeout(this._recordVideo.bind(this), 50);
   }
 
   _recordVideo() {
-    console.log('now recording');
     this.refs.camera.capture({
       mode: Camera.constants.CaptureMode.video,
       audio: true,
@@ -114,6 +122,7 @@ class ShadeCamera extends Component {
 
         fetch('http://10.0.1.8:8080/api/messages', config)
         .then((res) => {
+          console.log('response', res);
           return RNFS.unlink(VideoPath)
           .then(() => {
             console.log('file deleted');
@@ -135,8 +144,9 @@ class ShadeCamera extends Component {
 
   _endVideo(){
     this.refs.camera.stopCapture();
-
-    console.log('done recording');
+    this.setState({
+      recording: false
+    });
   }
 
 
@@ -145,19 +155,39 @@ class ShadeCamera extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   preview: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    justifyContent: 'space-between',
+    alignItems: 'flex-end'
   },
-  capture: {
+  basic: {
     color: '#fff'
   },
-  switchPress: {
-    color: '#ffb6c1',
+  recording: {
+    color: 'red'
+  },
+  noUpload: {
+    height: 0,
+    width: 0
+  },
+  recordButton: {
+    alignSelf: 'center'
   }
 });
+
+// const mapStateToProps = (state) => {
+//   return{
+//     victim: state.victim
+//   }
+// }
+
+
+
+// const ConnectedShadeCamera = connect(
+//   mapStateToProps,
+//   null
+// )(ShadeCamera)
 
 export default ShadeCamera;
