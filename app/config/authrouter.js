@@ -9,6 +9,8 @@ import SignIn from "../views/SignIn";
 import FirstScreen from "../views/FirstScreen";
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
+import Feed from '../views/Feed';
+
 
 
 export const SignedOut = StackNavigator({
@@ -28,7 +30,7 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = TabNavigator({
   FirstScreen: {
-    screen: FirstScreen,
+    screen: Feed,
     navigationOptions: {
       tabBarLabel: "FirstScreen",
       tabBarIcon: ({ tintColor }) => (
