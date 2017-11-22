@@ -16,7 +16,7 @@ export default ({ navigation }) => (
           fontSize: 30,
           alignItems: "center",
           justifyContent: "center",}}>
-          This is the SECOND  SHADE TAB YO DADDIO
+          This is the SECOND TAB YO DADDIO
         </Text>
         <Button
         backgroundColor="#03A9F4"

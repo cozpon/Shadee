@@ -27,8 +27,6 @@ export default class App extends Component {
       // maybe put a loading symbol here??
     }
 
-
-
     const Layout = createRootNavigator(signedIn);
     return <Layout />;
     // layout will be our VIEWS
