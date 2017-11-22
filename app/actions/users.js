@@ -11,7 +11,7 @@ const axios = require('axios');
 
 export const registerUser = (user) => {
   return function(dispatch) {
-    return axios.post('/api/users', user).then((newUser) => {
+    return axios.post('http://localhost:8080/api/users', user).then((newUser) => {
       dispatch({
         type: REGISTER_USER,
         user: newUser.data
@@ -22,7 +22,7 @@ export const registerUser = (user) => {
 
 export const loginUser = (user) => {
   return function(dispatch) {
-    return axios.post('/users/login', user).then((user) => {
+    return axios.post('http://localhost:8080/users/login', user).then((user) => {
       dispatch({
         type: LOGIN_USER,
         user: user.data
@@ -33,7 +33,7 @@ export const loginUser = (user) => {
 
 export const logoutUser = (user) => {
   return function(dispatch) {
-    return axios.get('/users/logout').then((response) => {
+    return axios.get('http://localhost:8080/users/logout').then((response) => {
       dispatch({
         type: LOGOUT_USER,
         response: data.response
@@ -44,7 +44,7 @@ export const logoutUser = (user) => {
 
 export const loadUsers = () => {
   return function(dispatch) {
-    return axios.get('/api/users').then((users) => {
+    return axios.get('http://localhost:8080/api/users').then((users) => {
       dispatch({
         type: LOAD_USERS,
         users: data.users
@@ -55,7 +55,7 @@ export const loadUsers = () => {
 
 export const loadDetailUsers = () => {
   return function(dispatch) {
-    return axios.get('/api/users/all').then((users) => {
+    return axios.get('http://localhost:8080/api/users/all').then((users) => {
       dispatch({
         type: LOAD_DETAIL_USERS,
         users: data.users
@@ -66,7 +66,7 @@ export const loadDetailUsers = () => {
 
 export const loadUser = (id) => {
   return function(dispatch) {
-    return axios.get(`/api/users/${id}`).then((user) => {
+    return axios.get(`http://localhost:8080/api/users/${id}`).then((user) => {
       dispatch({
         type: LOAD_USER,
         user: user.data
@@ -77,7 +77,7 @@ export const loadUser = (id) => {
 
 export const editUser = (user) => {
   return function(dispatch) {
-    return axios.put(`/api/users/${user.id}`).then((editedUser) => {
+    return axios.put(`http://localhost:8080/api/users/${user.id}`).then((editedUser) => {
       dispatch({
         type: EDIT_USER,
         user: editedUser.data

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { View, ScrollView, StyleSheet,
-  TouchableHighlight, } from "react-native";
-import { Card, Button, FormLabel, FormInput } from "react-native-elements";
+  TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
+import { Button } from "react-native-elements";
 import { onSignIn } from "../auth";
 
 import t from 'tcomb-form-native';
@@ -17,14 +17,14 @@ const newUser = t.struct({
 });
 
 class Register extends Component {
-
   constructor(props) {
     super(props)
+
     this.state = {
       value : {
-        username : '',
-        password : '',
-        email : ''
+      username : '',
+      password : '',
+      email : ''
       }
     }
   }
@@ -48,21 +48,21 @@ class Register extends Component {
   _handleAdd = () => {
     const navigation = this.props.navigation;
     const value = this.refs.form.getValue();
-      const data = {
-        username: value.username,
-        email: value.email,
-        password: value.password,
-      }
+    const data = {
+      username: value.username,
+      email: value.email,
+      password: value.password,
+    }
       // Serialize and post the data
-      const json = JSON.stringify(data);
-      fetch('http://localhost:8080/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: json
-      })
+    const json = JSON.stringify(data);
+    fetch('http://localhost:8080/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      Accept: 'application/json'
+      },
+      body: json
+    })
       .then((response) => response.json())
       .then(() => {
         onSignIn().then(() => navigation.navigate("SignedIn"))
@@ -72,38 +72,41 @@ class Register extends Component {
       })
       .done()
     }
+
   render() {
-
     const navigation = this.props.navigation;
-
+    console.log(navigation);
     return(
-
-
-      <ScrollView style={styles.container}>
-        <Form
-          ref='form' //assign a ref
-          type={newUser}
-          options={options}
-          value={this.state.value}
-          onChange={this._onChange}
-        />
-
-          <Button
-            buttonStyle={{ marginTop: 20 }}
-            backgroundColor="#03A9F4"
-            title="SIGN UP"
-            onPress=
-              {this._handleAdd}
+      <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.container}>
+      <ScrollView style={styles.header}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+          <Form
+            ref='form' //assign a ref
+            type={newUser}
+            options={options}
+            value={this.state.value}
+            onChange={this._onChange}
           />
           <Button
             buttonStyle={{ marginTop: 20 }}
             backgroundColor="transparent"
-            textStyle={{ color: "#bcbec1" }}
+            textStyle={{ color: "#ffb6c1" }}
+            fontWeight="bold"
+            raised={true}
+            title="SIGN UP"
+            onPress={this._handleAdd}
+          />
+          <Button
+            buttonStyle={{ marginTop: 20 }}
+            backgroundColor="transparent"
+            textStyle={{ color: "#ffb6c1" }}
+            raised={true}
             title="Sign In"
             onPress={() => navigation.navigate("SignIn")}
           />
-
-      </ScrollView>
+         </KeyboardAvoidingView>
+        </ScrollView>
+      </ImageBackground>
     );
   }
 }
@@ -114,14 +117,14 @@ const options = {
       autoCorrect: false
     },
     email: {
-      autoCapitalize: 'none',
       autoCorrect: false,
       error: "Don't miss out on all this Shade! Enter an email to stay connected."
     },
     password: {
-      autoCapitalize: 'none',
       password: true,
       autoCorrect: false,
+      autoCapitalize: 'none',
+      secureTextEntry: true,
       error: "Enter your super secret password and check if someone's throwing Shade!"
     },
     terms: {
@@ -132,8 +135,11 @@ const options = {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
-    padding: 20,
+    flex:1,
+    width: null,
+    height: null,
+    paddingTop: 20,
+    backgroundColor: 'transparent'
   },
   button: {
     borderRadius: 4,

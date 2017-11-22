@@ -8,6 +8,9 @@ import SignIn from "../views/SignIn";
 // ...
 import FirstScreen from "../views/FirstScreen";
 import SecondScreen from "../views/SecondScreen";
+import Logout from "../views/Logout";
+import Feed from '../views/Feed';
+
 
 
 export const SignedOut = StackNavigator({
@@ -27,11 +30,20 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = TabNavigator({
   FirstScreen: {
-    screen: FirstScreen,
+    screen: Feed,
     navigationOptions: {
       tabBarLabel: "FirstScreen",
       tabBarIcon: ({ tintColor }) => (
         <FontAwesome name="home" size={30} color={tintColor} />
+      )
+    }
+  },
+  Logout: {
+    screen: Logout,
+    navigationOptions: {
+      tabBarLabel: "Logout",
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome name="flag" size={30} color={tintColor} />
       )
     }
   },
@@ -40,7 +52,7 @@ export const SignedIn = TabNavigator({
     navigationOptions: {
       tabBarLabel: "SecondScreen",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="user" size={30} color={tintColor} />
+        <FontAwesome name="user-secret" size={30} color={tintColor} />
       )
     }
   }

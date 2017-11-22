@@ -34,6 +34,7 @@ const upload = multer({
 });
 
 router.get('/', (req, res) => {
+  console.log(req);
   return Message.findAll({
     include:[
       { model: User, as: 'shader' },
@@ -130,6 +131,94 @@ router.put('/:id', (req, res) => {
       })
     }
   })
+});
+
+router.put('/:id/vote', (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const id = req.params.id;
+  console.log(id);
+  return Message.findById(id)
+  .then((message) => {
+    if(data.vote === 'up'){
+      return message.update({
+        points: Number(message.points) + 1
+      }, {
+        returning: true,
+        plain: true
+      })
+      .then((upvotedMessage) => {
+        if(Number(upvotedMessage.points) >= 10 && upvotedMessage.status_id === 1){
+          return upvotedMessage.update({
+            status_id: 2
+          })
+          .then((response) => {
+            return Message.findById(id, {
+              include: [
+                { model: User, as: 'shader'},
+                { model: User, as: 'victim' },
+                { model: Status, as: 'message_status'}
+              ]
+            })
+            .then((extraMessage) => {
+              return res.json(extraMessage);
+            })
+          })
+        }else{
+          return Message.findById(id, {
+            include: [
+              { model: User, as: 'shader'},
+              { model: User, as: 'victim' },
+              { model: Status, as: 'message_status'}
+            ]
+          })
+          .then((finalMessage) => {
+            return res.json(finalMessage);
+          })
+        }
+      })
+    }else if(data.vote === 'down'){
+      return message.update({
+        points: Number(message.points) - 1
+      }, {
+        returning: true,
+        plain: true
+      })
+      .then((downvotedMessage) => {
+        if(downvotedMessage.points < 10 && downvotedMessage.status_id === 2){
+          return downvotedMessage.update({
+            status_id: 1
+          })
+          .then((response) => {
+            return Message.findById(id, {
+              include: [
+                { model: User, as: 'shader'},
+                { model: User, as: 'victim' },
+                { model: Status, as: 'message_status'}
+              ]
+            })
+            .then((basicMessage) => {
+              return res.json(basicMessage);
+            })
+          })
+        }else{
+          return Message.findById(id, {
+            include: [
+              { model: User, as: 'shader'},
+              { model: User, as: 'victim' },
+              { model: Status, as: 'message_status'}
+            ]
+          })
+          .then((finalMessage) => {
+            return res.json(finalMessage);
+          })
+        }
+      })
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 });
 
 router.delete('/:id', (req, res) => {
