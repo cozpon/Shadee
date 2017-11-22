@@ -11,6 +11,9 @@ import {
 import { connect } from 'react-redux';
 import { loadMessages } from '../actions/messages';
 import Message from '../components/Message';
+import Upvote from '../components/Upvote';
+import Downvote from '../components/Downvote';
+import moment from 'moment';
 
 class Feed extends Component {
 
@@ -31,16 +34,22 @@ class Feed extends Component {
       <ScrollView>
         {
           this.props.messages.map((message) => {
+            const fromNow = moment(message.createdAt).fromNow()
             return (
-              <Message
-                body={message.body}
-                points={message.points}
-                shader={message.shader.username}
-                victim={message.victim.username}
-                status={message.message_status.name}
-                key={message.id}
-                style={styles.container}
-              />
+              <View>
+                <Message
+                  body={message.body}
+                  points={message.points}
+                  shader={message.shader.username}
+                  victim={message.victim.username}
+                  status={message.message_status.name}
+                  posted={fromNow}
+                  key={message.id}
+                  style={styles.container}
+                />
+                <Upvote id={message.id}/>
+                <Downvote id={message.id}/>
+              </View>
             )
           })
         }
