@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-const axios = require('axios');
+import { loadMessages } from '../actions/messages';
 
 class Feed extends Component {
 
@@ -21,25 +21,11 @@ class Feed extends Component {
   }
 
   componentDidMount(){
-    // return fetch('http://localhost:8080/api/messages')
-    // .then((response) => {
-    //   //console.log(response.json())
-    //   let test = response.json()
-    //   console.log('test', test);
-    // })
-    // .then((responseJson) => {
-    //   console.log(responseJson)
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
-    return axios.get('http://localhost:8080/api/messages')
-    .then((messages) => {
-      console.log(messages);
-    })
+    this.props.loadMessages();
   }
 
   render() {
+    console.log(this.props);
     return(
       <Text>
         Your messages!
@@ -48,4 +34,18 @@ class Feed extends Component {
   }
 }
 
-export default Feed;
+const mapStateToProps = (state) => {
+  return {
+    messages: state.messages
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadMessages: () => {
+      dispatch(loadMessages());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

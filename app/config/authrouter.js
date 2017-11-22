@@ -8,6 +8,7 @@ import SignIn from "../views/SignIn";
 // ...
 import FirstScreen from "../views/FirstScreen";
 import SecondScreen from "../views/SecondScreen";
+import Feed from '../views/Feed';
 
 
 export const SignedOut = StackNavigator({
@@ -36,7 +37,7 @@ export const SignedIn = TabNavigator({
     }
   },
   SecondScreen: {
-    screen: SecondScreen,
+    screen: Feed,
     navigationOptions: {
       tabBarLabel: "SecondScreen",
       tabBarIcon: ({ tintColor }) => (
