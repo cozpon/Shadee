@@ -18,10 +18,6 @@ export default ({ navigation }) => (
           justifyContent: "center",}}>
           This is the SECOND TAB YO DADDIO
         </Text>
-        <Button
-        backgroundColor="#03A9F4"
-        title="SIGN OUT"
-        onPress={() => onSignOut().then(() => navigation.navigate("SignedOut"))}
-      />
+
       </ScrollView>
 );

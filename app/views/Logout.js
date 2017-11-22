@@ -29,7 +29,7 @@ class Logout extends Component {
 
   render() {
     return(
-    <ScrollView>
+    <ScrollView style={{marginTop: 100}}>
      <Button
         backgroundColor="#03A9F4"
         title="SIGN OUT"
