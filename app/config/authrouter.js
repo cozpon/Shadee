@@ -28,7 +28,7 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = TabNavigator({
   FirstScreen: {
-    screen: FirstScreen,
+    screen: Feed,
     navigationOptions: {
       tabBarLabel: "FirstScreen",
       tabBarIcon: ({ tintColor }) => (
@@ -37,7 +37,7 @@ export const SignedIn = TabNavigator({
     }
   },
   SecondScreen: {
-    screen: Feed,
+    screen: SecondScreen,
     navigationOptions: {
       tabBarLabel: "SecondScreen",
       tabBarIcon: ({ tintColor }) => (
