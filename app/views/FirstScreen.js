@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import { ScrollView, Text, Button, Image, StyleSheet } from 'react-native';
 
 export default class FirstScreen extends Component {
   static navigationOptions = {
@@ -11,16 +11,21 @@ export default class FirstScreen extends Component {
       )
   }
   render () {
-    return <View style={
-      {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-      }
-    }>
-        <Text style={{fontSize: 30}}>
+    return <ScrollView style={styles.view}>
+    <Image source={require("../assets/logo.png")}/>
+    <Text style={{fontSize: 30}}>
           SSSSHHHAAADDEEEE
         </Text>
-      </View>
+      </ScrollView>
   }
 }
+
+const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+    marginTop: 200,
+  },
+  logo: {
+    justifyContent: 'center',
+  }
+});

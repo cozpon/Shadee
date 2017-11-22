@@ -6,7 +6,7 @@ import { createRootNavigator } from "./config/authrouter";
 import { isSignedIn } from "./auth";
 import configureStore from './store';
 import { View } from 'react-native';
-
+import { Tabs } from "./config/routes";
 // const RouterWithRedux = connect()(Router)
 const store = configureStore()
 

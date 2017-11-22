@@ -59,19 +59,15 @@ class Login extends Component {
         body: json
       })
       .then((response) => {
-        console.log(response, 'response')
-        response.json()
-      })
-      .then((res) => {
+        console.log(response);
+        if(response.status === 200){
           onSignIn().then(() => navigation.navigate("SignedIn"));
-       })
-      .catch(() => {
-        alert('There was an error logging in.');
+        } else {
+        return alert('Wrong Username or Password');
+        }
       })
       .done()
-
   }
-
 
   render() {
     return(
@@ -79,6 +75,7 @@ class Login extends Component {
       <Form
         ref='form'
         type={User}
+        options={options}
         value={this.state.value}
         onChange={this._onChange}
       />
@@ -98,14 +95,18 @@ class Login extends Component {
 
 const options = {
   fields: {
-    email: {
-      error: "Don't miss out on all this Shade! Enter an email."
+    username: {
+      autoCorrect: false,
+      error: "Well, that username is taken already."
     },
     password: {
       password: true,
+      autoCorrect: false,
+      autoCapitalize: 'none',
+      secureTextEntry: true,
       error: "Oops! Try Again. Enter your super secret password."
-    }
-  }
+    },
+  },
 };
 
 const styles = StyleSheet.create({
