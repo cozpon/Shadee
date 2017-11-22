@@ -34,6 +34,7 @@ const upload = multer({
 });
 
 router.get('/', (req, res) => {
+  console.log(req);
   return Message.findAll({
     include:[
       { model: User, as: 'shader' },
