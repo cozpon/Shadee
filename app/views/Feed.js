@@ -9,6 +9,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
+const axios = require('axios');
 
 class Feed extends Component {
 
@@ -20,17 +21,21 @@ class Feed extends Component {
   }
 
   componentDidMount(){
-    return fetch('http://localhost:8080/api/messages')
-    .then((response) => {
-      //console.log(response.json())
-      let test = response.json()
-      console.log('test', test);
-    })
-    .then((responseJson) => {
-      console.log(responseJson)
-    })
-    .catch((err) => {
-      console.log(err)
+    // return fetch('http://localhost:8080/api/messages')
+    // .then((response) => {
+    //   //console.log(response.json())
+    //   let test = response.json()
+    //   console.log('test', test);
+    // })
+    // .then((responseJson) => {
+    //   console.log(responseJson)
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
+    return axios.get('http://localhost:8080/api/messages')
+    .then((messages) => {
+      console.log(messages);
     })
   }
 
