@@ -27,6 +27,9 @@ router.get('/', (req, res) => {
 
 router.get('/all', (req, res) => {
   return User.findAll({
+    attributes: {
+      exclude: ['password']
+    },
     include: [
       { model: Message, as: 'offense' },
       { model: Message, as: 'defense' },
@@ -45,6 +48,9 @@ router.get('/all', (req, res) => {
 router.get('/:id', (req, res) => {
   let id = req.params.id;
   return User.findById(id, {
+    attributes: {
+      exclude: ['password']
+    },
     include:[
       { model: Message, as: 'offense' },
       { model: Message, as: 'defense' },

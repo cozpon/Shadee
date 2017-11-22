@@ -22,6 +22,14 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We're accessing your camera. Get ready 4 shade.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to access all your pics. Lol</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We're accessing your mic.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Accessing photo library to save your shade.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
