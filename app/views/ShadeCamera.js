@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   recording: {
-    color: 'red'
+    color: '#FF0000'
   },
   noUpload: {
     height: 0,
@@ -182,8 +182,6 @@ const styles = StyleSheet.create({
 //     victim: state.victim
 //   }
 // }
-
-
 
 // const ConnectedShadeCamera = connect(
 //   mapStateToProps,
