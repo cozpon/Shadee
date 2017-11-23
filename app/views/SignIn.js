@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { View, ScrollView, StyleSheet, Text,
-  TouchableHighlight, } from "react-native";
+  TouchableHighlight, ImageBackground, KeyboardAvoidingView} from "react-native";
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import { onSignIn } from "../auth";
 
@@ -71,22 +71,28 @@ class Login extends Component {
 
   render() {
     return(
-    <View style={styles.container}>
-      <Form
-        ref='form'
-        type={User}
-        options={options}
-        value={this.state.value}
-        onChange={this._onChange}
-      />
-      <Button
-        buttonStyle={{ marginTop: 20 }}
-        backgroundColor="#03A9F4"
-        title="SIGN IN"
-        onPress={this._handleSubmit}
-      />
-    </View>
-
+    <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
+      <View style={styles.container}>
+        <KeyboardAvoidingView behavior="padding">
+          <Form
+            ref='form'
+            type={User}
+            options={options}
+            value={this.state.value}
+            onChange={this._onChange}
+          />
+          <Button
+            buttonStyle={{ marginTop: 20 }}
+            backgroundColor="transparent"
+            textStyle={{ color: "#ffb6c1" }}
+            fontWeight="bold"
+            raised={true}
+            title="SIGN IN"
+            onPress={this._handleSubmit}
+          />
+        </KeyboardAvoidingView>
+      </View>
+     </ImageBackground>
     );
   }
 }
@@ -110,6 +116,13 @@ const options = {
 };
 
 const styles = StyleSheet.create({
+  image: {
+    flex:1,
+    width: null,
+    height: null,
+    paddingTop: 20,
+    backgroundColor: 'transparent'
+  },
   container: {
     justifyContent: 'center',
     marginTop: 50,

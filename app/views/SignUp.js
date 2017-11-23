@@ -12,7 +12,6 @@ const newUser = t.struct({
     username: t.String,
     password: t.String,
     email: t.String,
-    emoji: t.list(t.String), //emoji name
     terms: t.Boolean
 });
 
@@ -77,7 +76,7 @@ class Register extends Component {
     const navigation = this.props.navigation;
     return(
       <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
-      <ScrollView>
+      <ScrollView style={styles.form}>
         <KeyboardAvoidingView behavior="padding">
           <Form
             ref='form' //assign a ref
@@ -144,6 +143,9 @@ const styles = StyleSheet.create({
   },
   form:{
     paddingTop: 20,
+    margin: 20
+
+
   },
 });
 
