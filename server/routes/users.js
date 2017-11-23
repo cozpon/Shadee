@@ -14,7 +14,10 @@ const Emoji = db.emoji;
 //api/users gets you JUST the users
 
 router.get('/', (req, res) => {
-  return User.findAll()
+  return User.findAll({
+    attributes: {
+      exclude: ['password']
+    }})
   .then(users => {
     return res.json(users);
   })

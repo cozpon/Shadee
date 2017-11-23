@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
@@ -112,11 +112,9 @@ class ShadeCamera extends Component {
     .then((data) => {
       VideoPath = data.path;
       if (VideoPath){
-        //note: shader_id and victim_id will need to be the real values eventually. shade.mp4 will get its own dynamic name w/ the shader_id in it.
         let data = new FormData();
-        data.append('upl', { uri: VideoPath, name: 'shadetest2.mp4', type: 'video'});
-        data.append('shader_id', 1);
-        data.append('victim_id', 2);
+        data.append('upl', { uri: VideoPath, name: 'this.props.victim.id', type: 'video'});
+        data.append('victim_id', parseInt(this.props.victim.id, 10));
 
         const config = {
           method: 'POST',
@@ -186,15 +184,10 @@ const styles = StyleSheet.create({
   }
 });
 
-// const mapStateToProps = (state) => {
-//   return{
-//     victim: state.victim
-//   }
-// }
+const mapStateToProps = (state) => {
+  return{
+    victim: state.victim
+  }
+}
 
-// const ConnectedShadeCamera = connect(
-//   mapStateToProps,
-//   null
-// )(ShadeCamera)
-
-export default ShadeCamera;
+export default connect(mapStateToProps, null)(ShadeCamera);
