@@ -34,11 +34,10 @@ const upload = multer({
 });
 
 router.get('/', (req, res) => {
-  console.log(req);
   return Message.findAll({
     include:[
-      { model: User, as: 'shader' },
-      { model: User, as: 'victim' },
+      { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+      { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
       { model: Status, as: 'message_status' }
     ]
   })
@@ -59,7 +58,7 @@ router.post('/', upload.array('upl', 1), (req, res) => {
   if(req.files[0]){
     Message.create({
       body: req.body.body,
-      shader_id: req.body.shader_id,
+      shader_id: parseInt(req.user.id, 10),
       victim_id: req.body.victim_id,
       media: req.files[0].key
     })
@@ -89,8 +88,8 @@ router.get('/:id', (req, res) => {
   let id = req.params.id;
   return Message.findById(id, {
     include:[
-      { model: User, as: 'shader' },
-      { model: User, as: 'victim' },
+      { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+      { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
       { model: Status, as: 'message_status'}
     ]
   })
@@ -109,7 +108,7 @@ router.put('/:id', (req, res) => {
   //note: newInfo coming in from axios should be an object whose keys match the columns in messages
   return Message.findById(id)
   .then((message) => {
-    if(parseInt(message.shader_id) === parseInt(req.user.id)){
+    if(parseInt(message.shader_id, 10) === parseInt(req.user.id, 10)){
       return message.update(newInfo, {
         returning: true,
         plain: true
@@ -117,8 +116,8 @@ router.put('/:id', (req, res) => {
       .then((message) => {
         return Message.findById(id, {
           include: [
-            { model: User, as: 'shader'},
-            { model: User, as: 'victim' },
+            { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id']},
+            { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
             { model: Status, as: 'message_status'}
           ]
         })
@@ -155,8 +154,8 @@ router.put('/:id/vote', (req, res) => {
           .then((response) => {
             return Message.findById(id, {
               include: [
-                { model: User, as: 'shader'},
-                { model: User, as: 'victim' },
+                { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id']},
+                { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
                 { model: Status, as: 'message_status'}
               ]
             })
@@ -167,8 +166,8 @@ router.put('/:id/vote', (req, res) => {
         }else{
           return Message.findById(id, {
             include: [
-              { model: User, as: 'shader'},
-              { model: User, as: 'victim' },
+              { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id']},
+              { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
               { model: Status, as: 'message_status'}
             ]
           })
@@ -192,8 +191,8 @@ router.put('/:id/vote', (req, res) => {
           .then((response) => {
             return Message.findById(id, {
               include: [
-                { model: User, as: 'shader'},
-                { model: User, as: 'victim' },
+                { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id']},
+                { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
                 { model: Status, as: 'message_status'}
               ]
             })
@@ -204,8 +203,8 @@ router.put('/:id/vote', (req, res) => {
         }else{
           return Message.findById(id, {
             include: [
-              { model: User, as: 'shader'},
-              { model: User, as: 'victim' },
+              { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id']},
+              { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
               { model: Status, as: 'message_status'}
             ]
           })
