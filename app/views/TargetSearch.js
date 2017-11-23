@@ -11,6 +11,7 @@ import {
 
 import { connect } from 'react-redux';
 import { loadUsers } from '../actions/users';
+import { selectVictim } from '../actions/victims';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SearchBar } from 'react-native-elements';
@@ -20,7 +21,6 @@ class TargetSearch extends Component {
     super();
     this.state = {
       users: [],
-      victim: null,
       selected: false
     }
   }
@@ -35,6 +35,7 @@ class TargetSearch extends Component {
         <SearchBar
           round
           noIcon
+          autoCorrect={false}
           autoCapitalize='none'
           keyboardType='default'
           ref="search"
@@ -43,8 +44,8 @@ class TargetSearch extends Component {
 
         { this.state.selected ?
           <View>
-            <Text>
-              Swipe right to throw shade at {this.state.victim.username}, or search for someone else.
+            <Text style={styles.list}>
+              Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
@@ -52,14 +53,16 @@ class TargetSearch extends Component {
             {
               this.state.users.map((user) => {
                 return(
-                  <TouchableOpacity style={styles.list} onPress={() => {
-                    this.setState({
-                        victim: user,
+                  <TouchableOpacity
+                    key={user.id}
+                    onPress={() => {
+                      this.setState({
                         selected: true
                       })
+                      this.props.selectVictim(user);
                   }}>
-                    <Text>
-                    {user.username}
+                    <Text style={styles.list}>
+                      {user.username}
                     </Text>
                   </TouchableOpacity>
                   )
@@ -86,34 +89,13 @@ class TargetSearch extends Component {
     })
   }
 
-  handleClear(event){
-    this.setState({
-      value: '',
-      users: []
-    })
-  }
-
 
 }
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    width: null,
-    height: null,
-    paddingTop: 20,
-    backgroundColor: 'transparent'
-  },
-  button: {
-    borderRadius: 4,
-    padding: 20,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#fff'
-  },
   list: {
-    fontSize: 20
+    fontSize: 40
   }
 });
 
@@ -121,7 +103,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return{
-    users: state.users
+    users: state.users,
+    victim: state.victim
   };
 }
 
@@ -129,6 +112,9 @@ const mapDispatchToProps = (dispatch) => {
   return{
     loadUsers: () => {
       dispatch(loadUsers());
+    },
+    selectVictim: (victim) => {
+      dispatch(selectVictim(victim));
     }
   }
 }
