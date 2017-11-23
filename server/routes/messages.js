@@ -34,7 +34,6 @@ const upload = multer({
 });
 
 router.get('/', (req, res) => {
-  console.log(req);
   return Message.findAll({
     include:[
       { model: User, as: 'shader' },
@@ -59,7 +58,7 @@ router.post('/', upload.array('upl', 1), (req, res) => {
   if(req.files[0]){
     Message.create({
       body: req.body.body,
-      shader_id: req.body.shader_id,
+      shader_id: parseInt(req.user.id, 10),
       victim_id: req.body.victim_id,
       media: req.files[0].key
     })
@@ -109,7 +108,7 @@ router.put('/:id', (req, res) => {
   //note: newInfo coming in from axios should be an object whose keys match the columns in messages
   return Message.findById(id)
   .then((message) => {
-    if(parseInt(message.shader_id) === parseInt(req.user.id)){
+    if(parseInt(message.shader_id, 10) === parseInt(req.user.id, 10)){
       return message.update(newInfo, {
         returning: true,
         plain: true
