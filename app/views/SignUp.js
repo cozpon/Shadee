@@ -12,7 +12,6 @@ const newUser = t.struct({
     username: t.String,
     password: t.String,
     email: t.String,
-    emoji: t.list(t.String), //emoji name
     terms: t.Boolean
 });
 
@@ -35,6 +34,7 @@ class Register extends Component {
         username : '',
         password : null,
         email : ''
+
       }
     }
   }
@@ -48,36 +48,41 @@ class Register extends Component {
   _handleAdd = () => {
     const navigation = this.props.navigation;
     const value = this.refs.form.getValue();
-    const data = {
-      username: value.username,
-      email: value.email,
-      password: value.password,
-    }
+
+    if(value === null){
+      alert('Enter your info to see all the Shade!')
+    }else{
+      const data = {
+        username: value.username,
+        email: value.email,
+        password: value.password,
+      }
       // Serialize and post the data
-    const json = JSON.stringify(data);
-    fetch('http://localhost:8080/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      Accept: 'application/json'
-      },
-      body: json
-      })
-      .then((response) => response.json())
-      .then(() => {
-        onSignIn().then(() => navigation.navigate("SignedIn"))
-      })
-      .catch((error) => {
-        alert('There was an error creating your account.');
-      })
-      .done()
+      const json = JSON.stringify(data);
+        fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        Accept: 'application/json'
+        },
+        body: json
+        })
+        .then((response) => response.json())
+        .then(() => {
+          onSignIn().then(() => navigation.navigate("SignedIn"))
+        })
+        .catch((error) => {
+          alert('There was an error creating your account.');
+        })
+        .done()
+      }
     }
 
   render() {
     const navigation = this.props.navigation;
     return(
       <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
-      <ScrollView>
+      <ScrollView style={styles.form}>
         <KeyboardAvoidingView behavior="padding">
           <Form
             ref='form' //assign a ref
@@ -144,6 +149,9 @@ const styles = StyleSheet.create({
   },
   form:{
     paddingTop: 20,
+    margin: 20
+
+
   },
 });
 
