@@ -23,7 +23,8 @@ class Register extends Component {
       value : {
       username : '',
       password : '',
-      email : ''
+      email : '',
+      terms : ''
       }
     }
   }
@@ -34,6 +35,7 @@ class Register extends Component {
         username : '',
         password : null,
         email : ''
+
       }
     }
   }
@@ -47,29 +49,35 @@ class Register extends Component {
   _handleAdd = () => {
     const navigation = this.props.navigation;
     const value = this.refs.form.getValue();
-    const data = {
-      username: value.username,
-      email: value.email,
-      password: value.password,
-    }
+    console.log(value.terms, 'value terms')
+
+    if(value === null){
+      alert('Enter your info to see all the Shade!')
+    }else{
+      const data = {
+        username: value.username,
+        email: value.email,
+        password: value.password,
+      }
       // Serialize and post the data
-    const json = JSON.stringify(data);
-    fetch('http://localhost:8080/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      Accept: 'application/json'
-      },
-      body: json
-      })
-      .then((response) => response.json())
-      .then(() => {
-        onSignIn().then(() => navigation.navigate("SignedIn"))
-      })
-      .catch((error) => {
-        alert('There was an error creating your account.');
-      })
-      .done()
+      const json = JSON.stringify(data);
+        fetch('http://localhost:8080/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        Accept: 'application/json'
+        },
+        body: json
+        })
+        .then((response) => response.json())
+        .then(() => {
+          onSignIn().then(() => navigation.navigate("SignedIn"))
+        })
+        .catch((error) => {
+          alert('There was an error creating your account.');
+        })
+        .done()
+      }
     }
 
   render() {

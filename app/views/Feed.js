@@ -6,21 +6,23 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
-  View
+  View,
+  Picker
 } from 'react-native';
 import { connect } from 'react-redux';
 import { loadMessages } from '../actions/messages';
 import Message from '../components/Message';
 import Upvote from '../components/Upvote';
 import Downvote from '../components/Downvote';
-import moment from 'moment';
+import Moment from 'moment';
 
 class Feed extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      messages: []
+      messages: [],
+      sorting: "latest"
     }
   }
 
@@ -29,32 +31,79 @@ class Feed extends Component {
   }
 
   render() {
-    console.log(this.props.messages);
+    console.log(this.state.sorting);
+    if(this.state.sorting === "highest"){
     return(
       <ScrollView>
+        <Picker
+          selectedValue={this.state.sorting}
+          onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
+          <Picker.Item label="Most Shade" value="highest" />
+          <Picker.Item label="Latest" value="latest" />
+        </Picker>
         {
-          this.props.messages.map((message) => {
-            const fromNow = moment(message.createdAt).fromNow()
+        this.props.messages.sort((a, b) => {
+          return b.points - a.points })
+          .map(message => {
+            const fromNow = Moment(message.createdAt).fromNow()
+            console.log(message, 'points message')
             return (
-              <View>
-                <Message
-                  body={message.body}
-                  points={message.points}
-                  shader={message.shader.username}
-                  victim={message.victim.username}
-                  status={message.message_status.name}
-                  posted={fromNow}
-                  key={message.id}
-                  style={styles.container}
-                />
-                <Upvote id={message.id}/>
-                <Downvote id={message.id}/>
-              </View>
+             <View>
+              <Message
+                body={message.body}
+                points={message.points}
+                shader={message.shader.username}
+                victim={message.victim.username}
+                status={message.message_status.name}
+                posted={fromNow}
+                key={message.id}
+                style={styles.container}
+              />
+              <Upvote id={message.id}/>
+              <Downvote id={message.id}/>
+            </View>
             )
           })
         }
       </ScrollView>
     )
+  } else if(this.state.sorting === "latest"){
+      return(
+        <ScrollView>
+          <Picker
+            iosHeader="Fiter By"
+            mode="dropdown"
+            selectedValue={this.state.sorting}
+            onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
+            <Picker.Item label="Most Shade" value="highest" />
+            <Picker.Item label="Latest" value="latest" />
+          </Picker>
+          {
+          this.props.messages.sort((a, b) => {
+            return a.id - b.id })
+            .map(message => {
+              const fromNow = Moment(message.createdAt).fromNow()
+              return (
+                <View>
+                  <Message
+                    body={message.body}
+                    points={message.points}
+                    shader={message.shader.username}
+                    victim={message.victim.username}
+                    status={message.message_status.name}
+                    posted={fromNow}
+                    key={message.id}
+                    style={styles.container}
+                  />
+                  <Upvote id={message.id}/>
+                  <Downvote id={message.id}/>
+                </View>
+              )
+            })
+          }
+        </ScrollView>
+      )
+    }
   }
 }
 
