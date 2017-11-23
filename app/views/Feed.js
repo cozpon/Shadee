@@ -14,6 +14,7 @@ import Message from '../components/Message';
 import Upvote from '../components/Upvote';
 import Downvote from '../components/Downvote';
 import moment from 'moment';
+import VideoPlayer from '../components/VideoPlayer';
 
 class Feed extends Component {
 
@@ -29,7 +30,6 @@ class Feed extends Component {
   }
 
   render() {
-    console.log(this.props.messages);
     return(
       <ScrollView>
         {
@@ -37,13 +37,14 @@ class Feed extends Component {
             const fromNow = moment(message.createdAt).fromNow()
             return (
               <View>
+                <VideoPlayer />
                 <Message
                   body={message.body}
                   points={message.points}
                   shader={message.shader.username}
                   victim={message.victim.username}
                   status={message.message_status.name}
-                  posted={fromNow}
+                  posted={message.createdAt}
                   key={message.id}
                   style={styles.container}
                 />
