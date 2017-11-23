@@ -99,8 +99,6 @@ const styles = StyleSheet.create({
   }
 });
 
-//this.props.users
-
 const mapStateToProps = (state) => {
   return{
     users: state.users,
