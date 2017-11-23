@@ -62,7 +62,7 @@ class Register extends Component {
       Accept: 'application/json'
       },
       body: json
-    })
+      })
       .then((response) => response.json())
       .then(() => {
         onSignIn().then(() => navigation.navigate("SignedIn"))
@@ -75,15 +75,15 @@ class Register extends Component {
 
   render() {
     const navigation = this.props.navigation;
-    console.log(navigation);
     return(
-      <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.container}>
-      <ScrollView style={styles.header}>
-        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
+      <ScrollView>
+        <KeyboardAvoidingView behavior="padding">
           <Form
             ref='form' //assign a ref
             type={newUser}
             options={options}
+            style={styles.form}
             value={this.state.value}
             onChange={this._onChange}
           />
@@ -100,6 +100,7 @@ class Register extends Component {
             buttonStyle={{ marginTop: 20 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
+            fontWeight="bold"
             raised={true}
             title="Sign In"
             onPress={() => navigation.navigate("SignIn")}
@@ -134,20 +135,16 @@ const options = {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  image: {
     flex:1,
     width: null,
     height: null,
     paddingTop: 20,
     backgroundColor: 'transparent'
   },
-  button: {
-    borderRadius: 4,
-    padding: 20,
-    textAlign: 'center',
-    marginBottom: 20,
-    color: '#fff'
-  }
+  form:{
+    paddingTop: 20,
+  },
 });
 
 export default Register;
