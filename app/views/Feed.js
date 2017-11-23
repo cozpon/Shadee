@@ -15,6 +15,7 @@ import Message from '../components/Message';
 import Upvote from '../components/Upvote';
 import Downvote from '../components/Downvote';
 import Moment from 'moment';
+import VideoPlayer from '../components/VideoPlayer';
 
 class Feed extends Component {
 
@@ -48,20 +49,21 @@ class Feed extends Component {
             const fromNow = Moment(message.createdAt).fromNow()
             console.log(message, 'points message')
             return (
-             <View>
-              <Message
-                body={message.body}
-                points={message.points}
-                shader={message.shader.username}
-                victim={message.victim.username}
-                status={message.message_status.name}
-                posted={fromNow}
-                key={message.id}
-                style={styles.container}
-              />
-              <Upvote id={message.id}/>
-              <Downvote id={message.id}/>
-            </View>
+              <View>
+                <VideoPlayer />
+                <Message
+                  body={message.body}
+                  points={message.points}
+                  shader={message.shader.username}
+                  victim={message.victim.username}
+                  status={message.message_status.name}
+                  posted={message.createdAt}
+                  key={message.id}
+                  style={styles.container}
+                />
+                <Upvote id={message.id}/>
+                <Downvote id={message.id}/>
+              </View>
             )
           })
         }
@@ -85,6 +87,7 @@ class Feed extends Component {
               const fromNow = Moment(message.createdAt).fromNow()
               return (
                 <View>
+                  <VideoPlayer />
                   <Message
                     body={message.body}
                     points={message.points}
