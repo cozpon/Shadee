@@ -23,8 +23,7 @@ class Register extends Component {
       value : {
       username : '',
       password : '',
-      email : '',
-      terms : ''
+      email : ''
       }
     }
   }
@@ -49,7 +48,6 @@ class Register extends Component {
   _handleAdd = () => {
     const navigation = this.props.navigation;
     const value = this.refs.form.getValue();
-    console.log(value.terms, 'value terms')
 
     if(value === null){
       alert('Enter your info to see all the Shade!')
