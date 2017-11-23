@@ -36,7 +36,7 @@ export const logoutUser = (user) => {
     return axios.get('http://localhost:8080/users/logout').then((response) => {
       dispatch({
         type: LOGOUT_USER,
-        response: data.response
+        response: response.data
       });
     });
   }
@@ -47,7 +47,7 @@ export const loadUsers = () => {
     return axios.get('http://localhost:8080/api/users').then((users) => {
       dispatch({
         type: LOAD_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
@@ -58,7 +58,7 @@ export const loadDetailUsers = () => {
     return axios.get('http://localhost:8080/api/users/all').then((users) => {
       dispatch({
         type: LOAD_DETAIL_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
