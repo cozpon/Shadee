@@ -10,6 +10,7 @@ import FirstScreen from "../views/FirstScreen";
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
+import SideBar from './sidebar'
 
 
 
@@ -52,7 +53,7 @@ export const SignedIn = TabNavigator({
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-camera" size={30} color={tintColor} />
     }
-  }
+  },
 }, {
   tabBarPosition: 'bottom',
   swipeEnabled: true,
