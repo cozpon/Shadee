@@ -58,7 +58,8 @@ router.post('/', upload.array('upl', 1), (req, res) => {
   if(req.files[0]){
     Message.create({
       body: req.body.body,
-      shader_id: parseInt(req.user.id, 10),
+      shader_id: 1,
+      // shader_id: parseInt(req.user.id, 10),
       victim_id: req.body.victim_id,
       media: req.files[0].key
     })
