@@ -75,7 +75,16 @@ router.post('/', upload.array('upl', 1), (req, res) => {
       victim_id: req.body.victim_id
     })
     .then((message) => {
-      return res.json(message);
+      Message.findById(message.id, {
+        include:[
+          { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: Status, as: 'message_status'}
+        ]
+      })
+      .then((foundMessage) => {
+        return res.json(foundMessage);
+      })
     })
     .catch((err) => {
       console.log(err);
