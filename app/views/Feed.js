@@ -24,17 +24,18 @@ import {
 } from "native-base";
 
 import { connect } from 'react-redux';
-import { loadMessages } from '../actions/messages';
+import { loadMessages, voteOnMessage } from '../actions/messages';
 import Message from '../components/Message';
-import Upvote from '../components/Upvote';
-import Downvote from '../components/Downvote';
+import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
+
 
 class Feed extends Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       messages: [],
       sorting: "latest"
@@ -93,8 +94,7 @@ class Feed extends Component {
                   key={message.id}
                   style={styles.text}
                 />
-                <Upvote id={message.id}/>
-                <Downvote id={message.id}/>
+                <Vote id={message.id}/>
               </View>
             )
           })
@@ -150,8 +150,7 @@ class Feed extends Component {
                     key={message.id}
                     style={styles.text}
                   />
-                  <Upvote id={message.id}/>
-                  <Downvote id={message.id}/>
+                  <Vote id={message.id}/>
                 </View>
               )
             })
