@@ -73,7 +73,7 @@ export const loadUsers = () => {
     return Axios.get('http://localhost:8080/api/users').then((users) => {
       dispatch({
         type: LOAD_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
@@ -84,7 +84,7 @@ export const loadDetailUsers = () => {
     return Axios.get('http://localhost:8080/api/users/all').then((users) => {
       dispatch({
         type: LOAD_DETAIL_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
