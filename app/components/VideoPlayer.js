@@ -24,6 +24,12 @@ export default class VideoPlayer extends Component {
     this.setState({currentTime: data.currentTime});
   }
 
+  onEnd(data) {
+    this.setState({
+      paused: true
+    })
+  }
+
   getCurrentTimePercentage(){
     if(this.state.currentTime > 0){
       return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
@@ -37,11 +43,13 @@ export default class VideoPlayer extends Component {
   render() {
     const timePassed = this.getCurrentTimePercentage() * 100;
     const timeRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-    console.log(this.state)
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <TouchableOpacity onPress={() => {this.setState({paused: !this.state.paused})}}>
           <Video
+            ref={(ref) => {
+              this.player = ref
+            }}
             source={{uri: "https://d4fzdcljjl4gc.cloudfront.net/1511327099334-shadetest2.mp4"}}
             resizeMode="contain"
             rate={this.state.rate}
@@ -52,6 +60,7 @@ export default class VideoPlayer extends Component {
             style={styles.video}
             onProgress={this.onProgress.bind(this)}
             onLoad={this.onLoad.bind(this)}
+            onEnd={this.onEnd.bind(this)}
           />
           </TouchableOpacity>
           <View style={styles.progress}>
