@@ -10,6 +10,8 @@ import FirstScreen from "../views/FirstScreen";
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
+import TargetSearch from '../views/TargetSearch';
+import ShadeCamera from '../views/ShadeCamera';
 
 
 
@@ -45,10 +47,18 @@ export const SignedIn = TabNavigator({
         <Icon name="ios-partly-sunny" size={30} color={tintColor} />
     }
   },
-  Camera: {
-    screen: SecondScreen,
+  TargetSearch: {
+    screen: TargetSearch,
     navigationOptions: {
-      tabBarLabel: "Camera",
+      tabBarLabel: "Throw Shade",
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="ios-body" size={30} color={tintColor} />
+    }
+  },
+  Camera: {
+    screen: ShadeCamera,
+    navigationOptions: {
+      tabBarLabel: "Record",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-camera" size={30} color={tintColor} />
     }
