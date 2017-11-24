@@ -16,7 +16,6 @@ export default class VideoPlayer extends Component {
   }
 
   onLoad(data) {
-    console.log('On load fired!');
     this.setState({duration: data.duration});
   }
 
@@ -37,7 +36,6 @@ export default class VideoPlayer extends Component {
   render() {
     const timePassed = this.getCurrentTimePercentage() * 100;
     const timeRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-    console.log(this.state)
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <TouchableOpacity onPress={() => {this.setState({paused: !this.state.paused})}}>

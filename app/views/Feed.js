@@ -57,7 +57,7 @@ class Feed extends Component {
                   shader={message.shader.username}
                   victim={message.victim.username}
                   status={message.message_status.name}
-                  posted={message.createdAt}
+                  posted={fromNow}
                   key={message.id}
                   style={styles.container}
                 />
