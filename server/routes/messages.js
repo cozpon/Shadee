@@ -141,7 +141,7 @@ router.put('/:id/vote', (req, res) => {
   .then((message) => {
     if(data.vote === 'up'){
       return message.update({
-        points: Number(message.points) + 1
+        points: Number(message.points) + Number(data.amount)
       }, {
         returning: true,
         plain: true
@@ -178,7 +178,7 @@ router.put('/:id/vote', (req, res) => {
       })
     }else if(data.vote === 'down'){
       return message.update({
-        points: Number(message.points) - 1
+        points: Number(message.points) - Number(data.amount)
       }, {
         returning: true,
         plain: true

@@ -66,8 +66,8 @@ export default class VideoPlayer extends Component {
 const styles = StyleSheet.create({
   video: {
     flex: 1,
+    flexDirection: 'column',
     height: 300,
-    width: 300,
     justifyContent: 'center',
     overflow: 'visible'
   },
