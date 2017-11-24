@@ -86,15 +86,14 @@ const styles = StyleSheet.create({
   progress: {
     flex: 1,
     flexDirection: 'row',
-    borderRadius: 3,
     overflow: 'hidden',
   },
   innerProgressCompleted: {
-    height: 20,
+    height: 10,
     backgroundColor: '#cccccc',
   },
   innerProgressRemaining: {
-    height: 20,
+    height: 10,
     backgroundColor: '#2C2C2C',
   }
 });
