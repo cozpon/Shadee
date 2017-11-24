@@ -66,10 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: 300,
-<<<<<<< HEAD
     width: null,
-=======
->>>>>>> development
     justifyContent: 'center',
     overflow: 'hidden'
   },
