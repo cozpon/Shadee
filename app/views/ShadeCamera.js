@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import RNFS from 'react-native-fs';
 
+import { url } from '../lib/url';
 import { addMessage } from '../actions/messages';
 
 const VideoPath = "";
@@ -129,7 +130,7 @@ class ShadeCamera extends Component {
 
       //Note: we'll be fetching to our forreal server address eventually. Set the url to wherever yours is running at -- IP isn't necessary if you aren't sending from another device. http://localhost:8080/api/messages will be fine.
 
-        fetch('http://10.0.1.8:8080/api/messages', config)
+        fetch(`${url + 'messages'}`, config)
         .then((response) => {
           response.json()
           .then((data) => {
