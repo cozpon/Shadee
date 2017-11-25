@@ -33,6 +33,8 @@ class TargetSearch extends Component {
     return (
       <View>
         <SearchBar
+          containerStyle={styles.textContainer}
+          inputStyle={styles.textInput}
           round
           noIcon
           autoCorrect={false}
@@ -43,13 +45,13 @@ class TargetSearch extends Component {
           placeholder='Choose your victim...' />
 
         { this.state.selected ?
-          <View>
-            <Text style={styles.list}>
+          <View style={styles.list}>
+            <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
-          <View>
+          <View style={styles.list}>
             {
               this.state.users.map((user) => {
                 return(
@@ -61,7 +63,7 @@ class TargetSearch extends Component {
                       })
                       this.props.selectVictim(user);
                   }}>
-                    <Text style={styles.list}>
+                    <Text style={styles.text}>
                       {user.username}
                     </Text>
                   </TouchableOpacity>
@@ -94,8 +96,22 @@ class TargetSearch extends Component {
 
 
 const styles = StyleSheet.create({
-  list: {
+  textContainer: {
+    backgroundColor: '#ffb6c1'
+  },
+  textInput: {
+    height: 60,
+    borderColor: '#ffb6c1',
+    borderWidth: 1,
+    fontSize: 40,
+    backgroundColor: 'white',
+    color: '#ffb6c1'
+  },
+  text: {
     fontSize: 40
+  },
+  list: {
+    alignItems: 'center'
   }
 });
 
