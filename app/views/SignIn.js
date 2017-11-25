@@ -42,8 +42,11 @@ class Login extends Component {
 
   _handleSubmit = () => {
     const value = this.refs.form.getValue();
-    console.log(value)
     const navigation = this.props.navigation;
+
+    if(value === null){
+      alert('Enter your info to see all the Shade!')
+    }else{
       const data = {
         username: value.username,
         password: value.password,
@@ -68,6 +71,7 @@ class Login extends Component {
         }
       })
       .done()
+    }
   }
 
   render() {
