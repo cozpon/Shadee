@@ -49,7 +49,7 @@ class ShadeCamera extends Component {
             />
           </TouchableHighlight>
 
-          <View style={ this.state.recording ? styles.basic : styles.noUpload }>
+          <View style={ this.state.recording ? null : styles.noUpload }>
 
             <TouchableHighlight
               onPressIn={this._endVideo.bind(this)}
@@ -127,9 +127,6 @@ class ShadeCamera extends Component {
           },
           body: data
         }
-
-      //Note: we'll be fetching to our forreal server address eventually. Set the url to wherever yours is running at -- IP isn't necessary if you aren't sending from another device. http://localhost:8080/api/messages will be fine.
-
         fetch(`${url}messages`, config)
         .then((response) => {
           response.json()

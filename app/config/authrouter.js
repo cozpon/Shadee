@@ -50,7 +50,7 @@ export const SignedIn = TabNavigator({
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
-      tabBarLabel: "Throw Shade",
+      tabBarLabel: "Select Target",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-body" size={30} color={tintColor} />
     }
@@ -58,7 +58,7 @@ export const SignedIn = TabNavigator({
   Camera: {
     screen: ShadeCamera,
     navigationOptions: {
-      tabBarLabel: "Record",
+      tabBarLabel: "Record Shade",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-camera" size={30} color={tintColor} />
     }
