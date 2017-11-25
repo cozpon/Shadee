@@ -134,7 +134,7 @@ class Feed extends Component {
 
           {
           this.props.messages.sort((a, b) => {
-            return a.id - b.id })
+            return b.id - a.id })
             .map(message => {
               const fromNow = Moment(message.createdAt).fromNow()
               return (
