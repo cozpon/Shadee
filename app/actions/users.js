@@ -1,8 +1,10 @@
 import Axios from 'axios';
 
-const register = 'http://localhost:8080/api/auth/register';
-const login = 'http://localhost:8080/api/auth/login';
-const logout = 'http://localhost:8080/api/auth/logout';
+import { url } from '../lib/url';
+
+const register = `${url}auth/register`;
+const login = `${url}auth/login`;
+const logout = `${url}auth/logout`;
 
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
@@ -69,11 +71,12 @@ export const logoutUser = (user) => {
 
 
 export const loadUsers = () => {
+  console.log(url);
   return function(dispatch) {
-    return Axios.get('http://localhost:8080/api/users').then((users) => {
+    return Axios.get(`${url}users`).then((users) => {
       dispatch({
         type: LOAD_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
@@ -81,10 +84,10 @@ export const loadUsers = () => {
 
 export const loadDetailUsers = () => {
   return function(dispatch) {
-    return Axios.get('http://localhost:8080/api/users/all').then((users) => {
+    return Axios.get(`${url}users/all`).then((users) => {
       dispatch({
         type: LOAD_DETAIL_USERS,
-        users: data.users
+        users: users.data
       });
     });
   }
@@ -92,7 +95,7 @@ export const loadDetailUsers = () => {
 
 export const loadUser = (id) => {
   return function(dispatch) {
-    return Axios.get(`http://localhost:8080/api/users/${id}`).then((user) => {
+    return Axios.get(`${url}users/${id}`).then((user) => {
       dispatch({
         type: LOAD_USER,
         user: user.data
@@ -103,7 +106,7 @@ export const loadUser = (id) => {
 
 export const editUser = (user) => {
   return function(dispatch) {
-    return Axios.put(`http://localhost:8080/api/users/${user.id}`).then((editedUser) => {
+    return Axios.put(`${url}users/${user.id}`).then((editedUser) => {
       dispatch({
         type: EDIT_USER,
         user: editedUser.data

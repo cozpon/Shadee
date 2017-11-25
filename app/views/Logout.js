@@ -1,26 +1,14 @@
 import React, { Component } from 'react';
-import { ScrollView, Image } from 'react-native';
+import { ScrollView, Text, Button, Image } from 'react-native';
 import { onSignOut } from '../auth';
-import {
-  Container,
-  Header,
-  Title,
-  Left,
-  Icon,
-  Right,
-  Button,
-  Body,
-  Content,
-  Text,
-  Card,
-  CardItem
-} from "native-base";
+import { url } from '../lib/url';
+
 
 class Logout extends Component {
 
   _handleSubmit = () => {
     const navigation = this.props.navigation;
-      fetch('http://localhost:8080/api/auth/logout', {
+      fetch(`${url}auth/logout`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -43,30 +31,13 @@ class Logout extends Component {
 
   render() {
     return(
-    <ScrollView>
-     <Container>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Shade Feed</Title>
-          </Body>
-        </Header>
-
+    <ScrollView style={{marginTop: 100}}>
      <Button
         backgroundColor="#03A9F4"
         title="SIGN OUT"
         onPress={this._handleSubmit}
-        style={{marginTop: 100}}
       />
-    </Container>
-  </ScrollView>
-
+    </ScrollView>
 
     );
   }

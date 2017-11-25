@@ -58,12 +58,23 @@ router.post('/', upload.array('upl', 1), (req, res) => {
   if(req.files[0]){
     Message.create({
       body: req.body.body,
-      shader_id: parseInt(req.user.id, 10),
+      shader_id: 1,
+      // shader_id: parseInt(req.user.id, 10),
       victim_id: req.body.victim_id,
       media: req.files[0].key
     })
     .then((message) => {
-      return res.json(message);
+      return Message.findById(message.id, {
+        include:[
+          { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: Status, as: 'message_status'}
+        ]
+      })
+      .then((foundMessage) => {
+        console.log(foundMessage);
+        return res.json(foundMessage);
+      })
     })
     .catch((err) => {
       console.log(err);
@@ -75,7 +86,17 @@ router.post('/', upload.array('upl', 1), (req, res) => {
       victim_id: req.body.victim_id
     })
     .then((message) => {
-      return res.json(message);
+      return Message.findById(message.id, {
+        include:[
+          { model: User, as: 'shader', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: User, as: 'victim', attributes: ['username', 'id', 'emoji_id', 'status_id'] },
+          { model: Status, as: 'message_status'}
+        ]
+      })
+      .then((foundMessage) => {
+        console.log('foundMessage', foundMessage);
+        return res.json(foundMessage);
+      })
     })
     .catch((err) => {
       console.log(err);
