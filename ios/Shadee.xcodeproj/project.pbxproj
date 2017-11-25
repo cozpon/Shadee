@@ -27,7 +27,6 @@
 		1E6B065BA9C94B30A39E55C6 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FF31451354645CFB1087865 /* Ionicons.ttf */; };
 		26DC163AAE2E4753B34F2F61 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DC14BBAA39E4F5DAC10CE11 /* libRNFS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */; };
@@ -53,7 +52,6 @@
 		BC16C864679740949114AB38 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3FDA8398FAB4BBD981DC81D /* MaterialIcons.ttf */; };
 		BD75F6BA605E49D0B5C23880 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC65C5E9E89940CEB2783E9E /* Zocial.ttf */; };
 		BFA0656FAF20426088406B39 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6B7643FF3140D796314E2D /* Roboto_medium.ttf */; };
-		C434A2C31FCA01B00054E171 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		C5FE9F275BF940CD82A989C5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE26A0B8D9184878859E0610 /* FontAwesome.ttf */; };
 		C7499A491FF549F1ABC97907 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 623DBAC6772B405983BBC218 /* FontAwesome.ttf */; };
 		DD321E5DD99A4F189AD0370B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CD6451D6D54894AE97B1DB /* EvilIcons.ttf */; };
@@ -1215,7 +1213,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C434A2C31FCA01B00054E171 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,7 +1251,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
