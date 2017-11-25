@@ -83,7 +83,7 @@ class Feed extends Component {
             console.log(message, 'points message')
             return (
               <View style={styles.container}>
-                <VideoPlayer />
+                <VideoPlayer media={message.media}/>
                 <Message
                   body={message.body}
                   points={message.points}
@@ -139,7 +139,7 @@ class Feed extends Component {
               const fromNow = Moment(message.createdAt).fromNow()
               return (
                 <View style={styles.container}>
-                  <VideoPlayer />
+                  <VideoPlayer media={message.media} />
                   <Message
                     body={message.body}
                     points={message.points}
