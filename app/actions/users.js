@@ -71,6 +71,7 @@ export const logoutUser = (user) => {
 
 
 export const loadUsers = () => {
+  console.log(url);
   return function(dispatch) {
     return Axios.get(`${url}users`).then((users) => {
       dispatch({

@@ -33,14 +33,11 @@ export const loadMessage = (id) => {
   }
 }
 
-export const addMessage = (newMessage) => {
+export const addMessage = (data) => {
   return function(dispatch){
-    return axios.post(`${url}messages`, newMessage)
-    .then( message => {
-      dispatch({
-        type: ADD_MESSAGE,
-        message: message.data
-      });
+    dispatch({
+      type: ADD_MESSAGE,
+      message: data
     });
   }
 }
