@@ -55,7 +55,6 @@
 		BD75F6BA605E49D0B5C23880 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC65C5E9E89940CEB2783E9E /* Zocial.ttf */; };
 		BFA0656FAF20426088406B39 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6B7643FF3140D796314E2D /* Roboto_medium.ttf */; };
 		C434A2C31FCA01B00054E171 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		C434A2C51FCA032C0054E171 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C434A2C41FCA032C0054E171 /* Launch Screen.storyboard */; };
 		C5FE9F275BF940CD82A989C5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE26A0B8D9184878859E0610 /* FontAwesome.ttf */; };
 		C7499A491FF549F1ABC97907 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 623DBAC6772B405983BBC218 /* FontAwesome.ttf */; };
 		DD321E5DD99A4F189AD0370B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05CD6451D6D54894AE97B1DB /* EvilIcons.ttf */; };
@@ -406,7 +405,6 @@
 		AF35E815B3C64FCA85E115D6 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		BD0138902F854514BD3D3210 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		C3FDA8398FAB4BBD981DC81D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		C434A2C41FCA032C0054E171 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C545DC29463646A0BC9F6A0A /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C6833ADF557D4BE5AA6D6A26 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		DE26A0B8D9184878859E0610 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -562,7 +560,6 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				C434A2C41FCA032C0054E171 /* Launch Screen.storyboard */,
 			);
 			name = Shadee;
 			sourceTree = "<group>";
@@ -1240,7 +1237,6 @@
 				E6E5A4A7E6E34F2591FF3840 /* SimpleLineIcons.ttf in Resources */,
 				7850C956B261478880A07281 /* Zocial.ttf in Resources */,
 				141735B647B54779A155DE8E /* Entypo.ttf in Resources */,
-				C434A2C51FCA032C0054E171 /* Launch Screen.storyboard in Resources */,
 				DD321E5DD99A4F189AD0370B /* EvilIcons.ttf in Resources */,
 				C7499A491FF549F1ABC97907 /* FontAwesome.ttf in Resources */,
 				8AEA276125324D579F5458DC /* Foundation.ttf in Resources */,
@@ -1425,7 +1421,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-        ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1454,7 +1449,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-        ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JU5633867U;
