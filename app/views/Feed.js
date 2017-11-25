@@ -47,7 +47,7 @@ class Feed extends Component {
   }
 
   render() {
-    console.log(this.state.sorting);
+    const navigation = this.props.navigation;
     if(this.state.sorting === "highest"){
     return(
       <Container>
@@ -55,13 +55,14 @@ class Feed extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              onPress={() => navigation.navigate("DrawerOpen")}>
               <Icon name="menu" />
             </Button>
           </Left>
           <Body>
             <Title>Shade Feed</Title>
           </Body>
+          <Right />
         </Header>
 
 
@@ -114,11 +115,10 @@ class Feed extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Shade Feed</Title>
+            <Title>Feed</Title>
           </Body>
           <Right />
         </Header>
-
 
 
         <ScrollView>
@@ -134,7 +134,7 @@ class Feed extends Component {
 
           {
           this.props.messages.sort((a, b) => {
-            return a.id - b.id })
+            return b.id - a.id })
             .map(message => {
               const fromNow = Moment(message.createdAt).fromNow()
               return (

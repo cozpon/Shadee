@@ -1,11 +1,12 @@
 import React from "react";
 import { StatusBar } from "react-native";
-import { StackNavigator, TabNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator, DrawerNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
+
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
@@ -13,6 +14,17 @@ import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 
 
+export const Drawer = DrawerNavigator({
+  Feed: {
+    screen: Feed,
+  },
+  SecondScreen: {
+    screen: SecondScreen,
+  },
+  Logout: {
+    screen: Logout,
+  }
+});
 
 export const SignedOut = StackNavigator({
   SignUp: {
@@ -31,21 +43,21 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = TabNavigator({
   Feed: {
-    screen: Feed,
+    screen: Drawer,
     navigationOptions: {
       tabBarLabel: "Feed",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
   },
-  Logout: {
-    screen: Logout,
-    navigationOptions: {
-      tabBarLabel: "Logout",
-      tabBarIcon: ({ tintColor }) =>
-        <Icon name="ios-partly-sunny" size={30} color={tintColor} />
-    }
-  },
+  // Logout: {
+  //   screen: Logout,
+  //   navigationOptions: {
+  //     tabBarLabel: "Logout",
+  //     tabBarIcon: ({ tintColor }) =>
+  //       <Icon name="ios-partly-sunny" size={30} color={tintColor} />
+  //   }
+  // },
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
@@ -60,7 +72,7 @@ export const SignedIn = TabNavigator({
       tabBarLabel: "Record Shade",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-camera" size={30} color={tintColor} />
-    }
+     }
   }
 }, {
   tabBarPosition: 'bottom',
