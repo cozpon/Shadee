@@ -27,7 +27,7 @@ class Logout extends Component {
       })
       .then((response) => {
         console.log(response, 'response')
-        response.json()
+        response
       })
       .then((res) => {
           onSignOut().then(() => navigation.navigate("SignedOut"));
