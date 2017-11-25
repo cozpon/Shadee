@@ -77,7 +77,7 @@ export default class VideoPlayer extends Component {
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-              <Image source={{uri: "https://ih0.redbubble.net/image.25011287.7046/flat,800x800,070,f.u2.jpg"}} style={styles.playButton}>
+              <Image source={{uri: "https://www.fairwarning.com/wp-content/uploads/2016/04/play-300x300.png"}} style={styles.playButton}>
               </Image>
             </View>
 
