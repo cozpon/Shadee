@@ -78,7 +78,7 @@ export default class VideoPlayer extends Component {
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-              <Image source={{uri: "https://www.fairwarning.com/wp-content/uploads/2016/04/play-300x300.png"}} style={styles.playButton}>
+              <Image source={require('../assets/play-button.png')} style={styles.playButton}>
               </Image>
             </View>
 
