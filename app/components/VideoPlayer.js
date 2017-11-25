@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 
 import Video from "react-native-video";
 
@@ -11,7 +11,9 @@ export default class VideoPlayer extends Component {
       paused: true,
       rate: 1.0,
       currentTime: 0.0,
-      duration: 0.0
+      duration: 0.0,
+      videoIndex: 1,
+      buttonIndex: 2
     }
   }
 
@@ -23,6 +25,14 @@ export default class VideoPlayer extends Component {
     this.setState({currentTime: data.currentTime});
   }
 
+  onEnd(data) {
+    this.setState({
+      paused: true,
+      videoIndex: 1,
+      buttonIndex: 2
+    })
+  }
+
   getCurrentTimePercentage(){
     if(this.state.currentTime > 0){
       return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
@@ -31,26 +41,70 @@ export default class VideoPlayer extends Component {
     }
   }
 
-
+  pausePlay(event) {
+    event.preventDefault();
+    if(this.state.videoIndex === 1){
+      this.setState({
+        videoIndex: 2,
+        buttonIndex: 1,
+        paused: !this.state.paused
+      })
+    }else{
+      this.setState({
+        videoIndex: 1,
+        buttonIndex: 2,
+        paused: !this.state.paused
+      })
+    }
+  }
 
   render() {
     const timePassed = this.getCurrentTimePercentage() * 100;
     const timeRemaining = (1 - this.getCurrentTimePercentage()) * 100;
     return (
-      <ScrollView style={styles.contentContainer}>
-        <TouchableOpacity onPress={() => {this.setState({paused: !this.state.paused})}}>
-          <Video
-            source={{uri: "https://d4fzdcljjl4gc.cloudfront.net/1511327099334-shadetest2.mp4"}}
-            resizeMode="contain"
-            rate={this.state.rate}
-            volume={1.0}
-            paused={this.state.paused}
-            muted={false}
-            repeat={true}
-            style={styles.video}
-            onProgress={this.onProgress.bind(this)}
-            onLoad={this.onLoad.bind(this)}
-          />
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+          <TouchableOpacity onPress={this.pausePlay.bind(this)}>
+
+            <View style={{
+              position: 'absolute',
+              flex: 1,
+              right: 0,
+              left: 0,
+              top: 0,
+              bottom: 0,
+              zIndex: this.state.buttonIndex,
+              borderWidth: 3,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <Image source={require('../assets/play-button.png')} style={styles.playButton}>
+              </Image>
+            </View>
+
+            <Video
+              ref={(ref) => {
+                this.player = ref
+              }}
+              source={{uri: "https://d4fzdcljjl4gc.cloudfront.net/1511327099334-shadetest2.mp4"}}
+              resizeMode="contain"
+              rate={this.state.rate}
+              volume={1.0}
+              paused={this.state.paused}
+              muted={false}
+              repeat={true}
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                height: 300,
+                justifyContent: 'center',
+                overflow: 'visible',
+                zIndex: this.state.videoIndex
+              }}
+              onProgress={this.onProgress.bind(this)}
+              onLoad={this.onLoad.bind(this)}
+              onEnd={this.onEnd.bind(this)}
+            />
           </TouchableOpacity>
           <View style={styles.progress}>
             <View style={[styles.innerProgressCompleted, {flex: timePassed}]} />
@@ -62,29 +116,24 @@ export default class VideoPlayer extends Component {
 }
 
 const styles = StyleSheet.create({
-  video: {
-    flex: 1,
-    flexDirection: 'column',
-    height: 300,
-    width: null,
-    justifyContent: 'center',
-    overflow: 'hidden'
-  },
   contentContainer: {
     alignContent: 'center'
   },
   progress: {
     flex: 1,
     flexDirection: 'row',
-    borderRadius: 3,
     overflow: 'hidden',
   },
   innerProgressCompleted: {
-    height: 20,
-    backgroundColor: '#cccccc',
+    height: 10,
+    backgroundColor: '#808080',
   },
   innerProgressRemaining: {
-    height: 20,
-    backgroundColor: '#2C2C2C',
+    height: 10,
+    backgroundColor: 'black',
+  },
+  playButton: {
+    height: 100,
+    width: 100
   }
 });

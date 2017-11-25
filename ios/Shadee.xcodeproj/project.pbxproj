@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -354,6 +353,85 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		C47FCD621FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		C47FCD641FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
+		};
+		C47FCD761FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
+			remoteInfo = "third-party";
+		};
+
+		C47FCD781FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D3C1EBD27B6005632C8;
+			remoteInfo = "third-party-tvOS";
+		};
+		C47FCC321FC9108200DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
+			remoteInfo = "double-conversion";
+		};
+		C47FCC341FC9108200DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
+			remoteInfo = "double-conversion-tvOS";
+		};
+		C47FCC3E1FC9108400DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2434985BEAEB42F28604F376 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
+		C47FCC421FC9108400DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		C47FCC441FC9108400DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
+		};
+		C47FCC481FC9108400DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6833ADF557D4BE5AA6D6A26 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
+		C47FCC4A1FC9108400DE0265 /* PBXContainerItemProxy */ = {
+
+			isa = PBXContainerItemProxy;
+			containerPortal = C6833ADF557D4BE5AA6D6A26 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6456441F1EB8DA9100672408;
+			remoteInfo = "RNFS-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -607,6 +685,10 @@
 				0B2D843A1FC902D400BE2A4A /* libthird-party.a */,
 				0B2D843C1FC902D400BE2A4A /* libdouble-conversion.a */,
 				0B2D843E1FC902D400BE2A4A /* libdouble-conversion.a */,
+				C47FCC2F1FC9108200DE0265 /* libthird-party.a */,
+				C47FCC311FC9108200DE0265 /* libthird-party.a */,
+				C47FCC331FC9108200DE0265 /* libdouble-conversion.a */,
+				C47FCC351FC9108200DE0265 /* libdouble-conversion.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -745,6 +827,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C47FCC371FC9108200DE0265 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C47FCC3F1FC9108400DE0265 /* libRCTCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C47FCC391FC9108200DE0265 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C47FCC491FC9108400DE0265 /* libRNFS.a */,
+				C47FCC4B1FC9108400DE0265 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C47FCC3B1FC9108200DE0265 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C47FCC431FC9108400DE0265 /* libRCTVideo.a */,
+				C47FCC451FC9108400DE0265 /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -876,6 +984,7 @@
 				},
 				{
 					ProductGroup = 0B2D84401FC902D400BE2A4A /* Products */;
+					ProductGroup = C47FCC371FC9108200DE0265 /* Products */;
 					ProjectRef = 2434985BEAEB42F28604F376 /* RCTCamera.xcodeproj */;
 				},
 				{
@@ -908,6 +1017,7 @@
 				},
 				{
 					ProductGroup = 0B2D84441FC902D400BE2A4A /* Products */;
+					ProductGroup = C47FCC3B1FC9108200DE0265 /* Products */;
 					ProjectRef = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
 				},
 				{
@@ -920,6 +1030,7 @@
 				},
 				{
 					ProductGroup = 0B2D84421FC902D400BE2A4A /* Products */;
+					ProductGroup = C47FCC391FC9108200DE0265 /* Products */;
 					ProjectRef = C6833ADF557D4BE5AA6D6A26 /* RNFS.xcodeproj */;
 				},
 				{
@@ -1209,6 +1320,70 @@
 			fileType = archive.ar;
 			path = libRCTBlob.a;
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC2F1FC9108200DE0265 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = C47FCC2E1FC9108200DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC311FC9108200DE0265 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = C47FCC301FC9108200DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC331FC9108200DE0265 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = C47FCC321FC9108200DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC351FC9108200DE0265 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = C47FCC341FC9108200DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC3F1FC9108400DE0265 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = C47FCC3E1FC9108400DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC431FC9108400DE0265 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = C47FCC421FC9108400DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC451FC9108400DE0265 /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = C47FCC441FC9108400DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC491FC9108400DE0265 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = C47FCC481FC9108400DE0265 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C47FCC4B1FC9108400DE0265 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = C47FCC4A1FC9108400DE0265 /* PBXContainerItemProxy */;
+
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
