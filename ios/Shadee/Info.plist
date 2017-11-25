@@ -38,7 +38,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>We're accessing your camera. Get ready 4 shade.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We're accessing your mic.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -62,8 +62,6 @@
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
 	</array>
-	
-	
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
