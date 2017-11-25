@@ -18,7 +18,6 @@ export default class VideoPlayer extends Component {
   }
 
   onLoad(data) {
-    console.log('On load fired!');
     this.setState({duration: data.duration});
   }
 
@@ -106,7 +105,6 @@ export default class VideoPlayer extends Component {
               onLoad={this.onLoad.bind(this)}
               onEnd={this.onEnd.bind(this)}
             />
-
           </TouchableOpacity>
           <View style={styles.progress}>
             <View style={[styles.innerProgressCompleted, {flex: timePassed}]} />
@@ -119,7 +117,7 @@ export default class VideoPlayer extends Component {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    justifyContent: 'center'
+    alignContent: 'center'
   },
   progress: {
     flex: 1,

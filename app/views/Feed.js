@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
+
 import {
-  Button,
   ScrollView,
   StyleSheet,
-  Text,
-  TextInput,
-  TouchableHighlight,
   View,
-  Picker
+  Picker,
+  ImageBackground,
 } from 'react-native';
+
+import {
+  Container,
+  Header,
+  Title,
+  Left,
+  Icon,
+  Right,
+  Button,
+  Body,
+  Content,
+  Text,
+  Card,
+  CardItem
+} from "native-base";
+
 import { connect } from 'react-redux';
 import { loadMessages, voteOnMessage } from '../actions/messages';
 import Message from '../components/Message';
@@ -36,13 +50,31 @@ class Feed extends Component {
     console.log(this.state.sorting);
     if(this.state.sorting === "highest"){
     return(
+      <Container>
+        <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Shade Feed</Title>
+          </Body>
+        </Header>
+
+
       <ScrollView>
+      <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
         <Picker
+          style={styles.picker}
           selectedValue={this.state.sorting}
           onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
           <Picker.Item label="Most Shade" value="highest" />
           <Picker.Item label="Latest" value="latest" />
         </Picker>
+      </ImageBackground>
         {
         this.props.messages.sort((a, b) => {
           return b.points - a.points })
@@ -50,7 +82,7 @@ class Feed extends Component {
             const fromNow = Moment(message.createdAt).fromNow()
             console.log(message, 'points message')
             return (
-              <View>
+              <View style={styles.container}>
                 <VideoPlayer />
                 <Message
                   body={message.body}
@@ -58,9 +90,9 @@ class Feed extends Component {
                   shader={message.shader.username}
                   victim={message.victim.username}
                   status={message.message_status.name}
-                  posted={message.createdAt}
+                  posted={fromNow}
                   key={message.id}
-                  style={styles.container}
+                  style={styles.text}
                 />
                 <Vote id={message.id}/>
               </View>
@@ -68,25 +100,45 @@ class Feed extends Component {
           })
         }
       </ScrollView>
+    </Container>
     )
   } else if(this.state.sorting === "latest"){
       return(
+      <Container>
+        <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Shade Feed</Title>
+          </Body>
+          <Right />
+        </Header>
+
+
+
         <ScrollView>
+        <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
           <Picker
-            iosHeader="Fiter By"
-            mode="dropdown"
+            style={styles.picker}
             selectedValue={this.state.sorting}
             onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
             <Picker.Item label="Most Shade" value="highest" />
             <Picker.Item label="Latest" value="latest" />
           </Picker>
+        </ImageBackground>
+
           {
           this.props.messages.sort((a, b) => {
             return a.id - b.id })
             .map(message => {
               const fromNow = Moment(message.createdAt).fromNow()
               return (
-                <View>
+                <View style={styles.container}>
                   <VideoPlayer />
                   <Message
                     body={message.body}
@@ -96,7 +148,7 @@ class Feed extends Component {
                     status={message.message_status.name}
                     posted={fromNow}
                     key={message.id}
-                    style={styles.container}
+                    style={styles.text}
                   />
                   <Vote id={message.id}/>
                 </View>
@@ -104,15 +156,30 @@ class Feed extends Component {
             })
           }
         </ScrollView>
+      </Container>
       )
     }
   }
 }
 
 const styles = StyleSheet.create({
+  picker: {
+    backgroundColor: "transparent",
+    height: 150,
+    width: 100,
+    justifyContent: 'flex-end',
+    marginTop: 30,
+    zIndex: 0,
+  },
   container: {
-    width: 40,
-    height: 40
+    backgroundColor: "#d2caca",
+  },
+  image: {
+    zIndex: 1,
+    marginTop: 10,
+    paddingLeft: 20,
+    height: 150,
+    width: null,
   }
 })
 
