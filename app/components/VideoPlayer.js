@@ -28,7 +28,9 @@ export default class VideoPlayer extends Component {
 
   onEnd(data) {
     this.setState({
-      paused: true
+      paused: true,
+      videoIndex: 1,
+      buttonIndex: 2
     })
   }
 
