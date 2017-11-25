@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, Button, Image } from 'react-native';
+import { ScrollView, Image } from 'react-native';
 import { onSignOut } from '../auth';
+import {
+  Container,
+  Header,
+  Title,
+  Left,
+  Icon,
+  Right,
+  Button,
+  Body,
+  Content,
+  Text,
+  Card,
+  CardItem
+} from "native-base";
 
 class Logout extends Component {
 
@@ -29,13 +43,30 @@ class Logout extends Component {
 
   render() {
     return(
-    <ScrollView style={{marginTop: 100}}>
+    <ScrollView>
+     <Container>
+        <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Shade Feed</Title>
+          </Body>
+        </Header>
+
      <Button
         backgroundColor="#03A9F4"
         title="SIGN OUT"
         onPress={this._handleSubmit}
+        style={{marginTop: 100}}
       />
-    </ScrollView>
+    </Container>
+  </ScrollView>
+
 
     );
   }

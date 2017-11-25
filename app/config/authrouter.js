@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
-import FirstScreen from "../views/FirstScreen";
+
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
@@ -29,7 +29,8 @@ export const SignedOut = StackNavigator({
   }
 });
 
-export const SignedIn = TabNavigator({
+export const SignedIn = TabNavigator(
+{
   Feed: {
     screen: Feed,
     navigationOptions: {
@@ -54,7 +55,9 @@ export const SignedIn = TabNavigator({
         <Icon name="ios-camera" size={30} color={tintColor} />
     }
   },
-}, {
+},
+
+{
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   tabBarOptions: {
@@ -66,7 +69,11 @@ export const SignedIn = TabNavigator({
       padding: 0
     }
   }
-});
+},
+  {
+    contentComponent: props => <SideBar {...props} />
+  }
+);
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(
