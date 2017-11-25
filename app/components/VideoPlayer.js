@@ -86,7 +86,7 @@ export default class VideoPlayer extends Component {
               ref={(ref) => {
                 this.player = ref
               }}
-              source={{uri: "https://d4fzdcljjl4gc.cloudfront.net/1511327099334-shadetest2.mp4"}}
+              source={{uri: `https://d4fzdcljjl4gc.cloudfront.net/${this.props.media}`}}
               resizeMode="contain"
               rate={this.state.rate}
               volume={1.0}
