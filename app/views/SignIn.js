@@ -72,7 +72,7 @@ class Login extends Component {
 
   render() {
     return(
-    <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
+    <ImageBackground source={require('../assets/signIn.jpg')} style={styles.image}>
       <View style={styles.container}>
         <KeyboardAvoidingView behavior="padding">
           <Form
