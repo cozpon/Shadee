@@ -82,7 +82,7 @@ class Register extends Component {
   render() {
     const navigation = this.props.navigation;
     return(
-      <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.image}>
+      <ImageBackground source={require('../assets/signUp.jpg')} style={styles.image}>
       <ScrollView style={styles.form}>
         <KeyboardAvoidingView behavior="padding">
           <Form
