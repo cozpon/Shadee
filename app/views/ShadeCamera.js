@@ -130,7 +130,7 @@ class ShadeCamera extends Component {
 
       //Note: we'll be fetching to our forreal server address eventually. Set the url to wherever yours is running at -- IP isn't necessary if you aren't sending from another device. http://localhost:8080/api/messages will be fine.
 
-        fetch(`${url + 'messages'}`, config)
+        fetch(`${url}messages`, config)
         .then((response) => {
           response.json()
           .then((data) => {

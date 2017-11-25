@@ -3,6 +3,7 @@ import { View, ScrollView, StyleSheet, Text,
   TouchableHighlight, ImageBackground, KeyboardAvoidingView} from "react-native";
 import { Card, Button, FormLabel, FormInput } from "react-native-elements";
 import { onSignIn } from "../auth";
+import { url } from '../lib/url';
 
 import t from 'tcomb-form-native';
 
@@ -50,7 +51,7 @@ class Login extends Component {
       // Serialize and post the data
       const json = JSON.stringify(data)
       console.log(json, 'json')
-      fetch('http://localhost:8080/api/auth/login', {
+      fetch(`${url}auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

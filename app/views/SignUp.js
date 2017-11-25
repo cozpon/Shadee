@@ -3,6 +3,7 @@ import { View, ScrollView, StyleSheet,
   TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-elements";
 import { onSignIn } from "../auth";
+import { url } from '../lib/url';
 
 import t from 'tcomb-form-native';
 
@@ -59,7 +60,7 @@ class Register extends Component {
       }
       // Serialize and post the data
       const json = JSON.stringify(data);
-        fetch('http://localhost:8080/api/auth/register', {
+        fetch(`${url}auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
