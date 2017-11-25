@@ -82,8 +82,8 @@ class Feed extends Component {
             const fromNow = Moment(message.createdAt).fromNow()
             console.log(message, 'points message')
             return (
-              <View style={styles.container}>
-                <VideoPlayer />
+              <View style={styles.container} key={'view' + message.id}>
+                <VideoPlayer key={'video' + message.id}/>
                 <Message
                   body={message.body}
                   points={message.points}
@@ -94,7 +94,7 @@ class Feed extends Component {
                   key={message.id}
                   style={styles.text}
                 />
-                <Vote id={message.id}/>
+                <Vote id={message.id} key={'vote' + message.id}/>
               </View>
             )
           })
@@ -138,8 +138,8 @@ class Feed extends Component {
             .map(message => {
               const fromNow = Moment(message.createdAt).fromNow()
               return (
-                <View style={styles.container}>
-                  <VideoPlayer />
+                <View style={styles.container} key={'view' + message.id}>
+                  <VideoPlayer key={'video' + message.id}/>
                   <Message
                     body={message.body}
                     points={message.points}
@@ -150,7 +150,7 @@ class Feed extends Component {
                     key={message.id}
                     style={styles.text}
                   />
-                  <Vote id={message.id}/>
+                  <Vote id={message.id} key={'vote' + message.id}/>
                 </View>
               )
             })
