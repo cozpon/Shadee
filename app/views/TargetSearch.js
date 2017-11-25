@@ -95,7 +95,8 @@ class TargetSearch extends Component {
 
 const styles = StyleSheet.create({
   list: {
-    fontSize: 40
+    fontSize: 40,
+
   }
 });
 
