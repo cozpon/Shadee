@@ -290,14 +290,29 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
-		C47FCC2E1FC9108200DE0265 /* PBXContainerItemProxy */ = {
+		C47FCD621FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		C47FCD641FC911F900DE0265 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1CAE64528FA94BFAA75E6F83 /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
+		};
+		C47FCD761FC911F900DE0265 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
 			remoteInfo = "third-party";
 		};
-		C47FCC301FC9108200DE0265 /* PBXContainerItemProxy */ = {
+
+		C47FCD781FC911F900DE0265 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 			proxyType = 2;
@@ -347,6 +362,7 @@
 			remoteInfo = RNFS;
 		};
 		C47FCC4A1FC9108400DE0265 /* PBXContainerItemProxy */ = {
+
 			isa = PBXContainerItemProxy;
 			containerPortal = C6833ADF557D4BE5AA6D6A26 /* RNFS.xcodeproj */;
 			proxyType = 2;
@@ -1202,6 +1218,7 @@
 			fileType = archive.ar;
 			path = libRNFS.a;
 			remoteRef = C47FCC4A1FC9108400DE0265 /* PBXContainerItemProxy */;
+
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
