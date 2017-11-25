@@ -16,7 +16,6 @@ export default class VideoPlayer extends Component {
   }
 
   onLoad(data) {
-    console.log('On load fired!');
     this.setState({duration: data.duration});
   }
 
@@ -37,9 +36,8 @@ export default class VideoPlayer extends Component {
   render() {
     const timePassed = this.getCurrentTimePercentage() * 100;
     const timeRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-    console.log(this.state)
     return (
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={styles.contentContainer}>
         <TouchableOpacity onPress={() => {this.setState({paused: !this.state.paused})}}>
           <Video
             source={{uri: "https://d4fzdcljjl4gc.cloudfront.net/1511327099334-shadetest2.mp4"}}
@@ -68,11 +66,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: 300,
+    width: null,
     justifyContent: 'center',
-    overflow: 'visible'
+    overflow: 'hidden'
   },
   contentContainer: {
-    justifyContent: 'center'
+    alignContent: 'center'
   },
   progress: {
     flex: 1,

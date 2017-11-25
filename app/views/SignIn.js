@@ -63,7 +63,7 @@ class Login extends Component {
         console.log(response);
         if(response.status === 200){
           onSignIn().then(() => navigation.navigate("SignedIn"));
-        } else {
+        } else {() => Vibration.vibrate([0, 500, 200, 500])
         return alert('Wrong Username or Password');
         }
       })
