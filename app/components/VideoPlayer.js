@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
   },
   innerProgressCompleted: {
     height: 10,
-    backgroundColor: '#cccccc',
+    backgroundColor: '#808080',
   },
   innerProgressRemaining: {
     height: 10,
-    backgroundColor: '#2C2C2C',
+    backgroundColor: 'black',
   },
   playButton: {
     height: 100,
