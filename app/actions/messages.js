@@ -7,9 +7,11 @@ export const EDIT_MESSAGE = 'EDIT_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const VOTE_ON_MESSAGE = 'VOTE_ON_MESSAGE';
 
+import { url } from '../lib/url';
+
 export const loadMessages = () => {
   return function(dispatch){
-    return axios.get('http://localhost:8080/api/messages')
+    return axios.get(`${url}messages`)
     .then( messages => {
       dispatch({
         type: LOAD_MESSAGES,
@@ -21,7 +23,7 @@ export const loadMessages = () => {
 
 export const loadMessage = (id) => {
   return function(dispatch){
-    return axios.get(`http://localhost:8080/api/messages/${id}`)
+    return axios.get(`${url + id}`)
     .then( message => {
       dispatch({
         type: LOAD_MESSAGE,
@@ -31,14 +33,11 @@ export const loadMessage = (id) => {
   }
 }
 
-export const addMessage = (newMessage) => {
+export const addMessage = (data) => {
   return function(dispatch){
-    return axios.post('http://localhost:8080/api/messages', newMessage)
-    .then( message => {
-      dispatch({
-        type: ADD_MESSAGE,
-        message: message.data
-      });
+    dispatch({
+      type: ADD_MESSAGE,
+      message: data
     });
   }
 }
@@ -47,7 +46,7 @@ export const addMessage = (newMessage) => {
 
 export const editMessage = (newInfo) => {
   return function(dispatch){
-    return axios.put(`http://localhost:8080/api/messages/${newInfo.id}`, newInfo)
+    return axios.put(`${url}messages/${newInfo.id}`, newInfo)
     .then ( message => {
       dispatch({
         type: EDIT_MESSAGE,
@@ -59,7 +58,7 @@ export const editMessage = (newInfo) => {
 
 export const voteOnMessage = (vote) => {
   return function(dispatch){
-    return axios.put(`http://localhost:8080/api/messages/${vote.id}/vote`, vote)
+    return axios.put(`${url}messages/${vote.id}/vote`, vote)
     .then( message => {
       console.log('ACTION', message.data)
       dispatch({
@@ -72,7 +71,7 @@ export const voteOnMessage = (vote) => {
 
 export const deleteMessage = (id) => {
   return function(dispatch){
-    return axios.delete(`http://localhost:8080/api/messages/${id}`)
+    return axios.delete(`${url}messages/${id}`)
     .then( message => {
       dispatch({
         type: DELETE_MESSAGE,

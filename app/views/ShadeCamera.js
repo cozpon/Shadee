@@ -13,6 +13,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import RNFS from 'react-native-fs';
 
+import { url } from '../lib/url';
+import { addMessage } from '../actions/messages';
+
 const VideoPath = "";
 
 class ShadeCamera extends Component {
@@ -46,7 +49,7 @@ class ShadeCamera extends Component {
             />
           </TouchableHighlight>
 
-          <View style={ this.state.recording ? styles.basic : styles.noUpload }>
+          <View style={ this.state.recording ? null : styles.noUpload }>
 
             <TouchableHighlight
               onPressIn={this._endVideo.bind(this)}
@@ -113,7 +116,7 @@ class ShadeCamera extends Component {
       VideoPath = data.path;
       if (VideoPath){
         let data = new FormData();
-        data.append('upl', { uri: VideoPath, name: 'this.props.victim.id', type: 'video'});
+        data.append('upl', { uri: VideoPath, name: `${this.props.victim.id}.mp4`, type: 'video'});
         data.append('victim_id', parseInt(this.props.victim.id, 10));
 
         const config = {
@@ -124,12 +127,12 @@ class ShadeCamera extends Component {
           },
           body: data
         }
-
-      //Note: we'll be fetching to our forreal server address eventually. Set the url to wherever yours is running at -- IP isn't necessary if you aren't sending from another device. http://localhost:8080/api/messages will be fine.
-
-        fetch('http://10.0.1.8:8080/api/messages', config)
-        .then((res) => {
-          console.log('response', res);
+        fetch(`${url}messages`, config)
+        .then((response) => {
+          response.json()
+          .then((data) => {
+            this.props.addMessage(data);
+          });
           return RNFS.unlink(VideoPath)
           .then(() => {
             console.log('file deleted');
@@ -190,4 +193,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(ShadeCamera);
+const mapDispatchToProps = (dispatch) => {
+  return{
+    addMessage: (data) => {
+      dispatch(addMessage(data));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShadeCamera);

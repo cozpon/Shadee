@@ -25,7 +25,7 @@ class TargetSearch extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.props.loadUsers();
   }
 

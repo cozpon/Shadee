@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, Button, Image } from 'react-native';
 import { onSignOut } from '../auth';
+import { url } from '../lib/url';
+
 
 class Logout extends Component {
 
   _handleSubmit = () => {
     const navigation = this.props.navigation;
-      fetch('http://localhost:8080/api/auth/logout', {
+      fetch(`${url}auth/logout`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
