@@ -19,12 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  //note: data must be an object.
-  console.log(req.body);
-  let data = {
-    user_id: req.body.user_id,
-    body: req.body.body
-  }
+  let data = req.body;
   return Rumor.create(data)
   .then((rumor) => {
     return Rumor.findById(rumor.id, {
@@ -42,5 +37,39 @@ router.post('/', (req, res) => {
     })
   })
 })
+
+router.put('/:id', (req, res) => {
+
+  let points = req.body.points;
+  let id = req.params.id;
+
+  return Rumor.findById(id)
+  .then((rumor) => {
+    if(parseInt(points, 10)===0){
+      return rumor.update({
+        points: parseInt(rumor.points,10)-1
+      })
+    }else if(parseInt(points, 10)===1){
+      return rumor.update({
+        points: parseInt(rumor.points,10)+1
+      })
+    }
+  })
+  .then(() => {
+    return Rumor.findById(id, {
+      inclue: [
+        { model: User, as: 'user',
+          attributes: ['username', 'id']
+        }
+      ]
+    })
+    .then((foundRumor) => {
+      return res.json(foundRumor);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  })
+});
 
 module.exports = router;
