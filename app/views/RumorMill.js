@@ -5,7 +5,9 @@ import {
   StyleSheet,
   Text,
   Keyboard,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput,
+  Button
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -16,13 +18,15 @@ import {loadRumors,
 
 import { SearchBar } from 'react-native-elements';
 
+
 class RumorMill extends Component {
   constructor(){
     super();
     this.state = {
       users: [],
       victim: null,
-      selected: false
+      selected: false,
+      text: ""
     }
   }
 
@@ -35,7 +39,7 @@ class RumorMill extends Component {
       <View>
         <SearchBar
           containerStyle={styles.textContainer}
-          inputStyle={styles.textInput}
+          inputStyle={styles.search}
           round
           noIcon
           autoCorrect={false}
@@ -50,6 +54,19 @@ class RumorMill extends Component {
             <Text style={styles.text}>
               I heard {this.state.victim.username}...
             </Text>
+            <TextInput
+              maxLength={100}
+              autoCapitalize='none'
+              multiline={true}
+              editable ={true}
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({text})}
+              value={this.state.text}
+            />
+            <Button
+              title="Publish rumor"
+              onPress={this._onSubmit.bind(this)}
+            />
           </View>
           :
           <View style={styles.list}>
@@ -78,18 +95,25 @@ class RumorMill extends Component {
   }
 
   _onChange(value){
-
     this.setState({
       selected: false
     })
-
     let filteredUsers = this.props.users.filter(user => {
       return user.username.toLowerCase().includes(value.toLowerCase())
     })
-
     this.setState({
       users: filteredUsers
     })
+  }
+
+  _onSubmit(){
+    let data = {
+      user_id: this.state.victim.id,
+      body: this.state.text
+    }
+    console.log('data', data);
+    this.props.addRumor(data);
+
   }
 
 }
@@ -98,11 +122,20 @@ const styles = StyleSheet.create({
   textContainer: {
     backgroundColor: '#ffb6c1'
   },
-  textInput: {
+  search: {
     height: 60,
     borderColor: '#ffb6c1',
     borderWidth: 1,
     fontSize: 40,
+    backgroundColor: 'white',
+    color: '#ffb6c1'
+  },
+  textInput: {
+    height: 80,
+    width: 300,
+    borderColor: '#ffb6c1',
+    borderWidth: 1,
+    fontSize: 20,
     backgroundColor: 'white',
     color: '#ffb6c1'
   },
