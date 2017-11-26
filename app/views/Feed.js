@@ -31,6 +31,8 @@ import {
   SearchBar
 } from 'react-native-elements';
 
+import ModalDropdown from 'react-native-modal-dropdown';
+
 import { connect } from 'react-redux';
 import { loadMessages, voteOnMessage } from '../actions/messages';
 import Message from '../components/Message';
@@ -45,7 +47,7 @@ class TestFeed extends Component {
     super(props)
     this.state = {
       messages: [],
-      sorting: "latest",
+      sorting: "Latest",
       loading: false,
       page: 1,
       seed: 1,
@@ -57,6 +59,28 @@ class TestFeed extends Component {
 
   componentDidMount(){
     this.props.loadMessages();
+  }
+
+  shuffleStep(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+      let j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  renderHeader = () => {
+    return(
+      <ModalDropdown
+        options={['Latest', 'Oldest', 'Most Extra', 'Most Basic', 'Random']}
+        defaultValue={'Latest'}
+        onSelect={(idx, value) => {
+          this.setState({
+            sorting: value
+          })
+        }}
+      />
+    )
   }
 
   renderSeparator = () => {
@@ -76,11 +100,16 @@ class TestFeed extends Component {
   render() {
     const navigation = this.props.navigation;
     let shades = '';
-    if(this.state.sorting === "highest"){
+    if(this.state.sorting === "Most Extra"){
       shades = (this.props.messages).slice().sort((a, b) => {return b.points - a.points});
-    }
-    else{
+    }else if(this.state.sorting === "Latest"){
       shades = (this.props.messages).slice().sort((a, b) => {return b.id - a.id});
+    }else if(this.state.sorting === "Oldest"){
+      shades = (this.props.messages).slice().sort((a, b) => {return a.id - b.id});
+    }else if(this.state.sorting === "Most Basic"){
+      shades = (this.props.messages).slice().sort((a, b) => {return a.points - b.points});
+    }else if(this.state.sorting === "Random"){
+      shades = this.shuffleStep(this.props.messages)
     }
     return(
       <Container>
@@ -99,20 +128,13 @@ class TestFeed extends Component {
           <Right />
         </Header>
 
-        <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
-          <Picker
-            style={styles.picker}
-            selectedValue={this.state.sorting}
-            onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
-            <Picker.Item label="Most Shade" value="highest" />
-            <Picker.Item label="Latest" value="latest" />
-          </Picker>
-        </ImageBackground>
 
-        <List containerStyle={{ paddingBottom: '42%' }}>
+
+        <List containerStyle={{ paddingBottom: '20%' }}>
           <FlatList
             data={shades}
             ItemSeparatorComponent={this.renderSeparator}
+            ListHeaderComponent={this.renderHeader}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
               <View>
@@ -137,34 +159,13 @@ class TestFeed extends Component {
   }
 }
 
-// const styles = StyleSheet.create({
-//   picker: {
-//     backgroundColor: "transparent",
-//     height: 150,
-//     width: 120,
-//     justifyContent: 'flex-end',
-//     marginTop: 70,
-//     zIndex: 0,
-//   },
-//   container: {
-//     backgroundColor: "#d2caca",
-//   },
-//   image: {
-//     zIndex: 1,
-//     marginTop: -50,
-//     paddingLeft: 20,
-//     height: 150,
-//     width: null,
-//   }
-// })
-
 const styles = StyleSheet.create({
   picker: {
     backgroundColor: "transparent",
     height: 150,
-    width: 100,
+    width: 120,
     justifyContent: 'flex-end',
-    marginTop: 30,
+    marginTop: 70,
     zIndex: 0,
   },
   container: {
@@ -172,12 +173,33 @@ const styles = StyleSheet.create({
   },
   image: {
     zIndex: 1,
-    marginTop: 10,
+    marginTop: -50,
     paddingLeft: 20,
     height: 150,
     width: null,
   }
 })
+
+// const styles = StyleSheet.create({
+//   picker: {
+//     backgroundColor: "transparent",
+//     height: 150,
+//     width: 100,
+//     justifyContent: 'flex-end',
+//     marginTop: 30,
+//     zIndex: 0,
+//   },
+//   container: {
+//     backgroundColor: "#d2caca",
+//   },
+//   image: {
+//     zIndex: 1,
+//     marginTop: 10,
+//     paddingLeft: 20,
+//     height: 150,
+//     width: null,
+//   }
+// })
 
 const mapStateToProps = (state) => {
   return {
@@ -194,3 +216,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
+
+      // <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
+      //   <Picker
+      //     style={styles.picker}
+      //     mode={'dropdown'}
+      //     selectedValue={this.state.sorting}
+      //     onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
+      //     <Picker.Item label="Most Shade" value="highest" />
+      //     <Picker.Item label="Latest" value="latest" />
+      //   </Picker>
+      // </ImageBackground>
