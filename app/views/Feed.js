@@ -6,6 +6,8 @@ import {
   View,
   Picker,
   ImageBackground,
+  FlatList,
+  Activity
 } from 'react-native';
 
 import {
@@ -23,6 +25,12 @@ import {
   CardItem
 } from "native-base";
 
+import {
+  List,
+  ListItem,
+  SearchBar
+} from 'react-native-elements';
+
 import { connect } from 'react-redux';
 import { loadMessages, voteOnMessage } from '../actions/messages';
 import Message from '../components/Message';
@@ -31,14 +39,20 @@ import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
 
 
-class Feed extends Component {
+class TestFeed extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
       messages: [],
-      sorting: "latest"
+      sorting: "latest",
+      loading: false,
+      page: 1,
+      seed: 1,
+      refreshing: false,
+      error: null,
+
     }
   }
 
@@ -46,9 +60,28 @@ class Feed extends Component {
     this.props.loadMessages();
   }
 
+  renderSeparator(){
+    return(
+      <View
+        style={{
+          height: 5,
+          width: '100%',
+          backgroundColor: '#fb9fa4',
+          //marginBottom: 15
+        }}
+      />
+    )
+  }
+
   render() {
     const navigation = this.props.navigation;
+    let shades = '';
     if(this.state.sorting === "highest"){
+      shades = (this.props.messages).slice().sort((a, b) => {return b.points - a.points});
+    }
+    else{
+      shades = (this.props.messages).slice().sort((a, b) => {return b.id - a.id});
+    }
     return(
       <Container>
         <Header>
@@ -65,65 +98,6 @@ class Feed extends Component {
           <Right />
         </Header>
 
-
-      <ScrollView>
-      <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.sorting}
-          onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
-          <Picker.Item label="Most Shade" value="highest" />
-          <Picker.Item label="Latest" value="latest" />
-        </Picker>
-      </ImageBackground>
-        {
-        this.props.messages.sort((a, b) => {
-          return b.points - a.points })
-          .map(message => {
-            const fromNow = Moment(message.createdAt).fromNow()
-            console.log(message, 'points message')
-            return (
-
-              <View style={styles.container} key={'view' + message.id}>
-                <VideoPlayer media={message.media} key={'video' + message.id}/>
-
-                <Message
-                  body={message.body}
-                  points={message.points}
-                  shader={message.shader.username}
-                  victim={message.victim.username}
-                  status={message.message_status.name}
-                  posted={fromNow}
-                  key={message.id}
-                  style={styles.text}
-                />
-                <Vote id={message.id} key={'vote' + message.id}/>
-              </View>
-            )
-          })
-        }
-      </ScrollView>
-    </Container>
-    )
-  } else if(this.state.sorting === "latest"){
-      return(
-      <Container>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Feed</Title>
-          </Body>
-          <Right />
-        </Header>
-
-
-        <ScrollView>
         <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
           <Picker
             style={styles.picker}
@@ -134,34 +108,30 @@ class Feed extends Component {
           </Picker>
         </ImageBackground>
 
-          {
-          this.props.messages.sort((a, b) => {
-            return b.id - a.id })
-            .map(message => {
-              const fromNow = Moment(message.createdAt).fromNow()
-              return (
-                <View style={styles.container} key={'view' + message.id}>
-                  <VideoPlayer media={message.media} key={'video' + message.id}/>
-
-                  <Message
-                    body={message.body}
-                    points={message.points}
-                    shader={message.shader.username}
-                    victim={message.victim.username}
-                    status={message.message_status.name}
-                    posted={fromNow}
-                    key={message.id}
-                    style={styles.text}
-                  />
-                  <Vote id={message.id} key={'vote' + message.id}/>
-                </View>
-              )
-            })
-          }
-        </ScrollView>
-      </Container>
-      )
-    }
+        <List containerStyle={{ paddingBottom: '42%' }}>
+          <FlatList
+            data={shades}
+            ItemSeparatorComponent={this.renderSeparator}
+            renderItem={({ item }) => (
+              <View>
+                <VideoPlayer media={item.media} key={'video' + item.id}/>
+                <Message
+                  body={item.body}
+                  points={item.points}
+                  shader={item.shader.username}
+                  victim={item.victim.username}
+                  status={item.message_status.name}
+                  posted={Moment(item.createdAt).fromNow()}
+                  key={item.id}
+                  style={styles.text}
+                />
+                <Vote id={item.id} key={'vote' + item.id}/>
+              </View>
+            )}
+          />
+        </List>
+    </Container>
+    )
   }
 }
 
@@ -171,7 +141,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 100,
     justifyContent: 'flex-end',
-    marginTop: 30,
+    marginTop: 60,
     zIndex: 0,
   },
   container: {
@@ -179,7 +149,7 @@ const styles = StyleSheet.create({
   },
   image: {
     zIndex: 1,
-    marginTop: 10,
+    marginTop: -50,
     paddingLeft: 20,
     height: 150,
     width: null,
@@ -200,4 +170,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
