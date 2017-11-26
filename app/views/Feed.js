@@ -73,7 +73,6 @@ class TestFeed extends Component {
     )
   }
 
-
   render() {
     const navigation = this.props.navigation;
     let shades = '';
@@ -89,7 +88,8 @@ class TestFeed extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => navigation.navigate("DrawerOpen")}>
+              onPress={() => navigation.navigate("DrawerOpen")}
+              style={{ zIndex: 2}}>
               <Icon name="menu" />
             </Button>
           </Left>
@@ -137,21 +137,42 @@ class TestFeed extends Component {
   }
 }
 
+// const styles = StyleSheet.create({
+//   picker: {
+//     backgroundColor: "transparent",
+//     height: 150,
+//     width: 120,
+//     justifyContent: 'flex-end',
+//     marginTop: 70,
+//     zIndex: 0,
+//   },
+//   container: {
+//     backgroundColor: "#d2caca",
+//   },
+//   image: {
+//     zIndex: 1,
+//     marginTop: -50,
+//     paddingLeft: 20,
+//     height: 150,
+//     width: null,
+//   }
+// })
+
 const styles = StyleSheet.create({
   picker: {
     backgroundColor: "transparent",
     height: 150,
-    width: 120,
+    width: 100,
     justifyContent: 'flex-end',
-    marginTop: 70,
-    zIndex: 1,
+    marginTop: 30,
+    zIndex: 0,
   },
   container: {
     backgroundColor: "#d2caca",
   },
   image: {
-    zIndex: 0,
-    marginTop: -50,
+    zIndex: 1,
+    marginTop: 10,
     paddingLeft: 20,
     height: 150,
     width: null,
