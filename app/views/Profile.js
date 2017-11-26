@@ -3,6 +3,7 @@ import { ScrollView, Image, View, AsyncStorage } from 'react-native';
 import { onSignOut } from '../auth';
 import {
   Container,
+  Content,
   Header,
   Title,
   Left,
@@ -81,6 +82,7 @@ class Profile extends Component {
             )
           })
         }
+
         </ScrollView>
       </Container>
     )

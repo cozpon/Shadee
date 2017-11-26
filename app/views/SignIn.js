@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { View, ScrollView, StyleSheet, Text,
-  TouchableHighlight, ImageBackground, KeyboardAvoidingView, Button } from "react-native";
+  TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
+import { Button } from "react-native-elements";
 import { onSignIn, setStorage } from "../auth";
 import { url } from '../lib/url';
 

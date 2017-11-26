@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   picker: {
     backgroundColor: "transparent",
     height: 150,
-    width: 100,
+    width: 120,
     justifyContent: 'flex-end',
     marginTop: 30,
     zIndex: 0,
