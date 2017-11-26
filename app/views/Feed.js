@@ -79,6 +79,25 @@ class TestFeed extends Component {
             sorting: value
           })
         }}
+        animated={false}
+        // textStyle={{
+        //   fontFamily:
+        // }}
+        // dropdownStyle={{
+
+        // }}
+        // dropdownTextStyle={{
+        //   fontFamily:
+        // }}
+        dropdownTextHighlightStyle={{
+          color: 'white',
+          backgroundColor: '#ffb6c1'
+        }}
+        style={{
+          borderWidth: 1,
+          borderColor: 'blue',
+          height: 20
+        }}
       />
     )
   }
@@ -123,12 +142,10 @@ class TestFeed extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Shade Feed</Title>
+            <Title >Shade</Title>
           </Body>
           <Right />
         </Header>
-
-
 
         <List containerStyle={{ paddingBottom: '20%' }}>
           <FlatList
@@ -180,27 +197,6 @@ const styles = StyleSheet.create({
   }
 })
 
-// const styles = StyleSheet.create({
-//   picker: {
-//     backgroundColor: "transparent",
-//     height: 150,
-//     width: 100,
-//     justifyContent: 'flex-end',
-//     marginTop: 30,
-//     zIndex: 0,
-//   },
-//   container: {
-//     backgroundColor: "#d2caca",
-//   },
-//   image: {
-//     zIndex: 1,
-//     marginTop: 10,
-//     paddingLeft: 20,
-//     height: 150,
-//     width: null,
-//   }
-// })
-
 const mapStateToProps = (state) => {
   return {
     messages: state.messages
@@ -216,14 +212,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
-
-      // <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
-      //   <Picker
-      //     style={styles.picker}
-      //     mode={'dropdown'}
-      //     selectedValue={this.state.sorting}
-      //     onValueChange={(itemValue, itemIndex) => this.setState({sorting: itemValue})}>
-      //     <Picker.Item label="Most Shade" value="highest" />
-      //     <Picker.Item label="Latest" value="latest" />
-      //   </Picker>
-      // </ImageBackground>
