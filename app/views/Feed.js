@@ -7,7 +7,7 @@ import {
   Picker,
   ImageBackground,
   FlatList,
-  Activity
+  ActivityIndicator
 } from 'react-native';
 
 import {
@@ -60,7 +60,8 @@ class TestFeed extends Component {
     this.props.loadMessages();
   }
 
-  renderSeparator(){
+  renderSeparator = () => {
+    console.log('STATE', this.state)
     return(
       <View
         style={{
@@ -72,6 +73,7 @@ class TestFeed extends Component {
       />
     )
   }
+
 
   render() {
     const navigation = this.props.navigation;
@@ -140,9 +142,9 @@ const styles = StyleSheet.create({
   picker: {
     backgroundColor: "transparent",
     height: 150,
-    width: 200,
+    width: 120,
     justifyContent: 'flex-end',
-    marginTop: 60,
+    marginTop: 70,
     zIndex: 1,
   },
   container: {
