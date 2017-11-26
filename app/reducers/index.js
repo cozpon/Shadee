@@ -6,6 +6,7 @@ import users from './users';
 import user from './user';
 import emojis from './emojis';
 import victim from './victim';
+import rumors from './rumors';
 
 export default combineReducers({
   messages,
@@ -13,5 +14,6 @@ export default combineReducers({
   users,
   user,
   emojis,
-  victim
+  victim,
+  rumors
 });
