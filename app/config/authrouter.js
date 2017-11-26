@@ -3,6 +3,7 @@ import { StatusBar, View, Text, Image } from "react-native";
 import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
@@ -12,47 +13,16 @@ import Feed from '../views/Feed';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 
-const DrawerContent = (props) => (
-  <View>
-    <View
-      style={{
-        backgroundColor: '#f50057',
-        height: 140,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }} >
-      <Image source = {{uri: "https://lh6.googleusercontent.com/-GL6bIYM9Kbg/AAAAAAAAAAI/AAAAAAAAAH4/d8cbQE_W7IU/photo.jpg"}}>
-      </Image>
-      <Text style={{ color: 'white', fontSize: 30 }}>
-        Header
-      </Text>
-
-    </View>
-    <DrawerItems {...props} />
-  </View>
-)
-
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
-    navigationOptions: {
-      drawerIcon: ({ tintColor }) => <Icon name="ios-umbrella" size={24} color={tintColor} />
-    }
   },
   Profile: {
     screen: Profile,
-    navigationOptions: {
-      drawerIcon: ({ tintColor }) => <Icon name="ios-body-outline" size={24} color={tintColor} />
-    }
   },
-  Logout: {
-    screen: Logout,
-    navigationOptions: {
-      drawerIcon: ({ tintColor }) => <Icon name="ios-partly-sunny" size={24} color={tintColor} />
-    }
-  }
 }, {
-    contentComponent: DrawerContent,
+  contentComponent: DrawerContent,
+  drawerWidth: 250
 });
 
 export const SignedOut = StackNavigator({
@@ -79,14 +49,6 @@ export const SignedIn = TabNavigator({
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
   },
-  // Logout: {
-  //   screen: Logout,
-  //   navigationOptions: {
-  //     tabBarLabel: "Logout",
-  //     tabBarIcon: ({ tintColor }) =>
-  //       <Icon name="ios-partly-sunny" size={30} color={tintColor} />
-  //   }
-  // },
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
