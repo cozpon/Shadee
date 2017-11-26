@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ScrollView, Image, View, AsyncStorage } from 'react-native';
 import { onSignOut } from '../auth';
 import {
-  SampleText,
   Container,
   Header,
   Title,
@@ -11,10 +10,7 @@ import {
   Right,
   Button,
   Body,
-  Content,
-  Text,
-  Card,
-  CardItem
+  Text
 } from "native-base";
 import VideoPlayer from '../components/VideoPlayer';
 import Moment from 'moment';
@@ -27,21 +23,23 @@ class Profile extends Component {
     super(props)
     this.state = {
       messages: [],
-      username: ''
+      data: ''
     }
   }
 
  componentDidMount(){
     this.props.loadMessages();
-    AsyncStorage.getItem('username')
-    .then((value) => { this.setState({'username': value });
+    AsyncStorage.getItem('data')
+    .then((value) => {
+      this.setState({'data': JSON.parse(value) });
     })
     .done();
   }
 
   render() {
-    const navigation = this.props.navigation;
+    let navigation = this.props.navigation;
     let messages = this.props.messages;
+    let user = this.state.data;
     return(
       <Container>
         <Header>
@@ -53,16 +51,20 @@ class Profile extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>{this.state.username}</Title>
+            <Title>{user.username}</Title>
           </Body>
           <Right />
         </Header>
         <ScrollView>
+        <Text>
+        Welcom 2 ur profile {user.username}, here u can c all ur shades daddio!
+        </Text>
         {
           this.props.messages
           .map(message => {
-            console.log(messages);
             const fromNow = Moment(message.createdAt).fromNow()
+            console.log(message, 'message');
+            if(message.shader_id === user.id)
             return (
             <View key={'view' + message.id}>
             <VideoPlayer media={message.media} key={'video' + message.id}/>

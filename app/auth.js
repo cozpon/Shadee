@@ -8,7 +8,7 @@ export const USER_KEY = "shade-key";
 export const onSignIn = () => AsyncStorage.setItem(USER_KEY, "true");
 // set storage to hold key as TRUE
 
-export const setStorage = (data) => AsyncStorage.setItem('id', JSON.stringify(data.id));
+export const setStorage = (data) => AsyncStorage.setItem('data', JSON.stringify(data));
 // set storage to hold username
 
 export const onSignOut = () => AsyncStorage.removeItem(USER_KEY);
