@@ -6,8 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
-
-import SecondScreen from "../views/SecondScreen";
+import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
 import TargetSearch from '../views/TargetSearch';
@@ -18,8 +17,8 @@ export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
   },
-  SecondScreen: {
-    screen: SecondScreen,
+  Profile: {
+    screen: Profile,
   },
   Logout: {
     screen: Logout,

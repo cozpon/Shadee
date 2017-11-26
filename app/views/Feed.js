@@ -43,7 +43,6 @@ class TestFeed extends Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       messages: [],
       sorting: "latest",
