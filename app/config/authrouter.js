@@ -33,7 +33,7 @@ export const Drawer = DrawerNavigator({
   },
   BubbleAnimation: {
     screen: BubbleAnimation,
-  }
+  },
   Profile: {
     screen: Profile,
   },
