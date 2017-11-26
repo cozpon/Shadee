@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
-
+import BubbleAnimation from "../components/BubbleAnimation";
 import SecondScreen from "../views/SecondScreen";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
@@ -17,12 +17,21 @@ import ShadeCamera from '../views/ShadeCamera';
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
+    id: 0,
+    bgcolor: '#698FB2'
   },
   SecondScreen: {
     screen: SecondScreen,
+    id: 1,
+    bgcolor: '#68B0B3'
   },
   Logout: {
     screen: Logout,
+    id: 2,
+    bgcolor: '#9B91BA'
+  },
+  BubbleAnimation: {
+    screen: BubbleAnimation,
   }
 });
 

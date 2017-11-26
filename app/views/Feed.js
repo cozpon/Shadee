@@ -29,13 +29,13 @@ import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
+import Bubble from '../components/BubbleAnimation';
 
 
 class Feed extends Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       messages: [],
       sorting: "latest"
@@ -67,7 +67,6 @@ class Feed extends Component {
 
 
       <ScrollView>
-      <ImageBackground source={require('../assets/logo.png')} style={styles.image}>
         <Picker
           style={styles.picker}
           selectedValue={this.state.sorting}
@@ -75,7 +74,6 @@ class Feed extends Component {
           <Picker.Item label="Most Shade" value="highest" />
           <Picker.Item label="Latest" value="latest" />
         </Picker>
-      </ImageBackground>
         {
         this.props.messages.sort((a, b) => {
           return b.points - a.points })
