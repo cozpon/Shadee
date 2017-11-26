@@ -112,6 +112,7 @@ class TestFeed extends Component {
           <FlatList
             data={shades}
             ItemSeparatorComponent={this.renderSeparator}
+            keyExtractor={item => item.id}
             renderItem={({ item }) => (
               <View>
                 <VideoPlayer media={item.media} key={'video' + item.id}/>
@@ -139,16 +140,16 @@ const styles = StyleSheet.create({
   picker: {
     backgroundColor: "transparent",
     height: 150,
-    width: 100,
+    width: 200,
     justifyContent: 'flex-end',
     marginTop: 60,
-    zIndex: 0,
+    zIndex: 1,
   },
   container: {
     backgroundColor: "#d2caca",
   },
   image: {
-    zIndex: 1,
+    zIndex: 0,
     marginTop: -50,
     paddingLeft: 20,
     height: 150,
