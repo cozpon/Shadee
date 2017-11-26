@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import { View, ScrollView, StyleSheet, Text,
-  TouchableHighlight, ImageBackground, KeyboardAvoidingView} from "react-native";
-import { Card, Button, FormLabel, FormInput } from "react-native-elements";
-import { onSignIn } from "../auth";
+  TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
+import { Button } from "react-native-elements";
+import { onSignIn, setStorage } from "../auth";
 import { url } from '../lib/url';
 
 import t from 'tcomb-form-native';
@@ -46,33 +46,38 @@ class Login extends Component {
 
     if(value === null){
       alert('Enter your info to see all the Shade!')
-    }else{
+    } else {
       const data = {
         username: value.username,
         password: value.password,
       }
       // Serialize and post the data
       const json = JSON.stringify(data)
-      console.log(json, 'json')
-      fetch(`${url}auth/login`, {
+      const config = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Accept: 'application/json'
+          'Accept': 'application/json'
         },
         body: json
-      })
+      }
+      fetch(`${url}auth/login`, config)
       .then((response) => {
-        console.log(response);
-        if(response.status === 200){
-          onSignIn().then(() => navigation.navigate("SignedIn"));
-        } else {() => Vibration.vibrate([0, 500, 200, 500])
-        return alert('Wrong Username or Password');
-        }
+        response.json()
+        .then((response) => {
+          setStorage(response)
+          if(response.success === true){
+            onSignIn()
+            .then(() => navigation.navigate("SignedIn"));
+          } else return alert('Wrong Username or Password');
+        })
       })
       .done()
     }
   }
+
+
+
 
   render() {
     return(

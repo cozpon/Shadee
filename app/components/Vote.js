@@ -96,7 +96,6 @@ class Vote extends Component {
   }
 
   render(){
-    console.log(this.state);
     return(
       <View>
         <Button

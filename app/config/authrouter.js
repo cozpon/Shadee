@@ -1,18 +1,19 @@
 import React from "react";
-import { StatusBar } from "react-native";
-import { StackNavigator, TabNavigator, DrawerNavigator } from "react-navigation";
+import { StatusBar, View, Text, Image } from "react-native";
+import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 
+import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
 import BubbleAnimation from "../components/BubbleAnimation";
 import SecondScreen from "../views/SecondScreen";
+import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
-
 
 export const Drawer = DrawerNavigator({
   Feed: {
@@ -33,6 +34,12 @@ export const Drawer = DrawerNavigator({
   BubbleAnimation: {
     screen: BubbleAnimation,
   }
+  Profile: {
+    screen: Profile,
+  },
+}, {
+  contentComponent: DrawerContent,
+  drawerWidth: 250
 });
 
 export const SignedOut = StackNavigator({
@@ -59,14 +66,6 @@ export const SignedIn = TabNavigator({
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
   },
-  // Logout: {
-  //   screen: Logout,
-  //   navigationOptions: {
-  //     tabBarLabel: "Logout",
-  //     tabBarIcon: ({ tintColor }) =>
-  //       <Icon name="ios-partly-sunny" size={30} color={tintColor} />
-  //   }
-  // },
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
