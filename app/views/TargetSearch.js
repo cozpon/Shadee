@@ -103,6 +103,7 @@ class TargetSearch extends Component {
 
 }
 
+
 const mapStateToProps = (state) => {
   return{
     users: state.users,

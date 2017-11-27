@@ -84,7 +84,7 @@ class DrawerContent extends Component {
          icon={{name: 'blind', type: 'font-awesome', size: 20}}
          title='How To: Use Shade'
          backgroundColor="#c56d60"
-         onPress={this._handleSubmit}/>
+         onPress={this.navigateToScreen('HowTo')}/>
           <Text style={styles.sectionHeadingStyle}>
           </Text>
 

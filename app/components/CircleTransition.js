@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Easing, Modal, Dimensions, Animated } from 'react-native';
-
+import PropTypes from 'prop-types';
 const { width, height } = Dimensions.get('window');
 
 class CircleTransition extends Component {
-  constructor(props){
+  constructor (props) {
     super(props);
 
     this.state = {
       scale: new Animated.Value(0),
-      color:'#ccc'
-    }
+      color: '#ccc'
+    };
   }
-
 
   start(color, callback) {
     this.setState({
@@ -34,31 +32,32 @@ class CircleTransition extends Component {
     });
   }
 
-  hideCircle() {
+  hideCircle () {
     this.setState({
       scale: new Animated.Value(0)
-    })
+    });
   }
 
-  getLeftPosition() {
+  getLeftPosition () {
     const halfSize = this.props.size / 2;
     const halfWidth = width / 2;
     let marginHorizontalTopLeft = -halfSize;
+
     return marginHorizontalTopLeft + halfWidth;
   }
 
-  getTopPosition() {
+  getTopPosition () {
     const halfSize = this.props.size / 2;
     let marginVerticalTopLeft = -halfSize;
+
     return marginVerticalTopLeft + height;
   }
 
-  render() {
+  render () {
     const {scale, color} = this.state;
     const { size } = this.props;
     let topPosition = this.getTopPosition();
     let leftPosition = this.getLeftPosition();
-
     return (
       <Animated.View style={{
         position: 'absolute',
@@ -79,7 +78,7 @@ class CircleTransition extends Component {
 CircleTransition.propTypes = {
   size: PropTypes.number,
   duration: PropTypes.number,
-  easing: PropTypes.func
+  easing: PropTypes.func,
 }
 
 CircleTransition.defaultProps = {
