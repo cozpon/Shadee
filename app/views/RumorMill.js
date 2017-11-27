@@ -31,12 +31,12 @@ class RumorMill extends Component {
       victim: null,
       selected: false,
       text: "",
-      rumor: null
+      rumor: null,
+      submitted: false
     }
   }
 
   componentWillMount(){
-    this.props.loadUsers();
     this.props.loadRumors();
   }
 
@@ -53,56 +53,65 @@ class RumorMill extends Component {
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
-          placeholder='Girl, spill.' />
+          placeholder='Who???' />
+        {
+          this.state.submitted ? null :
 
-        { this.state.selected ?
-          <View style={styles.list}>
-            <Text style={styles.text}>
-              I heard {this.state.victim.username}...
-            </Text>
-            <TextInput
-              maxLength={100}
-              autoCapitalize='none'
-              multiline={true}
-              editable ={true}
-              style={styles.textInput}
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
-            />
-            <Button
-              textStyle={{ color: "#ffb6c1" }}
-              title="Spread rumor"
-              onPress={this._onSubmit.bind(this)}
-            />
-          </View>
-          :
-          <View style={styles.list}>
-            {
-              this.state.users.map((user) => {
-                return(
-                  <TouchableOpacity
-                    key={user.id}
-                    onPress={() => {
-                      this.setState({
-                        selected: true,
-                        victim: user
-                      })
-                  }}>
-                    <Text style={styles.text}>
-                      {user.username}
-                    </Text>
-                  </TouchableOpacity>
-                  )
-              })
+          <View>
+            { this.state.selected ?
+              <View style={styles.list}>
+                <Text style={styles.text}>
+                  I heard {this.state.victim.username}...
+                </Text>
+                <TextInput
+                  maxLength={100}
+                  autoCapitalize='none'
+                  multiline={true}
+                  editable ={true}
+                  style={styles.textInput}
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                />
+                <Button
+                  textStyle={{ color: "#ffb6c1" }}
+                  title="Spread rumor"
+                  onPress={this._onSubmit.bind(this)}
+                />
+              </View>
+            :
+              <View style={styles.list}>
+                {
+                  this.state.users.map((user) => {
+                    return(
+                      <TouchableOpacity
+                        key={user.id}
+                        onPress={() => {
+                          this.setState({
+                            selected: true,
+                            victim: user
+                          })
+                      }}>
+                        <Text style={styles.text}>
+                          {user.username}
+                        </Text>
+                      </TouchableOpacity>
+                      )
+                  })
+                }
+              </View>
             }
           </View>
         }
+
         {
           this.props.rumors.map((rumor) => {
             return(
               <View>
                 <Text>
                   Someone heard that { rumor.user.username } { rumor.body }
+                </Text>
+                <Text>
+                Rumor credibility rating: {rumor.points}
                 </Text>
                 <RumorVote id={rumor.id} />
 
@@ -116,7 +125,8 @@ class RumorMill extends Component {
 
   _onChange(value){
     this.setState({
-      selected: false
+      selected: false,
+      submitted: false
     })
     let filteredUsers = this.props.users.filter(user => {
       return user.username.toLowerCase().includes(value.toLowerCase())
@@ -129,10 +139,16 @@ class RumorMill extends Component {
   _onSubmit(){
     let data = {
       user_id: this.state.victim.id,
-      body: this.state.text
+      body: this.state.text,
+      points: 1
     }
-    console.log('data on front end submit', data);
+
     this.props.addRumor(data);
+
+    this.setState({
+      selected: false,
+      submitted: true
+    });
 
   }
 
