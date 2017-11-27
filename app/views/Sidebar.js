@@ -83,7 +83,7 @@ class DrawerContent extends Component {
          raised
          icon={{name: 'blind', type: 'font-awesome', size: 20}}
          title='How To: Use Shade'
-         buttonStyle={styles.button}
+         backgroundColor="#c56d60"
          onPress={this._handleSubmit}/>
           <Text style={styles.sectionHeadingStyle}>
           </Text>
@@ -92,7 +92,7 @@ class DrawerContent extends Component {
          raised
          icon={{name: 'hand-peace-o', type: 'font-awesome'}}
          title='Log Out'
-         buttonStyle={styles.button}
+         backgroundColor="#c56d60"
          onPress={this._handleSubmit}/>
       </View>
     );
