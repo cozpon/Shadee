@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  ImageBackground,
   Dimensions,
   StyleSheet,
   Text,
@@ -31,6 +32,7 @@ class TargetSearch extends Component {
 
   render(){
     return (
+    <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.backgroundImage}>
       <View>
         <SearchBar
           containerStyle={styles.textContainer}
@@ -73,6 +75,7 @@ class TargetSearch extends Component {
           </View>
         }
       </View>
+    </ImageBackground>
     );
   }
 
@@ -111,7 +114,13 @@ const styles = StyleSheet.create({
     fontSize: 40
   },
   list: {
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    color: '#b5b8bc'
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover'
   }
 });
 
