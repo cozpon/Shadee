@@ -1,31 +1,20 @@
-// const DrawerContent = (props) => (
-//   <View>
-//     <View
-//       style={{
-//         backgroundColor: 'lightgrey',
-//         height: 110,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         flex: 0
-//       }} >
-//       <Text style={{ color: '#ffb6c1', fontSize: 33 }}>
-//         Daddio!
-//       </Text>
-//     </View>
-//     <DrawerItems {...props} />
-//   </View>
-// )
-
 import React, {Component} from 'react';
 import { NavigationActions } from 'react-navigation';
 import { ScrollView, Text, View, Image } from 'react-native';
+import { Button, ButtonGroup } from 'react-native-elements';
 import { onSignOut } from '../auth';
 import { url } from '../lib/url';
 import styles from './Sidebar.style';
 import PropTypes from 'prop-types';
 
-
 class DrawerContent extends Component {
+  state = {
+    index: 0
+  }
+
+  updateIndex = (index) => {
+    this.setState({index})
+  }
 
   _handleSubmit = () => {
     let navigation = this.props.navigation;
@@ -35,9 +24,6 @@ class DrawerContent extends Component {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-      })
-      .then((response) => {
-        response
       })
       .then((res) => {
           onSignOut().then(() => navigation.navigate("SignedOut"));
@@ -61,31 +47,53 @@ class DrawerContent extends Component {
         <ScrollView>
         <Image source={require('../assets/logo.png')}>
         </Image>
-          <View>
-            <Text style={styles.sectionHeadingStyle}>
-              u can edit this lol
-            </Text>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Feed')}>
-              Feed
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Text style={styles.sectionHeadingStyle}>
-              what should it say? lol idk
-            </Text>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Profile')}>
-                Profile
-              </Text>
 
-            </View>
-          </View>
+          <Text style={styles.sectionHeadingStyle}>
+          </Text>
+
+        <Button
+          raised
+          icon={{name: 'umbrella', type: 'font-awesome'}}
+          title='Feed'
+          buttonStyle={styles.button}
+          onPress={this.navigateToScreen('Feed')}/>
+
+          <Text style={styles.sectionHeadingStyle}>
+          </Text>
+
+        <Button
+         raised
+         icon={{name: 'user-circle', type: 'font-awesome', size: 20}}
+         title='Profile'
+         buttonStyle={styles.button}
+         onPress={this.navigateToScreen('Profile')}/>
+
+          <Text style={styles.sectionHeadingStyle}>
+          </Text>
+
+        <Button
+         raised
+         icon={{name: 'trash-o', type: 'font-awesome', size: 20}}
+         title='Rumor Mill'
+         buttonStyle={styles.button}
+         onPress={this.navigateToScreen('Feed')}/>
+
         </ScrollView>
-        <Text style={styles.footerContainer} onPress={this._handleSubmit}>
-        SIGN OUT
-        </Text>
+        <Button
+         raised
+         icon={{name: 'blind', type: 'font-awesome', size: 20}}
+         title='How To: Use Shade'
+         buttonStyle={styles.button}
+         onPress={this._handleSubmit}/>
+          <Text style={styles.sectionHeadingStyle}>
+          </Text>
+
+        <Button
+         raised
+         icon={{name: 'hand-peace-o', type: 'font-awesome'}}
+         title='Log Out'
+         buttonStyle={styles.button}
+         onPress={this._handleSubmit}/>
       </View>
     );
   }

@@ -7,12 +7,12 @@ import {
   Header,
   Title,
   Left,
-  Icon,
   Right,
   Button,
   Body,
   Text
 } from "native-base";
+import { Icon } from 'react-native-elements';
 import VideoPlayer from '../components/VideoPlayer';
 import Moment from 'moment';
 import { connect } from 'react-redux';
@@ -45,11 +45,14 @@ class Profile extends Component {
       <Container>
         <Header>
           <Left>
-            <Button
-              transparent
-              onPress={() => navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
-            </Button>
+            <Icon
+              name='map-o'
+              type='font-awesome'
+              size={25}
+              color={'#EAA7B1'}
+              underlayColor={'white'}
+              onPress={() => navigation.navigate("DrawerOpen")}
+            />
           </Left>
           <Body>
             <Title>{user.username}</Title>
