@@ -19,7 +19,6 @@ export const loadRumors = () => {
 }
 
 export const addRumor = (rumor) => {
-  console.log('actions', rumor);
   return function(dispatch){
     return axios.post(`${url}rumors`, rumor)
     .then((newRumor) => {
