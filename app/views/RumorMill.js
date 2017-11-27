@@ -7,16 +7,20 @@ import {
   Keyboard,
   TouchableOpacity,
   TextInput,
-  Button
+  Button,
+  ScrollView
 } from 'react-native';
 
 import { connect } from 'react-redux';
+import { loadUsers } from '../actions/users';
 import {loadRumors,
           addRumor,
           editRumor
         } from '../actions/rumors';
 
 import { SearchBar } from 'react-native-elements';
+
+import RumorVote from '../components/RumorVote';
 
 
 class RumorMill extends Component {
@@ -26,17 +30,19 @@ class RumorMill extends Component {
       users: [],
       victim: null,
       selected: false,
-      text: ""
+      text: "",
+      rumor: null
     }
   }
 
   componentWillMount(){
+    this.props.loadUsers();
     this.props.loadRumors();
   }
 
   render(){
     return (
-      <View>
+      <ScrollView>
         <SearchBar
           containerStyle={styles.textContainer}
           inputStyle={styles.search}
@@ -47,7 +53,7 @@ class RumorMill extends Component {
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
-          placeholder='Choose your victim...' />
+          placeholder='Girl, spill.' />
 
         { this.state.selected ?
           <View style={styles.list}>
@@ -64,7 +70,8 @@ class RumorMill extends Component {
               value={this.state.text}
             />
             <Button
-              title="Publish rumor"
+              textStyle={{ color: "#ffb6c1" }}
+              title="Spread rumor"
               onPress={this._onSubmit.bind(this)}
             />
           </View>
@@ -90,7 +97,20 @@ class RumorMill extends Component {
             }
           </View>
         }
-      </View>
+        {
+          this.props.rumors.map((rumor) => {
+            return(
+              <View>
+                <Text>
+                  Someone heard that { rumor.user.username } { rumor.body }
+                </Text>
+                <RumorVote id={rumor.id} />
+
+              </View>
+            )
+          })
+        }
+      </ScrollView>
     );
   }
 
@@ -111,7 +131,7 @@ class RumorMill extends Component {
       user_id: this.state.victim.id,
       body: this.state.text
     }
-    console.log('data', data);
+    console.log('data on front end submit', data);
     this.props.addRumor(data);
 
   }
@@ -159,8 +179,14 @@ const mapDispatchToProps = (dispatch) => {
     loadRumors: () => {
       dispatch(loadRumors());
     },
+    loadUsers: () => {
+      dispatch(loadUsers());
+    },
     addRumor: (rumor) => {
       dispatch(addRumor(rumor));
+    },
+    editRumor: (rumor) => {
+      dispatch(editRumor(rumor));
     }
   }
 }

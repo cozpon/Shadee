@@ -30,6 +30,7 @@ router.post('/', (req, res) => {
       ]
     })
     .then((foundRumor) => {
+      console.log(foundRumor);
       return res.json(foundRumor);
     })
     .catch((err) => {
@@ -41,35 +42,52 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
 
   let points = req.body.points;
-  let id = req.params.id;
-
-  return Rumor.findById(id)
-  .then((rumor) => {
-    if(parseInt(points, 10)===0){
+  let id = req.body.id;
+  if(points===0){
+    return Rumor.findById(id)
+    .then((rumor) => {
       return rumor.update({
         points: parseInt(rumor.points,10)-1
+      }, {
+        returning: true,
+        plain: true
       })
-    }else if(parseInt(points, 10)===1){
+      .then((downVotedRumor) => {
+        return Rumor.findById(id, {
+          include: [
+            { model: User, as: 'user',
+              attributes: ['username', 'id']
+            }
+          ]
+        })
+        .then((foundRumor) => {
+          return res.json(foundRumor);
+        })
+      })
+    });
+  }else{
+    return Rumor.findById(id)
+    .then((rumor) => {
       return rumor.update({
         points: parseInt(rumor.points,10)+1
+      }, {
+        returning: true,
+        plain: true
       })
-    }
-  })
-  .then(() => {
-    return Rumor.findById(id, {
-      inclue: [
-        { model: User, as: 'user',
-          attributes: ['username', 'id']
-        }
-      ]
-    })
-    .then((foundRumor) => {
-      return res.json(foundRumor);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  })
+      .then((upVotedRumor) => {
+        return Rumor.findById(id, {
+          include: [
+            { model: User, as: 'user',
+              attributes: ['username', 'id']
+            }
+          ]
+        })
+        .then((newRumor) => {
+          return res.json(newRumor);
+        })
+      })
+    });
+  }
 });
 
 module.exports = router;

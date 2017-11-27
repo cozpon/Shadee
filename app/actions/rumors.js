@@ -19,8 +19,9 @@ export const loadRumors = () => {
 }
 
 export const addRumor = (rumor) => {
+  console.log('actions', rumor);
   return function(dispatch){
-    return axios.post(`${url}rumors`)
+    return axios.post(`${url}rumors`, rumor)
     .then((newRumor) => {
       dispatch({
         type: ADD_RUMOR,
@@ -32,8 +33,9 @@ export const addRumor = (rumor) => {
 
 export const editRumor = (newInfo) => {
   return function(dispatch){
-    return axios.put(`${url}rumor/${newInfo/id}`)
+    return axios.put(`${url}rumors/${newInfo.id}`, newInfo)
     .then((editedRumor) => {
+      console.log(editedRumor);
       dispatch({
         type: EDIT_RUMOR,
         rumor: editedRumor.data
