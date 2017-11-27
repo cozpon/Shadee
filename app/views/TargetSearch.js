@@ -54,13 +54,13 @@ class TargetSearch extends Component {
           onChangeText={this._onChange.bind(this)}
           placeholder='Choose your victim...' />
         { this.state.selected ?
-          <View style={styles.list}>
+          <View>
             <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
-          <View style={styles.list}>
+          <View>
             {
               this.state.users.map((user) => {
                 return(
@@ -102,33 +102,6 @@ class TargetSearch extends Component {
   }
 
 }
-
-
-const styles = StyleSheet.create({
-  textContainer: {
-    backgroundColor: '#ffb6c1'
-  },
-  textInput: {
-    height: 60,
-    borderColor: '#ffb6c1',
-    borderWidth: 1,
-    fontSize: 40,
-    backgroundColor: 'white',
-    color: '#ffb6c1'
-  },
-  text: {
-    fontSize: 40
-  },
-  list: {
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: '#b5b8bc'
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover'
-  }
-});
 
 const mapStateToProps = (state) => {
   return{
