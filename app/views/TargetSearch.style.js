@@ -19,7 +19,6 @@ export default {
     color: '#b5b8bc'
   },
   backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover'
+    flex: 1
   }
 };

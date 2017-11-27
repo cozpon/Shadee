@@ -21,6 +21,7 @@ import {
   Button,
   Body } from 'native-base';
 import CircleTransition from '../components/CircleTransition';
+import { NavigationActions } from 'react-navigation';
 
 const screens = [{
   id: 0,
@@ -40,11 +41,14 @@ const screens = [{
   subtitle: 'Press the cloud icon to see your video in the feed',
   icon: require('../assets/throwShade.png'),
   bgcolor: '#ff9e99'
+}, {
+  id: 3,
+  title: 'Get Started!'
 }];
 
 const { width: windowWidth} = Dimensions.get('window');
 
-export default class Bubble extends Component {
+export default class HowTo extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -79,13 +83,27 @@ export default class Bubble extends Component {
     return screens[this.state._counter];
   }
 
+  navigateToScreen = (route) => () => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigateAction);
+  }
+
   onPress(){
     const { _counter } = this.state;
     let newCounter = _counter < screens.length - 1 ? _counter + 1 : 0;
     this.setState({
       _counter: newCounter
     }, () => {
-      this.circleTransition.start(screens[newCounter].bgcolor);
+      if(this.state._counter === 3) {
+        console.log(this.state._counter, 'count')
+        let navigation = this.props.navigation;
+        navigation.navigate('Feed');
+      }else {
+        this.circleTransition.start(screens[newCounter].bgcolor);
+      }
+
     });
   }
 
