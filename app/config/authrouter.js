@@ -7,6 +7,7 @@ import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
+import BubbleAnimation from "../components/BubbleAnimation";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
@@ -16,6 +17,16 @@ import ShadeCamera from '../views/ShadeCamera';
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
+    id: 0,
+    bgcolor: '#698FB2'
+  },
+  Logout: {
+    screen: Logout,
+    id: 2,
+    bgcolor: '#9B91BA'
+  },
+  BubbleAnimation: {
+    screen: BubbleAnimation,
   },
   Profile: {
     screen: Profile,

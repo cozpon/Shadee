@@ -15,7 +15,6 @@ import {
   Header,
   Title,
   Left,
-  Icon,
   Right,
   Button,
   Body,
@@ -26,6 +25,7 @@ import {
 } from "native-base";
 
 import {
+  Icon,
   List,
   ListItem,
   SearchBar
@@ -103,12 +103,15 @@ class TestFeed extends Component {
       <Container>
         <Header>
           <Left>
-            <Button
-              transparent
+            <Icon
+              name='map-o'
+              type='font-awesome'
+              size={25}
+              color={'#EAA7B1'}
+              underlayColor={'white'}
               onPress={() => navigation.navigate("DrawerOpen")}
-              style={{ zIndex: 2}}>
-              <Icon name="menu" />
-            </Button>
+            />
+
           </Left>
           <Body>
             <Title >Shade</Title>

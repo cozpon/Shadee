@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  ImageBackground,
   Dimensions,
   StyleSheet,
   Text,
@@ -12,9 +13,9 @@ import {
 import { connect } from 'react-redux';
 import { loadUsers } from '../actions/users';
 import { selectVictim } from '../actions/victims';
-
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SearchBar } from 'react-native-elements';
+import styles from './TargetSearch.style';
 
 class TargetSearch extends Component {
   constructor(){
@@ -29,8 +30,17 @@ class TargetSearch extends Component {
     this.props.loadUsers();
   }
 
+  viewStyle() {
+    return {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+  }
+
   render(){
     return (
+    <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.backgroundImage}>
       <View>
         <SearchBar
           containerStyle={styles.textContainer}
@@ -43,15 +53,14 @@ class TargetSearch extends Component {
           ref="search"
           onChangeText={this._onChange.bind(this)}
           placeholder='Choose your victim...' />
-
         { this.state.selected ?
-          <View style={styles.list}>
+          <View>
             <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
-          <View style={styles.list}>
+          <View>
             {
               this.state.users.map((user) => {
                 return(
@@ -68,11 +77,12 @@ class TargetSearch extends Component {
                     </Text>
                   </TouchableOpacity>
                   )
-              })
-            }
+                })
+             }
           </View>
         }
       </View>
+    </ImageBackground>
     );
   }
 
@@ -91,29 +101,7 @@ class TargetSearch extends Component {
     })
   }
 
-
 }
-
-
-const styles = StyleSheet.create({
-  textContainer: {
-    backgroundColor: '#ffb6c1'
-  },
-  textInput: {
-    height: 60,
-    borderColor: '#ffb6c1',
-    borderWidth: 1,
-    fontSize: 40,
-    backgroundColor: 'white',
-    color: '#ffb6c1'
-  },
-  text: {
-    fontSize: 40
-  },
-  list: {
-    alignItems: 'center'
-  }
-});
 
 const mapStateToProps = (state) => {
   return{
