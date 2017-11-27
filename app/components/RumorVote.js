@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { editRumor } from '../actions/rumors';
+import Icon from "react-native-vector-icons/Ionicons";
 
 class RumorVote extends Component {
   constructor(props){
@@ -32,15 +34,15 @@ class RumorVote extends Component {
     return(
       <View>
       { this.state.voted ? null :
-        <View>
+        <View style={styles.buttons}>
           <Button
-            textStyle={{ color: "#ffb6c1" }}
-            title="Yeah, I heard that."
+            backgroundColor="transparent"
+            icon={{name: 'ios-thumbs-up', type: 'ionicon', color: '#ffb6c1', size: 40}}
             onPress={this._upvote.bind(this)}
           />
           <Button
-            textStyle={{ color: "#ffb6c1" }}
-            title="Nah, never heard that."
+            backgroundColor="transparent"
+            icon={{name: 'ios-thumbs-down', type: 'ionicon', color: '#ffb6c1', size: 40}}
             onPress={this._downvote.bind(this)}
           />
         </View>
@@ -50,6 +52,14 @@ class RumorVote extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  buttons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {

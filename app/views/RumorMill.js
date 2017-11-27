@@ -7,7 +7,6 @@ import {
   Keyboard,
   TouchableOpacity,
   TextInput,
-  Button,
   ScrollView
 } from 'react-native';
 
@@ -18,7 +17,7 @@ import {loadRumors,
           editRumor
         } from '../actions/rumors';
 
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, Button } from 'react-native-elements';
 
 import RumorVote from '../components/RumorVote';
 
@@ -73,7 +72,8 @@ class RumorMill extends Component {
                   value={this.state.text}
                 />
                 <Button
-                  textStyle={{ color: "#ffb6c1" }}
+                  textStyle={{ color: "white" }}
+                  backgroundColor="#ffb6c1"
                   title="Spread rumor"
                   onPress={this._onSubmit.bind(this)}
                 />
