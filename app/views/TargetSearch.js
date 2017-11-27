@@ -13,9 +13,9 @@ import {
 import { connect } from 'react-redux';
 import { loadUsers } from '../actions/users';
 import { selectVictim } from '../actions/victims';
-
-//import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { SearchBar } from 'react-native-elements';
+import styles from './TargetSearch.style';
 
 class TargetSearch extends Component {
   constructor(){
@@ -28,6 +28,14 @@ class TargetSearch extends Component {
 
   componentWillMount(){
     this.props.loadUsers();
+  }
+
+  viewStyle() {
+    return {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
   }
 
   render(){
@@ -45,15 +53,14 @@ class TargetSearch extends Component {
           ref="search"
           onChangeText={this._onChange.bind(this)}
           placeholder='Choose your victim...' />
-
         { this.state.selected ?
-          <View style={styles.list}>
+          <View>
             <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
-          <View style={styles.list}>
+          <View>
             {
               this.state.users.map((user) => {
                 return(
@@ -70,8 +77,8 @@ class TargetSearch extends Component {
                     </Text>
                   </TouchableOpacity>
                   )
-              })
-            }
+                })
+             }
           </View>
         }
       </View>
@@ -94,9 +101,9 @@ class TargetSearch extends Component {
     })
   }
 
-
 }
 
+<<<<<<< HEAD
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -122,6 +129,8 @@ const styles = StyleSheet.create({
   }
 });
 
+=======
+>>>>>>> development
 const mapStateToProps = (state) => {
   return{
     users: state.users,

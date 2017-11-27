@@ -157,6 +157,7 @@ class ShadeCamera extends Component {
     this.setState({
       recording: false
     });
+    alert('Success!');
   }
 
 

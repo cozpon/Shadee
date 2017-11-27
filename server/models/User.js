@@ -33,6 +33,10 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: 'role_id',
       as: 'role'
     });
+    User.hasMany(models.rumor, {
+      foreignKey: 'user_id',
+      as: 'target'
+    });
   }
 
   return User
