@@ -29,9 +29,6 @@ export const Drawer = DrawerNavigator({
   Profile: {
     screen: Profile,
   },
-  HowTo: {
-    screen: HowTo
-  },
 }, {
   contentComponent: DrawerContent,
   drawerWidth: 250
