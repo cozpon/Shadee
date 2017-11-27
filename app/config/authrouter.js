@@ -7,7 +7,7 @@ import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
-import HowTo from "../components/HowTo";
+import HowTo from "../views/HowTo";
 //import SecondScreen from "../views/SecondScreen";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
@@ -26,11 +26,11 @@ export const Drawer = DrawerNavigator({
     id: 2,
     bgcolor: '#9B91BA'
   },
-  HowTo: {
-    screen: HowTo
-  },
   Profile: {
     screen: Profile,
+  },
+  HowTo: {
+    screen: HowTo
   },
 }, {
   contentComponent: DrawerContent,
@@ -57,6 +57,14 @@ export const SignedIn = TabNavigator({
     screen: Drawer,
     navigationOptions: {
       tabBarLabel: "Feed",
+      tabBarIcon: ({ tintColor }) =>
+        <Icon name="ios-umbrella" size={30} color={tintColor} />
+    }
+  },
+  HowTo: {
+    screen: HowTo,
+    navigationOptions: {
+      tabBarLabel: "How To",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }

@@ -10,7 +10,17 @@ import {
   View
 
 } from 'react-native';
-import CircleTransition from './CircleTransition';
+import {
+  Container,
+  Content,
+  Header,
+  Title,
+  Left,
+  Icon,
+  Right,
+  Button,
+  Body } from 'native-base';
+import CircleTransition from '../components/CircleTransition';
 
 const screens = [{
   id: 0,
@@ -46,26 +56,6 @@ export default class Bubble extends Component {
     };
   }
 
-//   onSwipeLeft() {
-//     const { _counter } = this.state;
-//     let newCounter = _counter < screens.length - 1 ? _counter + 1 : 0;
-//     this.swipeTo(newCounter);
-//   }
-
-//   onSwipeRight() {
-//     const { _counter } = this.state;
-//     let newCounter = _counter === 0 ? screens.length - 1 : _counter - 1;
-//     this.swipeTo(newCounter);
-//   }
-
-//   swipeTo(counter) {
-//   const newColor = screens[counter].bgcolor;
-//   this.setState({
-//     _counter: counter
-//   }, () => {
-//     this.circleTransition.start(newColor, this.changeColor.bind(this, newColor));
-//   });
-// }
 
   changeContent(newScreen) {
     this.setState({
@@ -126,7 +116,6 @@ export default class Bubble extends Component {
           </Text>
         </View>
       </TouchableWithoutFeedback>
-
     )
   }
 }

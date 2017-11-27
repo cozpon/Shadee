@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { loadUsers } from '../actions/users';
 import { selectVictim } from '../actions/victims';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+//import Icon from 'react-native-vector-icons/Ionicons';
 import { SearchBar } from 'react-native-elements';
 
 class TargetSearch extends Component {
