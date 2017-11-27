@@ -47,26 +47,6 @@ class DrawerContent extends Component {
         <ScrollView>
         <Image source={require('../assets/logo.png')}>
         </Image>
-          <View>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('HowTo')}>
-              How to ...
-              </Text>
-            </View>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Feed')}>
-              Feed
-              </Text>
-            </View>
-          </View>
-          <View>
-            <Text style={styles.sectionHeadingStyle}>
-              what should it say? lol idk
-            </Text>
-            <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Profile')}>
-                Profile
-              </Text>
 
           <Text style={styles.sectionHeadingStyle}>
           </Text>
@@ -104,7 +84,7 @@ class DrawerContent extends Component {
          icon={{name: 'blind', type: 'font-awesome', size: 20}}
          title='How To: Use Shade'
          backgroundColor="#c56d60"
-         onPress={this._handleSubmit}/>
+         onPress={this.navigateToScreen('HowTo')}/>
           <Text style={styles.sectionHeadingStyle}>
           </Text>
 

@@ -103,34 +103,7 @@ class TargetSearch extends Component {
 
 }
 
-<<<<<<< HEAD
 
-const styles = StyleSheet.create({
-  textContainer: {
-    backgroundColor: '#ffb6c1'
-  },
-  textInput: {
-    height: 60,
-    borderColor: '#ffb6c1',
-    borderWidth: 1,
-    fontSize: 40,
-    backgroundColor: 'white',
-    color: '#ffb6c1'
-  },
-  text: {
-    fontSize: 40
-  },
-  list: {
-    alignItems: 'center',
-    backgroundColor: 'transparent'
-  },
-  backgroundImage: {
-    flex: 1
-  }
-});
-
-=======
->>>>>>> development
 const mapStateToProps = (state) => {
   return{
     users: state.users,
