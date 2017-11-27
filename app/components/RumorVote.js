@@ -10,15 +10,18 @@ class RumorVote extends Component {
     super(props)
 
     this.state = {
-      voted: false
-    }
+      voted: false,
+      upcolor: '#ffb6c1',
+      downcolor: '#ffb6c1'
+     }
   }
 
   _upvote(event){
     let rumor = {id : this.props.id, points : 1};
     this.props.editRumor(rumor);
     this.setState({
-      voted: true
+      voted: true,
+      upcolor: 'black'
     });
   }
 
@@ -26,7 +29,8 @@ class RumorVote extends Component {
     let rumor = {id : this.props.id, points : 0};
     this.props.editRumor(rumor);
     this.setState({
-      voted: true
+      voted: true,
+      downcolor: 'black'
     });
   }
 
@@ -37,12 +41,12 @@ class RumorVote extends Component {
         <View style={styles.buttons}>
           <Button
             backgroundColor="transparent"
-            icon={{name: 'ios-thumbs-up', type: 'ionicon', color: '#ffb6c1', size: 40}}
+            icon={{name: 'ios-thumbs-up', type: 'ionicon', color: this.state.upcolor, size: 40}}
             onPress={this._upvote.bind(this)}
           />
           <Button
             backgroundColor="transparent"
-            icon={{name: 'ios-thumbs-down', type: 'ionicon', color: '#ffb6c1', size: 40}}
+            icon={{name: 'ios-thumbs-down', type: 'ionicon', color: this.state.downcolor, size: 40}}
             onPress={this._downvote.bind(this)}
           />
         </View>

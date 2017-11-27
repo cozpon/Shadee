@@ -56,7 +56,7 @@ class RumorMill extends Component {
         {
           this.state.submitted ? null :
 
-          <View>
+          <View style={styles.container}>
             { this.state.selected ?
               <View style={styles.list}>
                 <Text style={styles.text}>
@@ -106,14 +106,14 @@ class RumorMill extends Component {
         {
           this.props.rumors.map((rumor) => {
             return(
-              <View>
-                <Text>
+              <View style={styles.rumor}>
+                <Text style={styles.rumorText}>
                   Someone heard that { rumor.user.username } { rumor.body }
                 </Text>
-                <Text>
-                Rumor credibility rating: {rumor.points}
-                </Text>
                 <RumorVote id={rumor.id} />
+                <Text style={styles.credibility}>
+                  Rumor credibility rating: {rumor.points}
+                </Text>
 
               </View>
             )
@@ -155,6 +155,21 @@ class RumorMill extends Component {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    justifyContent: 'center'
+  },
+  rumor: {
+    borderWidth: .5,
+    borderColor: '#ffb6c1'
+  },
+  rumorText: {
+    alignSelf: 'center',
+    fontSize: 20
+  },
+  credibility: {
+    alignSelf: 'center'
+  },
   textContainer: {
     backgroundColor: '#ffb6c1'
   },
