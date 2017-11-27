@@ -7,6 +7,7 @@ const User = db.user;
 
 router.get('/', (req, res) => {
   return Rumor.findAll({
+    order: [['points', 'DESC']],
     include: [
       { model: User, as: 'user',
         attributes: ['username', 'id']
