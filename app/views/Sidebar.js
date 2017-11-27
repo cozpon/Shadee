@@ -62,9 +62,11 @@ class DrawerContent extends Component {
         <Image source={require('../assets/logo.png')}>
         </Image>
           <View>
-            <Text style={styles.sectionHeadingStyle}>
-              u can edit this lol
-            </Text>
+            <View style={styles.navSectionStyle}>
+              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('BubbleAnimation')}>
+              How to throw shade ...
+              </Text>
+            </View>
             <View style={styles.navSectionStyle}>
               <Text style={styles.navItemStyle} onPress={this.navigateToScreen('Feed')}>
               Feed

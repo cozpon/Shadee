@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import {
   Easing,
   StyleSheet,
@@ -9,6 +7,7 @@ import {
   Animated,
   PanResponder
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const swipeDirections = {
   SWIPE_LEFT: 'SWIPE_LEFT',
@@ -31,19 +30,17 @@ class Swipe extends Component {
     };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponder: () => true,
       onPanResponderRelease: (evt, gestureState) => {
-      const swipeDirection = this._getSwipeDirection(gestureState);
-      console.log(swipeDirection, 'swipeDirection')
+        const swipeDirection = this._getSwipeDirection(gestureState);
         this._triggerSwipeHandlers(swipeDirection, gestureState);
-
       }
     });
   }
 
-    _triggerSwipeHandlers(swipeDirection, gestureState) {
+  _triggerSwipeHandlers(swipeDirection, gestureState) {
     const {SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     switch (swipeDirection) {
       case SWIPE_LEFT:
@@ -55,7 +52,7 @@ class Swipe extends Component {
     }
   }
 
-   _getSwipeDirection(gestureState) {
+  _getSwipeDirection(gestureState) {
     const {SWIPE_LEFT, SWIPE_RIGHT} = swipeDirections;
     const {dx, dy} = gestureState;
     if (this._isValidHorizontalSwipe(gestureState)) {
@@ -69,8 +66,8 @@ class Swipe extends Component {
     return isValidSwipe(vx, velocityThreshold, dy, directionalOffsetThreshold);
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <Animated.View style={this.props.style}
         {...this.panResponder.panHandlers}
       >

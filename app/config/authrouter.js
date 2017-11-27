@@ -8,7 +8,7 @@ import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
 import BubbleAnimation from "../components/BubbleAnimation";
-import SecondScreen from "../views/SecondScreen";
+//import SecondScreen from "../views/SecondScreen";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
@@ -21,18 +21,13 @@ export const Drawer = DrawerNavigator({
     id: 0,
     bgcolor: '#698FB2'
   },
-  SecondScreen: {
-    screen: SecondScreen,
-    id: 1,
-    bgcolor: '#68B0B3'
-  },
   Logout: {
     screen: Logout,
     id: 2,
     bgcolor: '#9B91BA'
   },
   BubbleAnimation: {
-    screen: BubbleAnimation,
+    screen: BubbleAnimation
   },
   Profile: {
     screen: Profile,
