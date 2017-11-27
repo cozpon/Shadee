@@ -63,8 +63,8 @@ class DrawerContent extends Component {
         </Image>
           <View>
             <View style={styles.navSectionStyle}>
-              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('BubbleAnimation')}>
-              How to throw shade ...
+              <Text style={styles.navItemStyle} onPress={this.navigateToScreen('HowTo')}>
+              How to ...
               </Text>
             </View>
             <View style={styles.navSectionStyle}>

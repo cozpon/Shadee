@@ -11,26 +11,24 @@ import {
 
 } from 'react-native';
 import CircleTransition from './CircleTransition';
-import Swipe from './Swipe';
-//import Drawer from '../config/authrouter';
 
 const screens = [{
   id: 0,
   title: 'Select a Target',
   subtitle: 'Search for a person to shade from the search bar',
-  icon: require('../assets/chats-icon.png'),
-  bgcolor: '#f7baa1'
+  icon: require('../assets/target.png'),
+  bgcolor: '#f7a583'
 }, {
   id: 1,
-  title: 'Banks',
-  subtitle: 'We carefully verify all banks before add them into the app',
-  icon: require('../assets/chats-icon.png'),
+  title: 'Record a video of yourself',
+  subtitle: 'Press record and let everyone know what you think',
+  icon: require('../assets/recordYou.png'),
   bgcolor: '#fb9fa4'
 }, {
   id: 2,
-  title: 'Stores',
-  subtitle: 'All local stores are categorized for your convenience',
-  icon: require('../assets/chats-icon.png'),
+  title: 'Throw Shade!',
+  subtitle: 'Press the cloud icon to see your video in the feed',
+  icon: require('../assets/throwShade.png'),
   bgcolor: '#ff9e99'
 }];
 

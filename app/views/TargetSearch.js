@@ -115,12 +115,10 @@ const styles = StyleSheet.create({
   },
   list: {
     alignItems: 'center',
-    backgroundColor: 'transparent',
-    color: '#b5b8bc'
+    backgroundColor: 'transparent'
   },
   backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover'
+    flex: 1
   }
 });
 
