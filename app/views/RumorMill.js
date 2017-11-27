@@ -124,16 +124,25 @@ class RumorMill extends Component {
   }
 
   _onChange(value){
-    this.setState({
-      selected: false,
-      submitted: false
-    })
-    let filteredUsers = this.props.users.filter(user => {
-      return user.username.toLowerCase().includes(value.toLowerCase())
-    })
-    this.setState({
-      users: filteredUsers
-    })
+
+    if(value.length > 0){
+      this.setState({
+        selected: false,
+        submitted: false
+      });
+
+      let filteredUsers = this.props.users.filter(user => {
+        return user.username.toLowerCase().includes(value.toLowerCase())
+      })
+
+      this.setState({
+        users: filteredUsers
+      })
+    }else{
+      this.setState({
+        users: []
+      })
+    }
   }
 
   _onSubmit(){
