@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { View, ScrollView, StyleSheet,
+import { View, ScrollView, StyleSheet, Text,
   TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-elements";
 import { onSignIn } from "../auth";
@@ -85,14 +85,15 @@ class Register extends Component {
       <ImageBackground source={require('../assets/signUp.jpg')} style={styles.image}>
       <ScrollView style={styles.form}>
         <KeyboardAvoidingView behavior="padding">
+
           <Form
             ref='form' //assign a ref
             type={newUser}
             options={options}
-            style={styles.form}
             value={this.state.value}
             onChange={this._onChange}
           />
+
           <Button
             buttonStyle={{ marginTop: 20 }}
             backgroundColor="transparent"
@@ -103,10 +104,11 @@ class Register extends Component {
             onPress={this._handleAdd}
           />
           <Button
-            buttonStyle={{ marginTop: 20 }}
+            buttonStyle={{ marginBottom: 15 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
+            style={styles.button}
             raised={true}
             title="Sign In"
             onPress={() => navigation.navigate("SignIn")}
@@ -117,6 +119,8 @@ class Register extends Component {
     );
   }
 }
+
+
 
 const options = {
   fields: {
@@ -149,11 +153,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   form:{
+    shadowOffset: {width: 2, height: 2},
+    shadowRadius: 6,
+    shadowColor: '#ffb6c1',
     paddingTop: 20,
-    margin: 20
-
-
+    margin: 20,
   },
+  button:{
+    shadowOffset: {width: 2, height: 2},
+    shadowRadius: 6,
+    shadowColor: '#666',
+
+  }
+
 });
 
 export default Register;

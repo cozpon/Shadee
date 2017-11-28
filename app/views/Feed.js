@@ -185,7 +185,8 @@ class TestFeed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer/>
+                <VideoPlayer />
+                <Vote id={item.id}/>
                 <Message
                   body={item.body}
                   points={item.points}
@@ -195,7 +196,6 @@ class TestFeed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
-                <Vote id={item.id}/>
               </View>
             )}
           />

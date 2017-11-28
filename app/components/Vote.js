@@ -97,7 +97,7 @@ class Vote extends Component {
 
   render(){
     return(
-      <View>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <Button
           onPress={this.handleUpvote.bind(this)}
           title={'Extra'}
@@ -108,6 +108,7 @@ class Vote extends Component {
           title={'Basic'}
           color={this.state.basic}
         />
+
       </View>
     )
   }

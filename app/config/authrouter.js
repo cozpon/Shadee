@@ -7,10 +7,12 @@ import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
 // ...
-import BubbleAnimation from "../components/BubbleAnimation";
+import HowTo from "../views/HowTo";
+//import SecondScreen from "../views/SecondScreen";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
+import RumorMill from '../views/RumorMill';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 
@@ -25,12 +27,15 @@ export const Drawer = DrawerNavigator({
     id: 2,
     bgcolor: '#9B91BA'
   },
-  BubbleAnimation: {
-    screen: BubbleAnimation,
-  },
   Profile: {
     screen: Profile,
   },
+  RumorMill: {
+    screen: RumorMill,
+  },
+  HowTo: {
+    screen: HowTo,
+  }
 }, {
   contentComponent: DrawerContent,
   drawerWidth: 250
