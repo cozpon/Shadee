@@ -20,13 +20,9 @@ import Terms from '../views/TermsOfService';
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
-    id: 0,
-    bgcolor: '#698FB2'
   },
   Logout: {
     screen: Logout,
-    id: 2,
-    bgcolor: '#9B91BA'
   },
   Profile: {
     screen: Profile,
@@ -92,8 +88,8 @@ export const SignedIn = TabNavigator({
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e6e6e6',
-    activeBackgroundColor: "#ffb6c1",
+    activeTintColor: '#FFF',
+    activeBackgroundColor: '#ce877b',
     inactiveTintColor: '#666',
     labelStyle: {
       fontSize: 12,
