@@ -40,7 +40,7 @@ const screens = [{
   title: 'Throw Shade!',
   subtitle: 'Press the cloud to see your video in the feed',
   icon: require('../assets/throwShade.png'),
-  bgcolor: '#ff9e99'
+  bgcolor: '#ecb7bf'
 }, {
   id: 3,
   title: 'Get Started!',
