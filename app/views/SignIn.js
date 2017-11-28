@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { View, ScrollView, StyleSheet, Text,
+import { ScrollView, View, StyleSheet, Text,
   TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-elements";
 import { onSignIn, setStorage } from "../auth";
@@ -81,7 +81,8 @@ class Login extends Component {
     const navigation = this.props.navigation;
     return(
     <ImageBackground source={require('../assets/signIn.jpg')} style={styles.image}>
-      <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
         <KeyboardAvoidingView behavior="padding">
           <Form
             ref='form'
@@ -100,12 +101,13 @@ class Login extends Component {
             onPress={this._handleSubmit}
           />
 
-        <Text style={{marginTop: 250, fontSize: 8, fontWeight: 'bold', textAlign: 'center'}}>
+        <Text style={{marginTop: 40, fontSize: 8, fontWeight: 'bold', textAlign: 'center'}}>
           <Text style={{color: 'white'}}> {`by using this site you agree to our `}</Text>
           <Text style={{color: '#add8e6'}} onPress={() => navigation.navigate("Terms")}>{`Terms of Use`}</Text>
         </Text>
         </KeyboardAvoidingView>
       </View>
+      </ScrollView>
      </ImageBackground>
     );
   }

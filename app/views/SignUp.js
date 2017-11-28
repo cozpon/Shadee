@@ -104,7 +104,7 @@ class Register extends Component {
             onPress={this._handleAdd}
           />
           <Button
-            buttonStyle={{ marginBottom: 90 }}
+            buttonStyle={{ marginBottom: 10 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
