@@ -31,7 +31,10 @@ export const Drawer = DrawerNavigator({
     screen: Profile,
   },
   RumorMill: {
-    screen: RumorMill
+    screen: RumorMill,
+  },
+  HowTo: {
+    screen: HowTo,
   }
 }, {
   contentComponent: DrawerContent,
@@ -62,14 +65,14 @@ export const SignedIn = TabNavigator({
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
   },
-  HowTo: {
-    screen: HowTo,
-    navigationOptions: {
-      tabBarLabel: "How To",
-      tabBarIcon: ({ tintColor }) =>
-        <Icon name="ios-umbrella" size={30} color={tintColor} />
-    }
-  },
+  // HowTo: {
+  //   screen: HowTo,
+  //   navigationOptions: {
+  //     tabBarLabel: "How To",
+  //     tabBarIcon: ({ tintColor }) =>
+  //       <Icon name="ios-umbrella" size={30} color={tintColor} />
+  //   }
+  // },
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
