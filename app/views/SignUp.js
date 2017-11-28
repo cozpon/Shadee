@@ -52,7 +52,9 @@ class Register extends Component {
 
     if(value === null){
       alert('Enter your info to see all the Shade!')
-    }else{
+    }else if((/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(value.email) === false){
+      alert('Email must be valid email address')
+    } else {
       const data = {
         username: value.username,
         email: value.email,
@@ -104,7 +106,7 @@ class Register extends Component {
             onPress={this._handleAdd}
           />
           <Button
-            buttonStyle={{ marginBottom: 90 }}
+            buttonStyle={{ marginBottom: 10 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"

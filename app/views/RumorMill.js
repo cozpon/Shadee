@@ -66,7 +66,7 @@ class RumorMill extends Component {
 
           </Left>
           <Body>
-            <Title >Shade</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>Shade</Title>
           </Body>
           <Right />
         </Header>
@@ -82,7 +82,7 @@ class RumorMill extends Component {
             keyboardType='default'
             ref="search"
             onChangeText={this._onChange.bind(this)}
-            placeholder='' />
+            placeholder='Find a target...' />
           {
             this.state.submitted ? null :
 
