@@ -55,7 +55,7 @@ class Profile extends Component {
             />
           </Left>
           <Body>
-            <Title>{user.username}</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>{user.username}</Title>
           </Body>
           <Right />
         </Header>
