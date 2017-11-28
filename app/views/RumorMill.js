@@ -82,7 +82,7 @@ class RumorMill extends Component {
             keyboardType='default'
             ref="search"
             onChangeText={this._onChange.bind(this)}
-            placeholder='' />
+            placeholder='Find a target...' />
           {
             this.state.submitted ? null :
 

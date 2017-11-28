@@ -52,7 +52,7 @@ class TargetSearch extends Component {
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
-          placeholder='Choose your victim...' />
+          placeholder='Choose victim...' />
         { this.state.selected ?
           <View style={styles.transparent}>
             <Text style={styles.text}>
