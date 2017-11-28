@@ -22,6 +22,7 @@ export default {
     flex: 1
   },
   transparent: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    alignItems: 'center'
   }
 };
