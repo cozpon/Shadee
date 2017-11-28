@@ -126,7 +126,7 @@ class TestFeed extends Component {
 
         <Button
           onPress={(e) => this.setState({modalVisible: true, blur: true})}
-          title={`Sorting: ${this.state.sorting}`}
+          title={`Sort: ${this.state.sorting}`}
           color={'black'}
           backgroundColor={'transparent'}
         />
@@ -138,16 +138,16 @@ class TestFeed extends Component {
           >
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Button
-                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false, blur: false})}
-                title={'Oldest'}
+                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
+                title={'Latest'}
                 backgroundColor={'#000000'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
-                title={'Latest'}
+                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false, blur: false})}
+                title={'Oldest'}
                 backgroundColor={'#000000'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
@@ -172,7 +172,7 @@ class TestFeed extends Component {
             </View>
           </Modal>
 
-        <List containerStyle={{ paddingBottom: '22%' }}>
+        <List containerStyle={{ paddingBottom: '25%' }}>
           <FlatList
             data={shades}
             ItemSeparatorComponent={this.renderSeparator}
