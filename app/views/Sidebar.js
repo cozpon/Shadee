@@ -76,7 +76,7 @@ class DrawerContent extends Component {
          icon={{name: 'trash-o', type: 'font-awesome', size: 20}}
          title='Rumor Mill'
          buttonStyle={styles.button}
-         onPress={this.navigateToScreen('Feed')}/>
+         onPress={this.navigateToScreen('RumorMill')}/>
 
         </ScrollView>
         <Button

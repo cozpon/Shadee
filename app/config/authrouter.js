@@ -12,6 +12,7 @@ import HowTo from "../views/HowTo";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';
+import RumorMill from '../views/RumorMill';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 
@@ -29,6 +30,9 @@ export const Drawer = DrawerNavigator({
   Profile: {
     screen: Profile,
   },
+  RumorMill: {
+    screen: RumorMill
+  }
 }, {
   contentComponent: DrawerContent,
   drawerWidth: 250
