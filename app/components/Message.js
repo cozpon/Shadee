@@ -7,9 +7,10 @@ const Message = ({id, body, points, media, shader, victim, status, posted}) => {
     <View style={styles.container}>
       <Text style={styles.text}>{points} upvotes. Shade is so {status}.</Text>
       <Text></Text>
-      <Text style={styles.text}>{body}</Text>
       <Text style={styles.text}>{shader} threw shade @ {victim}</Text>
-      <Text>{posted}</Text>
+      <Text style={styles.body}>{body}</Text>
+
+      <Text style={styles.moment}>{posted}</Text>
     </View>
   )
 }
@@ -22,6 +23,12 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Helvetica Neue',
     fontSize: 17
+  },
+  body: {
+    fontSize: 15
+  },
+  moment: {
+    color: 'grey'
   }
 })
 
