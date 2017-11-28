@@ -130,6 +130,7 @@ class TestFeed extends Component {
           <Modal
             visible={this.state.modalVisible}
             transparent={true}
+            animationType={'fade'}
           >
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Button
@@ -211,7 +212,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 120,
     justifyContent: 'flex-end',
-    //marginTop: 70,
     zIndex: 0,
   },
   container: {
@@ -241,32 +241,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
-
-        // <ModalDropdown
-        //   options={['Latest', 'Oldest', 'Most Extra', 'Most Basic', 'Random']}
-        //   defaultValue={'Latest'}
-        //   onSelect={(idx, value) => {
-        //     this.setState({
-        //       sorting: value
-        //     })
-        //   }}
-        //   animated={false}
-        //   textStyle={{
-        //     fontSize: 20,
-        //     marginLeft: 10,
-        //     marginTop: 7
-        //   }}
-        //   dropdownStyle={{
-        //     top: '33%'
-        //   }}
-        //   // dropdownTextStyle={{
-        //   //   fontFamily:
-        //   // }}
-        //   dropdownTextHighlightStyle={{
-        //     color: 'white',
-        //     backgroundColor: '#ffb6c1'
-        //   }}
-        //   style={{
-        //     height: 20,
-        //   }}
-        // />
