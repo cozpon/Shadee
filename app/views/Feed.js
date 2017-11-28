@@ -7,7 +7,8 @@ import {
   Picker,
   ImageBackground,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal
 } from 'react-native';
 
 import {
@@ -16,7 +17,6 @@ import {
   Title,
   Left,
   Right,
-  Button,
   Body,
   Content,
   Text,
@@ -28,6 +28,7 @@ import {
   Icon,
   List,
   ListItem,
+  Button,
   SearchBar
 } from 'react-native-elements';
 
@@ -39,6 +40,8 @@ import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
+import { BlurView, VibrancyView } from 'react-native-blur';
+
 const ITEMS_PER_PAGE = 2;
 
 class TestFeed extends Component {
@@ -49,7 +52,9 @@ class TestFeed extends Component {
       sorting: "Latest",
       page: 1,
       error: null,
-      end: 2
+      end: 2,
+      modalVisible: false,
+      blur: false
     }
   }
 
@@ -114,40 +119,66 @@ class TestFeed extends Component {
 
           </Left>
           <Body>
-            <Title >Shade</Title>
+
           </Body>
           <Right />
         </Header>
 
-      <ModalDropdown
-        options={['Latest', 'Oldest', 'Most Extra', 'Most Basic', 'Random']}
-        defaultValue={'Latest'}
-        onSelect={(idx, value) => {
-          this.setState({
-            sorting: value
-          })
-        }}
-        animated={false}
-        textStyle={{
-          fontSize: 20,
-          marginLeft: 10,
-          marginTop: 7
-        }}
-        dropdownStyle={{
-          marginLeft: 4,
-          marginTop: 10,
-        }}
-        // dropdownTextStyle={{
-        //   fontFamily:
-        // }}
-        dropdownTextHighlightStyle={{
-          color: 'white',
-          backgroundColor: '#ffb6c1'
-        }}
-        style={{
-          height: 20,
-        }}
-      />
+        <Button
+          onPress={(e) => this.setState({modalVisible: true, blur: true})}
+          title={`Sorting: ${this.state.sorting}`}
+          color={'black'}
+          backgroundColor={'transparent'}
+        />
+
+          <Modal
+            visible={this.state.modalVisible}
+            transparent={true}
+            animationType={'fade'}
+          >
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <Button
+                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false, blur: false})}
+                title={'Oldest'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
+                title={'Latest'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false, blur: false})}
+                title={'Most Extra'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false, blur: false})}
+                title={'Most Basic'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+                <Button
+                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false, blur: false})}
+                title={'Random'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+            </View>
+          </Modal>
 
         <List containerStyle={{ paddingBottom: '22%' }}>
           <FlatList
@@ -170,11 +201,17 @@ class TestFeed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
-
               </View>
             )}
           />
         </List>
+    {this.state.blur ?
+    <BlurView
+      style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+      blurType="light"
+      blurAmount={5}
+    />
+    : null }
     </Container>
     )
   }
@@ -186,7 +223,6 @@ const styles = StyleSheet.create({
     height: 150,
     width: 120,
     justifyContent: 'flex-end',
-    //marginTop: 70,
     zIndex: 0,
   },
   container: {

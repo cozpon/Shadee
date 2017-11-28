@@ -31,6 +31,7 @@
     "react": "16.0.0-beta.5",
     "react-moment": "^0.6.8",
     "react-native": "^0.49.5",
+    "react-native-blur": "^3.2.2",
     "react-native-camera": "^0.12.0",
     "react-native-elements": "^0.18.2",
     "react-native-fs": "^2.8.5",
