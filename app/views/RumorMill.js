@@ -66,7 +66,7 @@ class RumorMill extends Component {
 
           </Left>
           <Body>
-            <Title >Shade</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>Shade</Title>
           </Body>
           <Right />
         </Header>
