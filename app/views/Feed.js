@@ -40,6 +40,8 @@ import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
+import { BlurView, VibrancyView } from 'react-native-blur';
+
 const ITEMS_PER_PAGE = 2;
 
 class TestFeed extends Component {
@@ -51,7 +53,8 @@ class TestFeed extends Component {
       page: 1,
       error: null,
       end: 2,
-      modalVisible: false
+      modalVisible: false,
+      blur: false
     }
   }
 
@@ -120,8 +123,9 @@ class TestFeed extends Component {
           </Body>
           <Right />
         </Header>
+
         <Button
-          onPress={(e) => this.setState({modalVisible: true})}
+          onPress={(e) => this.setState({modalVisible: true, blur: true})}
           title={`Sorting: ${this.state.sorting}`}
           color={'black'}
           backgroundColor={'transparent'}
@@ -134,7 +138,7 @@ class TestFeed extends Component {
           >
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Button
-                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false})}
+                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false, blur: false})}
                 title={'Oldest'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -142,7 +146,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false})}
+                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
                 title={'Latest'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -150,7 +154,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false})}
+                onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false, blur: false})}
                 title={'Most Extra'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -158,7 +162,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false})}
+                onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false, blur: false})}
                 title={'Most Basic'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -166,7 +170,7 @@ class TestFeed extends Component {
                 large
               />
                 <Button
-                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false})}
+                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false, blur: false})}
                 title={'Random'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -201,6 +205,13 @@ class TestFeed extends Component {
             )}
           />
         </List>
+    {this.state.blur ?
+    <BlurView
+      style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+      blurType="light"
+      blurAmount={5}
+    />
+    : null }
     </Container>
     )
   }
