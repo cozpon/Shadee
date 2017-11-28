@@ -8,13 +8,6 @@ import styles from './Sidebar.style';
 import PropTypes from 'prop-types';
 
 class DrawerContent extends Component {
-  state = {
-    index: 0
-  }
-
-  updateIndex = (index) => {
-    this.setState({index})
-  }
 
   _handleSubmit = () => {
     let navigation = this.props.navigation;
@@ -48,7 +41,7 @@ class DrawerContent extends Component {
         <Image source={require('../assets/logo.png')}>
         </Image>
 
-          <Text style={styles.sectionHeadingStyle}>
+        <Text style={styles.separatorBottom}>
           </Text>
 
         <Button
@@ -77,15 +70,19 @@ class DrawerContent extends Component {
          title='Rumor Mill'
          buttonStyle={styles.button}
          onPress={this.navigateToScreen('RumorMill')}/>
-
+         <Text style={styles.separatorTop}>
+          </Text>
         </ScrollView>
+        <Text style={styles.separatorBottom}>
+          </Text>
         <Button
          raised
          icon={{name: 'blind', type: 'font-awesome', size: 20}}
          title='How To: Use Shade'
          backgroundColor="#c56d60"
          onPress={this.navigateToScreen('HowTo')}/>
-          <Text style={styles.sectionHeadingStyle}>
+
+         <Text style={styles.sectionHeadingStyle}>
           </Text>
 
         <Button
@@ -94,6 +91,8 @@ class DrawerContent extends Component {
          title='Log Out'
          backgroundColor="#c56d60"
          onPress={this._handleSubmit}/>
+        <Text style={styles.separatorTop}>
+          </Text>
       </View>
     );
   }
