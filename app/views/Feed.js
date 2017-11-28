@@ -7,7 +7,8 @@ import {
   Picker,
   ImageBackground,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Modal
 } from 'react-native';
 
 import {
@@ -16,7 +17,6 @@ import {
   Title,
   Left,
   Right,
-  Button,
   Body,
   Content,
   Text,
@@ -28,6 +28,7 @@ import {
   Icon,
   List,
   ListItem,
+  Button,
   SearchBar
 } from 'react-native-elements';
 
@@ -49,7 +50,8 @@ class TestFeed extends Component {
       sorting: "Latest",
       page: 1,
       error: null,
-      end: 2
+      end: 2,
+      modalVisible: false
     }
   }
 
@@ -114,40 +116,59 @@ class TestFeed extends Component {
 
           </Left>
           <Body>
-            <Title >Shade</Title>
+
           </Body>
           <Right />
         </Header>
+        <Button
+          onPress={(e) => this.setState({modalVisible: true})}
+          title={`Sorting: ${this.state.sorting}`}
+          color={'black'}
+          backgroundColor={'transparent'}
+        />
 
-      <ModalDropdown
-        options={['Latest', 'Oldest', 'Most Extra', 'Most Basic', 'Random']}
-        defaultValue={'Latest'}
-        onSelect={(idx, value) => {
-          this.setState({
-            sorting: value
-          })
-        }}
-        animated={false}
-        textStyle={{
-          fontSize: 20,
-          marginLeft: 10,
-          marginTop: 7
-        }}
-        dropdownStyle={{
-          marginLeft: 4,
-          marginTop: 10,
-        }}
-        // dropdownTextStyle={{
-        //   fontFamily:
-        // }}
-        dropdownTextHighlightStyle={{
-          color: 'white',
-          backgroundColor: '#ffb6c1'
-        }}
-        style={{
-          height: 20,
-        }}
-      />
+          <Modal
+            visible={this.state.modalVisible}
+            transparent={true}
+          >
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <Button
+                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false})}
+                title={'Oldest'}
+                backgroundColor={'white'}
+                color={'#ffb6c1'}
+                containerViewStyle={{width: 200, borderColor: '#ffb6c1', borderBottomColor: 'white', borderWidth: 5}}
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false})}
+                title={'Latest'}
+                backgroundColor={'white'}
+                color={'#ffb6c1'}
+                containerViewStyle={{width: 200}}
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false})}
+                title={'Most Extra'}
+                backgroundColor={'white'}
+                color={'#ffb6c1'}
+                containerViewStyle={{width: 200}}
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false})}
+                title={'Most Basic'}
+                backgroundColor={'white'}
+                color={'#ffb6c1'}
+                containerViewStyle={{width: 200}}
+              />
+                <Button
+                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false})}
+                title={'Random'}
+                backgroundColor={'white'}
+                color={'#ffb6c1'}
+                containerViewStyle={{width: 200, borderColor: '#ffb6c1', borderTopColor: 'white', borderWidth: 5}}
+              />
+            </View>
+          </Modal>
 
         <List containerStyle={{ paddingBottom: '22%' }}>
           <FlatList
@@ -215,3 +236,32 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
+
+        // <ModalDropdown
+        //   options={['Latest', 'Oldest', 'Most Extra', 'Most Basic', 'Random']}
+        //   defaultValue={'Latest'}
+        //   onSelect={(idx, value) => {
+        //     this.setState({
+        //       sorting: value
+        //     })
+        //   }}
+        //   animated={false}
+        //   textStyle={{
+        //     fontSize: 20,
+        //     marginLeft: 10,
+        //     marginTop: 7
+        //   }}
+        //   dropdownStyle={{
+        //     top: '33%'
+        //   }}
+        //   // dropdownTextStyle={{
+        //   //   fontFamily:
+        //   // }}
+        //   dropdownTextHighlightStyle={{
+        //     color: 'white',
+        //     backgroundColor: '#ffb6c1'
+        //   }}
+        //   style={{
+        //     height: 20,
+        //   }}
+        // />
