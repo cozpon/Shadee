@@ -30,11 +30,11 @@ export const Drawer = DrawerNavigator({
   Profile: {
     screen: Profile,
   },
-  HowTo: {
-    screen: HowTo
-  },
   RumorMill: {
-    screen: RumorMill
+    screen: RumorMill,
+  },
+  HowTo: {
+    screen: HowTo,
   }
 }, {
   contentComponent: DrawerContent,
