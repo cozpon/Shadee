@@ -54,13 +54,13 @@ class TargetSearch extends Component {
           onChangeText={this._onChange.bind(this)}
           placeholder='Choose your victim...' />
         { this.state.selected ?
-          <View>
+          <View style={styles.transparent}>
             <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
           </View>
           :
-          <View>
+          <View style={styles.transparent}>
             {
               this.state.users.map((user) => {
                 return(
@@ -88,17 +88,23 @@ class TargetSearch extends Component {
 
   _onChange(value){
 
-    this.setState({
-      selected: false
-    })
+    if(value.length > 0){
+      this.setState({
+        selected: false
+      });
 
-    let filteredUsers = this.props.users.filter(user => {
-      return user.username.toLowerCase().includes(value.toLowerCase())
-    })
+      let filteredUsers = this.props.users.filter(user => {
+        return user.username.toLowerCase().includes(value.toLowerCase())
+      });
 
-    this.setState({
-      users: filteredUsers
-    })
+      this.setState({
+        users: filteredUsers
+      });
+    }else{
+      this.setState({
+        users: []
+      });
+    }
   }
 
 }
