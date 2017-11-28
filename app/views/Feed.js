@@ -136,7 +136,7 @@ class TestFeed extends Component {
                 onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false})}
                 title={'Oldest'}
                 backgroundColor={'#000000'}
-                color={'#ffb6c1'}
+                color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
@@ -144,7 +144,7 @@ class TestFeed extends Component {
                 onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false})}
                 title={'Latest'}
                 backgroundColor={'#000000'}
-                color={'#ffb6c1'}
+                color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
@@ -152,7 +152,7 @@ class TestFeed extends Component {
                 onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false})}
                 title={'Most Extra'}
                 backgroundColor={'#000000'}
-                color={'#ffb6c1'}
+                color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
@@ -160,7 +160,7 @@ class TestFeed extends Component {
                 onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false})}
                 title={'Most Basic'}
                 backgroundColor={'#000000'}
-                color={'#ffb6c1'}
+                color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
@@ -168,7 +168,7 @@ class TestFeed extends Component {
                 onPress={(e) => this.setState({sorting: 'Random', modalVisible: false})}
                 title={'Random'}
                 backgroundColor={'#000000'}
-                color={'#ffb6c1'}
+                color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
