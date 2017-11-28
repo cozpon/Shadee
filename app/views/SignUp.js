@@ -104,7 +104,7 @@ class Register extends Component {
             onPress={this._handleAdd}
           />
           <Button
-            buttonStyle={{ marginBottom: 15 }}
+            buttonStyle={{ marginBottom: 90 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
@@ -112,6 +112,10 @@ class Register extends Component {
             title="Sign In"
             onPress={() => navigation.navigate("SignIn")}
           />
+        <Text style={{fontSize: 8, fontWeight: 'bold', textAlign: 'center'}}>
+          <Text style={{color: 'white'}}> {`by using this site you agree to our `}</Text>
+          <Text style={{color: '#add8e6'}} onPress={() => navigation.navigate("Terms")}>{`Terms of Use`}</Text>
+        </Text>
          </KeyboardAvoidingView>
         </ScrollView>
       </ImageBackground>
@@ -155,6 +159,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     margin: 20,
   },
+  text: {
+    color: 'lightgrey',
+    width: null,
+    height: null,
+  }
 });
 
 export default Register;

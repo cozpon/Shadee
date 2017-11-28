@@ -15,6 +15,7 @@ import Feed from '../views/Feed';
 import RumorMill from '../views/RumorMill';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
+import Terms from '../views/TermsOfService';
 
 export const Drawer = DrawerNavigator({
   Feed: {
@@ -53,7 +54,13 @@ export const SignedOut = StackNavigator({
     navigationOptions: {
       title: "Sign In"
     }
-  }
+  },
+  Terms: {
+    screen: Terms,
+    navigationOptions: {
+      title: "Terms"
+    }
+  },
 });
 
 export const SignedIn = TabNavigator({
