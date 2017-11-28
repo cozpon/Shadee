@@ -119,7 +119,7 @@ class TestFeed extends Component {
 
           </Left>
           <Body>
-
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>Shade</Title>
           </Body>
           <Right />
         </Header>

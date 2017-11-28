@@ -11,33 +11,39 @@ class RumorVote extends Component {
 
     this.state = {
       voted: false,
-      upcolor: '#ffb6c1',
-      downcolor: '#ffb6c1'
+      upcolor: '#666',
+      downcolor: '#666'
      }
   }
 
   _upvote(event){
-    let rumor = {id : this.props.id, points : 1};
-    this.props.editRumor(rumor);
-    this.setState({
-      voted: true,
-      upcolor: 'black'
-    });
+    if(!this.state.voted){
+      let rumor = {id : this.props.id, points : 1};
+      this.props.editRumor(rumor);
+      this.setState({
+        voted: true,
+        upcolor: '#ffb6c1',
+        downcolor: '#666'
+      });
+    }
   }
 
   _downvote(event){
-    let rumor = {id : this.props.id, points : 0};
-    this.props.editRumor(rumor);
-    this.setState({
-      voted: true,
-      downcolor: 'black'
-    });
+    if(!this.state.voted){
+      let rumor = {id : this.props.id, points : 0};
+      this.props.editRumor(rumor);
+      this.setState({
+        voted: true,
+        downcolor: '#ffb6c1',
+        upcolor: '#666'
+      });
+    }
   }
 
   render(){
     return(
       <View>
-      { this.state.voted ? null :
+
         <View style={styles.buttons}>
           <Button
             backgroundColor="transparent"
@@ -50,7 +56,7 @@ class RumorVote extends Component {
             onPress={this._downvote.bind(this)}
           />
         </View>
-      }
+
       </View>
 
     )
