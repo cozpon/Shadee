@@ -38,12 +38,18 @@ const screens = [{
 }, {
   id: 2,
   title: 'Throw Shade!',
-  subtitle: 'Press the cloud icon to see your video in the feed',
+  subtitle: 'Press the cloud to see your video in the feed',
   icon: require('../assets/throwShade.png'),
-  bgcolor: '#ff9e99'
+  bgcolor: '#ecb7bf'
 }, {
   id: 3,
-  title: 'Get Started!'
+  title: 'Get Started!',
+  subtitle: ' Vote for your favorite videos by clicking EXTRA or dislike a video with BASIC',
+  icon: require('../assets/getIt.png'),
+  bgcolor: '#ce897b'
+}, {
+  id: 4,
+  title: 'Get it'
 }];
 
 const { width: windowWidth} = Dimensions.get('window');
@@ -96,7 +102,7 @@ export default class HowTo extends Component {
     this.setState({
       _counter: newCounter
     }, () => {
-      if(this.state._counter === 3) {
+      if(this.state._counter === 4) {
         console.log(this.state._counter, 'count')
         let navigation = this.props.navigation;
         navigation.navigate('Feed');
