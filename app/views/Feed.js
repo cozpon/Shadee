@@ -135,37 +135,42 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false})}
                 title={'Oldest'}
-                backgroundColor={'white'}
+                backgroundColor={'#000000'}
                 color={'#ffb6c1'}
-                containerViewStyle={{width: 200, borderColor: '#ffb6c1', borderBottomColor: 'white', borderWidth: 5}}
+                containerViewStyle={{width: 200}}
+                large
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false})}
                 title={'Latest'}
-                backgroundColor={'white'}
+                backgroundColor={'#000000'}
                 color={'#ffb6c1'}
                 containerViewStyle={{width: 200}}
+                large
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false})}
                 title={'Most Extra'}
-                backgroundColor={'white'}
+                backgroundColor={'#000000'}
                 color={'#ffb6c1'}
                 containerViewStyle={{width: 200}}
+                large
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false})}
                 title={'Most Basic'}
-                backgroundColor={'white'}
+                backgroundColor={'#000000'}
                 color={'#ffb6c1'}
                 containerViewStyle={{width: 200}}
+                large
               />
                 <Button
                 onPress={(e) => this.setState({sorting: 'Random', modalVisible: false})}
                 title={'Random'}
-                backgroundColor={'white'}
+                backgroundColor={'#000000'}
                 color={'#ffb6c1'}
-                containerViewStyle={{width: 200, borderColor: '#ffb6c1', borderTopColor: 'white', borderWidth: 5}}
+                containerViewStyle={{width: 200}}
+                large
               />
             </View>
           </Modal>
@@ -180,7 +185,7 @@ class TestFeed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer media={item.media}/>
+                <VideoPlayer/>
                 <Message
                   body={item.body}
                   points={item.points}
