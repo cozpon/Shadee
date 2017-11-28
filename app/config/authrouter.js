@@ -92,8 +92,8 @@ export const SignedIn = TabNavigator({
   tabBarPosition: 'bottom',
   swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e6e6e6',
-    activeBackgroundColor: "#ffb6c1",
+    activeTintColor: '#FFF',
+    activeBackgroundColor: '#578992',
     inactiveTintColor: '#666',
     labelStyle: {
       fontSize: 12,
