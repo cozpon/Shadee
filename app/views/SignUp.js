@@ -108,7 +108,6 @@ class Register extends Component {
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
-            style={styles.button}
             raised={true}
             title="Sign In"
             onPress={() => navigation.navigate("SignIn")}
@@ -153,19 +152,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   form:{
-    shadowOffset: {width: 2, height: 2},
-    shadowRadius: 6,
-    shadowColor: '#ffb6c1',
     paddingTop: 20,
     margin: 20,
   },
-  button:{
-    shadowOffset: {width: 2, height: 2},
-    shadowRadius: 6,
-    shadowColor: '#666',
-
-  }
-
 });
 
 export default Register;

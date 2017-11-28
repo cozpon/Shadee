@@ -8,13 +8,6 @@ import styles from './Sidebar.style';
 import PropTypes from 'prop-types';
 
 class DrawerContent extends Component {
-  state = {
-    index: 0
-  }
-
-  updateIndex = (index) => {
-    this.setState({index})
-  }
 
   _handleSubmit = () => {
     let navigation = this.props.navigation;
