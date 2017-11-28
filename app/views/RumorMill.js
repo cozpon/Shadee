@@ -21,11 +21,9 @@ import {
   Text
 } from "native-base";
 
-import ModalDropdown from 'react-native-modal-dropdown';
 import { SearchBar, Button, Icon } from 'react-native-elements';
 
 import { connect } from 'react-redux';
-import { loadUsers } from '../actions/users';
 import {loadRumors,
           addRumor,
           editRumor
@@ -251,9 +249,6 @@ const mapDispatchToProps = (dispatch) => {
   return{
     loadRumors: () => {
       dispatch(loadRumors());
-    },
-    loadUsers: () => {
-      dispatch(loadUsers());
     },
     addRumor: (rumor) => {
       dispatch(addRumor(rumor));
