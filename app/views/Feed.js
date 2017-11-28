@@ -169,14 +169,6 @@ class TestFeed extends Component {
                 containerViewStyle={{width: 200}}
                 large
               />
-                <Button
-                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false, blur: false})}
-                title={'Random'}
-                backgroundColor={'#000000'}
-                color={'white'}
-                containerViewStyle={{width: 200}}
-                large
-              />
             </View>
           </Modal>
 
@@ -218,22 +210,8 @@ class TestFeed extends Component {
 }
 
 const styles = StyleSheet.create({
-  picker: {
-    backgroundColor: "transparent",
-    height: 150,
-    width: 120,
-    justifyContent: 'flex-end',
-    zIndex: 0,
-  },
   container: {
     backgroundColor: "#d2caca",
-  },
-  image: {
-    zIndex: 1,
-    marginTop: -50,
-    paddingLeft: 20,
-    height: 150,
-    width: null,
   }
 })
 
