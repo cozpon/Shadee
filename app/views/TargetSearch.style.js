@@ -20,5 +20,8 @@ export default {
   },
   backgroundImage: {
     flex: 1
+  },
+  transparent: {
+    backgroundColor: 'transparent'
   }
 };
