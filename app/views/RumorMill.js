@@ -207,7 +207,8 @@ const styles = StyleSheet.create({
   },
   rumor: {
     borderWidth: .5,
-    borderColor: '#ffb6c1'
+    borderColor: '#ffb6c1',
+    padding: 20
   },
   rumorText: {
     alignSelf: 'center',
