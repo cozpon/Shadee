@@ -93,7 +93,7 @@ export const SignedIn = TabNavigator({
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#FFF',
-    activeBackgroundColor: '#578992',
+    activeBackgroundColor: '#ce897b',
     inactiveTintColor: '#666',
     labelStyle: {
       fontSize: 12,
