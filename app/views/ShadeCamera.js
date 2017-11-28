@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -24,7 +25,8 @@ class ShadeCamera extends Component {
     this.state = {
       cameraType : 'back',
       mirrorMode: false,
-      recording: false
+      recording: false,
+      data: ''
     }
   }
   render() {
@@ -115,9 +117,23 @@ class ShadeCamera extends Component {
     .then((data) => {
       VideoPath = data.path;
       if (VideoPath){
+
+        AsyncStorage.getItem('data')
+        .then((value) => {
+          console.log('value', value);
+          this.setState({
+            data: JSON.parse(value)
+          });
+        })
+        .done();
+
+        console.log('this.state', this.state);
+
         let data = new FormData();
         data.append('upl', { uri: VideoPath, name: `${this.props.victim.id}.mp4`, type: 'video'});
         data.append('victim_id', parseInt(this.props.victim.id, 10));
+        data.append('shader_id', this.state.data.id);
+
 
         const config = {
           method: 'POST',

@@ -39,7 +39,6 @@ class RumorMill extends Component {
       users: [],
       victim: null,
       selected: false,
-      text: "",
       rumor: null,
       submitted: false
     }
@@ -50,6 +49,7 @@ class RumorMill extends Component {
   }
 
   render(){
+    const textInput = {};
     const navigation = this.props.navigation;
     return (
       <Container>
@@ -98,7 +98,7 @@ class RumorMill extends Component {
                     multiline={true}
                     editable ={true}
                     style={styles.textInput}
-                    onChangeText={(text) => this.setState({text})}
+                    onChangeText={this._onGossip.bind(this)}
                     value={this.state.text}
                   />
                   <Button
@@ -152,7 +152,7 @@ class RumorMill extends Component {
         </ScrollView>
       </Container>
     );
-  }
+  };
 
   _onChange(value){
 
@@ -176,10 +176,14 @@ class RumorMill extends Component {
     }
   }
 
+  _onGossip(text){
+    textInput = {text: text};
+  }
+
   _onSubmit(){
     let data = {
       user_id: this.state.victim.id,
-      body: this.state.text,
+      body: textInput.text,
       points: 1
     }
 
@@ -189,6 +193,8 @@ class RumorMill extends Component {
       selected: false,
       submitted: true
     });
+
+    textInput = {};
 
   }
 
