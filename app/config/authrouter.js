@@ -29,6 +29,9 @@ export const Drawer = DrawerNavigator({
   Profile: {
     screen: Profile,
   },
+  HowTo: {
+    screen: HowTo
+  },
 }, {
   contentComponent: DrawerContent,
   drawerWidth: 250
@@ -54,14 +57,6 @@ export const SignedIn = TabNavigator({
     screen: Drawer,
     navigationOptions: {
       tabBarLabel: "Feed",
-      tabBarIcon: ({ tintColor }) =>
-        <Icon name="ios-umbrella" size={30} color={tintColor} />
-    }
-  },
-  HowTo: {
-    screen: HowTo,
-    navigationOptions: {
-      tabBarLabel: "How To",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-umbrella" size={30} color={tintColor} />
     }
