@@ -13,8 +13,7 @@ export default class VideoPlayer extends Component {
       currentTime: 0.0,
       duration: 0.0,
       videoIndex: 1,
-      buttonIndex: 2,
-      blur: true
+      buttonIndex: 2
     }
   }
 
