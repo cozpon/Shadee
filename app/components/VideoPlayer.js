@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
-
+import { BlurView, VibrancyView} from 'react-native-blur';
 import Video from "react-native-video";
 
 export default class VideoPlayer extends Component {
@@ -13,7 +13,8 @@ export default class VideoPlayer extends Component {
       currentTime: 0.0,
       duration: 0.0,
       videoIndex: 1,
-      buttonIndex: 2
+      buttonIndex: 2,
+      blur: true
     }
   }
 
@@ -64,24 +65,6 @@ export default class VideoPlayer extends Component {
     return (
       <ScrollView contentContainerStyle={styles.contentContainer}>
           <TouchableOpacity onPress={this.pausePlay.bind(this)}>
-
-            <View style={{
-              position: 'absolute',
-              flex: 1,
-              right: 0,
-              left: 0,
-              top: 0,
-              bottom: 0,
-              zIndex: this.state.buttonIndex,
-              borderWidth: 3,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              <Image source={require('../assets/play-button.png')} style={styles.playButton}>
-              </Image>
-            </View>
-
             <Video
               ref={(ref) => {
                 this.player = ref
@@ -105,6 +88,29 @@ export default class VideoPlayer extends Component {
               onLoad={this.onLoad.bind(this)}
               onEnd={this.onEnd.bind(this)}
             />
+
+            <BlurView
+              style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+              blurType="light"
+              blurAmount={5}
+            />
+            <View style={{
+              position: 'absolute',
+              flex: 1,
+              right: 0,
+              left: 0,
+              top: 0,
+              bottom: 0,
+              zIndex: this.state.buttonIndex,
+              borderWidth: 3,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              <Image source={require('../assets/play-button.png')} style={styles.playButton}>
+              </Image>
+            </View>
+
           </TouchableOpacity>
           <View style={styles.progress}>
             <View style={[styles.innerProgressCompleted, {flex: timePassed}]} />

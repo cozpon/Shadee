@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { voteOnMessage } from '../actions/messages';
+import { Button } from 'react-native-elements';
 
 class Vote extends Component {
   constructor(props){
@@ -10,8 +11,10 @@ class Vote extends Component {
     this.state = {
       upvoted: false,
       downvoted: false,
-      extra: 'grey',
-      basic: 'grey'
+      extraBackground: 'transparent',
+      basicBackground: 'transparent',
+      extra: 'black',
+      basic: 'black'
     }
   }
 
@@ -26,7 +29,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: true,
-        extra: '#fb9fa4'
+        extraBackground: '#fb9fa4'
       })
     }else if((this.state.upvoted === true) && (this.state.downvoted === false)){
       let vote = {
@@ -37,7 +40,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: false,
-        extra: 'grey'
+        extraBackground: 'transparent'
       })
     }else if((this.state.upvoted === false) && (this.state.downvoted === true)){
       let vote = {
@@ -49,8 +52,8 @@ class Vote extends Component {
       this.setState({
         upvoted: true,
         downvoted: false,
-        extra: '#fb9fa4',
-        basic: 'grey'
+        extraBackground: '#fb9fa4',
+        basicBackground: 'transparent'
       })
     }
   }
@@ -66,7 +69,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: true,
-        basic: '#fb9fa4'
+        basicBackground: '#fb9fa4'
       })
     }else if((this.state.downvoted === true) && (this.state.upvoted === false)){
       let vote = {
@@ -77,7 +80,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: false,
-        basic: 'grey'
+        basicBackground: 'transparent'
       })
     }else if((this.state.downvoted === false) && (this.state.upvoted === true)){
       let vote = {
@@ -89,8 +92,8 @@ class Vote extends Component {
       this.setState({
         downvoted: true,
         upvoted: false,
-        basic: '#fb9fa4',
-        extra: 'grey'
+        basicBackground: '#fb9fa4',
+        extraBackground: 'transparent'
       })
     }
   }
@@ -101,12 +104,16 @@ class Vote extends Component {
         <Button
           onPress={this.handleUpvote.bind(this)}
           title={'Extra'}
+          backgroundColor={this.state.extraBackground}
           color={this.state.extra}
+          containerViewStyle={{width: '50%'}}
         />
         <Button
           onPress={this.handleDownvote.bind(this)}
           title={'Basic'}
+          backgroundColor={this.state.basicBackground}
           color={this.state.basic}
+          containerViewStyle={{width: '50%'}}
         />
 
       </View>
