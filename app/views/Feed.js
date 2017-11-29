@@ -62,14 +62,6 @@ class TestFeed extends Component {
     this.props.loadMessages();
   }
 
-  shuffleStep(arr){
-    for(let i = arr.length - 1; i > 0; i--){
-      let j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
   loadMore = () => {
     this.setState({
       end: (this.state.page+1)*ITEMS_PER_PAGE,
@@ -83,8 +75,7 @@ class TestFeed extends Component {
         style={{
           height: 5,
           width: '100%',
-          backgroundColor: '#fb9fa4',
-          //marginBottom: 15
+          backgroundColor: '#fb9fa4'
         }}
       />
     )
@@ -101,8 +92,6 @@ class TestFeed extends Component {
       shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).slice(0, this.state.end);
     }else if(this.state.sorting === "Most Basic"){
       shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).slice(0, this.state.end);
-    }else if(this.state.sorting === "Random"){
-      shades = this.shuffleStep(this.props.messages).slice(0, this.state.end);
     }
     return(
       <Container>
@@ -182,7 +171,7 @@ class TestFeed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer />
+                <VideoPlayer/>
                 <Vote id={item.id}/>
                 <Message
                   body={item.body}

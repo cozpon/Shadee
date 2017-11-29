@@ -62,6 +62,8 @@
 		F4D9464399E3427892C6604A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 098B5D77055C4EC8BD68210F /* Octicons.ttf */; };
 		FD1B2D438D4045B6BC8465D2 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A72E372708544EF85884030 /* Roboto.ttf */; };
 		BB7A570B28B9493F881978A1 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62B870F034473E8AC4A095 /* libRNBlur.a */; };
+		45ED26780B0145569572A3EB /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C6A7A912A1D4E1EB287A9F4 /* DancingScript-Bold.ttf */; };
+		003C2C19DA3D48F8ACD0E28D /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F6E7C7F0A414F7396EB134F /* AmaticSC-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -412,6 +414,8 @@
 		FAE6D530BD594656A245A1B0 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		74EA3ACE215042558376AF6C /* RNBlur.xcodeproj */ = {isa = PBXFileReference; name = "RNBlur.xcodeproj"; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		CA62B870F034473E8AC4A095 /* libRNBlur.a */ = {isa = PBXFileReference; name = "libRNBlur.a"; path = "libRNBlur.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		3C6A7A912A1D4E1EB287A9F4 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; name = "DancingScript-Bold.ttf"; path = "../app/assets/fonts/DancingScript-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4F6E7C7F0A414F7396EB134F /* AmaticSC-Bold.ttf */ = {isa = PBXFileReference; name = "AmaticSC-Bold.ttf"; path = "../app/assets/fonts/AmaticSC-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -610,6 +614,8 @@
 				32B8017930F047AFB55DDE05 /* rubicon-icon-font.ttf */,
 				51360D81CF7147EE9EF2A5D7 /* SimpleLineIcons.ttf */,
 				AC65C5E9E89940CEB2783E9E /* Zocial.ttf */,
+				3C6A7A912A1D4E1EB287A9F4 /* DancingScript-Bold.ttf */,
+				4F6E7C7F0A414F7396EB134F /* AmaticSC-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1249,6 +1255,8 @@
 				566647D5A9EC44A1A07E1199 /* rubicon-icon-font.ttf in Resources */,
 				E5591CD1C9784B308137E517 /* SimpleLineIcons.ttf in Resources */,
 				BD75F6BA605E49D0B5C23880 /* Zocial.ttf in Resources */,
+				45ED26780B0145569572A3EB /* DancingScript-Bold.ttf in Resources */,
+				003C2C19DA3D48F8ACD0E28D /* AmaticSC-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
