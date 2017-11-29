@@ -62,14 +62,6 @@ class TestFeed extends Component {
     this.props.loadMessages();
   }
 
-  shuffleStep(arr){
-    for(let i = arr.length - 1; i > 0; i--){
-      let j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
   loadMore = () => {
     this.setState({
       end: (this.state.page+1)*ITEMS_PER_PAGE,
@@ -100,8 +92,6 @@ class TestFeed extends Component {
       shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).slice(0, this.state.end);
     }else if(this.state.sorting === "Most Basic"){
       shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).slice(0, this.state.end);
-    }else if(this.state.sorting === "Random"){
-      shades = this.shuffleStep(this.props.messages).slice(0, this.state.end);
     }
     return(
       <Container>
@@ -163,14 +153,6 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false, blur: false})}
                 title={'Most Basic'}
-                backgroundColor={'#000000'}
-                color={'white'}
-                containerViewStyle={{width: 200}}
-                large
-              />
-              <Button
-                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false, blur: false})}
-                title={'Random'}
                 backgroundColor={'#000000'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
