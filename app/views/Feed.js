@@ -83,8 +83,7 @@ class TestFeed extends Component {
         style={{
           height: 5,
           width: '100%',
-          backgroundColor: '#fb9fa4',
-          //marginBottom: 15
+          backgroundColor: '#fb9fa4'
         }}
       />
     )
@@ -164,6 +163,14 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false, blur: false})}
                 title={'Most Basic'}
+                backgroundColor={'#000000'}
+                color={'white'}
+                containerViewStyle={{width: 200}}
+                large
+              />
+              <Button
+                onPress={(e) => this.setState({sorting: 'Random', modalVisible: false, blur: false})}
+                title={'Random'}
                 backgroundColor={'#000000'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
