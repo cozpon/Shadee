@@ -61,6 +61,8 @@
 		<string>Roboto_medium.ttf</string>
 		<string>Roboto.ttf</string>
 		<string>rubicon-icon-font.ttf</string>
+		<string>DancingScript-Bold.ttf</string>
+		<string>AmaticSC-Bold.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
