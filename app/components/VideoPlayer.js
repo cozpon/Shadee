@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
-import { BlurView, VibrancyView} from 'react-native-blur';
+
 import Video from "react-native-video";
 
 export default class VideoPlayer extends Component {
@@ -89,11 +89,6 @@ export default class VideoPlayer extends Component {
               onEnd={this.onEnd.bind(this)}
             />
 
-            <BlurView
-              style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-              blurType="light"
-              blurAmount={5}
-            />
             <View style={{
               position: 'absolute',
               flex: 1,
