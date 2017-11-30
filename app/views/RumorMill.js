@@ -53,7 +53,7 @@ class RumorMill extends Component {
       page: 1,
       end: 4,
       modalVisible: false,
-      test: true
+      showRumors: true
     }
   }
 
@@ -137,7 +137,7 @@ class RumorMill extends Component {
             autoCorrect={false}
             autoCapitalize='none'
             keyboardType='default'
-            ref="search"
+            ref={search => this.search = search}
             onChangeText={this._onChange.bind(this)}
             onClearText={this._onClear.bind(this)}
             placeholder='Find a target...'
@@ -193,7 +193,7 @@ class RumorMill extends Component {
           }
           </View>
 
-        {this.state.test ?
+        {this.state.showRumors ?
         <List containerStyle={{ paddingTop: '15%' }}>
           <FlatList
             data={rumors}
@@ -234,7 +234,7 @@ class RumorMill extends Component {
       this.setState({
         selected: false,
         submitted: false,
-        test: false
+        showRumors: false
       });
 
       let filteredUsers = this.props.users.filter(user => {
@@ -247,7 +247,7 @@ class RumorMill extends Component {
     }else{
       this.setState({
         users: [],
-        test: true
+        showRumors: true
       })
     }
   }
@@ -255,7 +255,7 @@ class RumorMill extends Component {
   _onClear(){
     console.log('hello')
     this.setState({
-      test: true
+      showRumors: true
     })
   }
 
@@ -275,11 +275,11 @@ class RumorMill extends Component {
     this.setState({
       selected: false,
       submitted: true,
-      test: true
+      showRumors: true
     });
 
     textInput = {};
-
+    this.search.clearText();
   }
 
 }
@@ -290,7 +290,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textContainer: {
-    backgroundColor: '#ffb6c1'
+    backgroundColor: 'transparent',
+    zIndex: 2
   },
   search: {
     height: 60,
@@ -303,7 +304,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 80,
     width: 300,
-    borderColor: '#ffb6c1',
+    //borderColor: '#ffb6c1',
     borderWidth: 1,
     fontSize: 20,
     backgroundColor: 'white',
