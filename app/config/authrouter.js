@@ -17,6 +17,7 @@ import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 import Terms from '../views/TermsOfService';
 
+
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,

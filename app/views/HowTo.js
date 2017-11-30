@@ -25,7 +25,7 @@ import { NavigationActions } from 'react-navigation';
 
 const screens = [{
   id: 0,
-  title: 'Select a Target',
+  title: 'Select a Player',
   subtitle: 'Search for a person to shade from the search bar',
   icon: require('../assets/target.png'),
   bgcolor: '#f7a583'
@@ -43,7 +43,7 @@ const screens = [{
   bgcolor: '#ecb7bf'
 }, {
   id: 3,
-  title: 'Get Started!',
+  title: 'Get Started',
   subtitle: ' Vote for your favorite videos by clicking EXTRA or dislike a video with BASIC',
   icon: require('../assets/getIt.png'),
   bgcolor: '#ce897b'
