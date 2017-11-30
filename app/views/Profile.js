@@ -71,7 +71,7 @@ class Profile extends Component {
             if(message.shader_id === user.id)
             return (
             <View key={'view' + message.id}>
-            <VideoPlayer media={message.media} />
+            <VideoPlayer media={messages.media} />
             <Message
               body={message.body}
               points={message.points}
