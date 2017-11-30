@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  Modal
+  Modal,
+  FlatList
 } from 'react-native';
 
 import {
@@ -21,7 +22,7 @@ import {
   Text
 } from "native-base";
 
-import { SearchBar, Button, Icon } from 'react-native-elements';
+import { SearchBar, Button, Icon, ListItem, List } from 'react-native-elements';
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -32,8 +33,9 @@ import {loadRumors,
           addRumor,
           editRumor
         } from '../actions/rumors';
-
+import Moment from 'moment';
 import RumorVote from '../components/RumorVote';
+import Rumor from '../components/Rumor';
 
 const ITEMS_PER_PAGE = 4;
 
@@ -49,7 +51,7 @@ class RumorMill extends Component {
       submitted: false,
       blur: false,
       page: 1,
-      end: 2,
+      end: 4,
       modalVisible: false
     }
   }
@@ -126,6 +128,7 @@ class RumorMill extends Component {
         </Modal>
 
         <ScrollView>
+          <View>
           <SearchBar
             containerStyle={styles.textContainer}
             inputStyle={styles.search}
@@ -162,11 +165,10 @@ class RumorMill extends Component {
                     onPress={this._onSubmit.bind(this)}
                   />
                 </View>
-
               :
                 <View style={styles.list}>
                   {
-                    this.state.users.map((user) => {
+                    this.state.users.map(user => {
                       return(
                         <TouchableOpacity
                           key={user.id}
@@ -180,30 +182,40 @@ class RumorMill extends Component {
                             {user.username}
                           </Text>
                         </TouchableOpacity>
-                        )
+                      )
                     })
                   }
                 </View>
               }
             </View>
           }
+        </View>
 
-          {
-            this.props.rumors.map((rumor) => {
-              return(
-                <View style={styles.rumor} key={rumor.id}>
-                  <Text style={styles.rumorText}>
-                    Someone heard that { rumor.user.username } { rumor.body }
-                  </Text>
-                  <RumorVote id={rumor.id} />
-                  <Text style={styles.credibility}>
-                    Rumor credibility rating: {rumor.points}
-                  </Text>
-                </View>
-              )
-            })
-          }
-        </ScrollView>
+
+        <View>
+        <List containerStyle={{ paddingBottom: '25%' }}>
+          <FlatList
+            data={rumors}
+            ItemSeparatorComponent={this.renderSeparator}
+            keyExtractor={item => item.id}
+            onEndReached={this.loadMore}
+            onEndReachedThreshold={0}
+            extraData={this.state}
+            renderItem={({ item }) => (
+              <View>
+                <Rumor
+                  body={item.body}
+                  points={item.points}
+                  user={item.user.username}
+                  posted={Moment(item.createdAt).fromNow()}
+                  style={styles.rumorText}
+                />
+              </View>
+            )}
+          />
+        </List>
+        </View>
+      </ScrollView>
       {this.state.blur ?
       <BlurView
         style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
@@ -264,19 +276,7 @@ class RumorMill extends Component {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    justifyContent: 'center'
-  },
-  rumor: {
-    borderWidth: .5,
-    borderColor: '#ffb6c1',
-    padding: 20
-  },
-  rumorText: {
-    alignSelf: 'center',
-    fontSize: 20
-  },
-  credibility: {
-    alignSelf: 'center'
+    justifyContent: 'center',
   },
   textContainer: {
     backgroundColor: '#ffb6c1'

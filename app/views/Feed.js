@@ -181,7 +181,7 @@ class TestFeed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer media={item.media}/>
+                <VideoPlayer />
                 <Vote id={item.id}/>
                 <Message
                   points={item.points}
