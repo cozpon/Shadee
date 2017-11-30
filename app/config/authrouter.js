@@ -71,7 +71,7 @@ export const SignedIn = TabNavigator({
   TargetSearch: {
     screen: TargetSearch,
     navigationOptions: {
-      tabBarLabel: "Select Target",
+      tabBarLabel: "Select Player",
       tabBarIcon: ({ tintColor }) =>
         <Icon name="ios-body" size={30} color={tintColor} />
     }

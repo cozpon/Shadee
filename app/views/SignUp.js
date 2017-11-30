@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { View, ScrollView, StyleSheet, Text,
   TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-elements";
-import { onSignIn } from "../auth";
+import { onSignIn, setStorage } from "../auth";
 import { url } from '../lib/url';
 
 import t from 'tcomb-form-native';
@@ -70,14 +70,17 @@ class Register extends Component {
         },
         body: json
         })
-        .then((response) => response.json())
-        .then(() => {
-          onSignIn().then(() => navigation.navigate("SignedIn"))
+        .then((response) => {
+          response.json()
+        .then((response) => {
+          setStorage(response)
+          if(response.success === true){
+            onSignIn()
+            .then(() => navigation.navigate("SignedIn"));
+        } else return alert('Wrong Username or Password');
         })
-        .catch((error) => {
-          alert('There was an error creating your account.');
-        })
-        .done()
+      })
+      .done()
       }
     }
 

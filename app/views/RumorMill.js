@@ -6,9 +6,9 @@ import {
   Keyboard,
   TouchableOpacity,
   TextInput,
-  ScrollView
+  ScrollView,
+  Modal
 } from 'react-native';
-
 
 import {
   Container,
@@ -23,6 +23,10 @@ import {
 
 import { SearchBar, Button, Icon } from 'react-native-elements';
 
+import ModalDropdown from 'react-native-modal-dropdown';
+
+import { BlurView, VibrancyView } from 'react-native-blur';
+
 import { connect } from 'react-redux';
 import {loadRumors,
           addRumor,
@@ -31,16 +35,22 @@ import {loadRumors,
 
 import RumorVote from '../components/RumorVote';
 
+const ITEMS_PER_PAGE = 4;
 
 class RumorMill extends Component {
   constructor(){
     super();
     this.state = {
+      sorting: "Most Credible",
       users: [],
       victim: null,
       selected: false,
       rumor: null,
-      submitted: false
+      submitted: false,
+      blur: false,
+      page: 1,
+      end: 2,
+      modalVisible: false
     }
   }
 
@@ -48,9 +58,22 @@ class RumorMill extends Component {
     this.props.loadRumors();
   }
 
+  loadMore = () => {
+    this.setState({
+      end: (this.state.page+1)*ITEMS_PER_PAGE,
+      page: this.state.page+1
+    })
+  }
+
   render(){
     const textInput = {};
     const navigation = this.props.navigation;
+    let rumors = '';
+      if(this.state.sorting === "Most Credible"){
+        rumors = (this.props.rumors).sort((a, b) => {return b.points - a.points}).slice(0, this.state.end);
+      }else if(this.state.sorting === "Latest"){
+        rumors = (this.props.rumors).sort((a, b) => {return b.id - a.id}).slice(0, this.state.end);
+      }
     return (
       <Container>
         <Header>
@@ -70,6 +93,37 @@ class RumorMill extends Component {
           </Body>
           <Right />
         </Header>
+
+        <Button
+          onPress={(e) => this.setState({modalVisible: true, blur: true})}
+          title={`Sort: ${this.state.sorting}`}
+          color={'black'}
+          backgroundColor={'transparent'}
+        />
+        <Modal
+          visible={this.state.modalVisible}
+          transparent={true}
+          animationType={'fade'}
+        >
+          <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <Button
+              onPress={(e) => this.setState({sorting: 'Most Credible', modalVisible: false, blur: false})}
+              title={'Most Credible'}
+              backgroundColor={'#000000'}
+              color={'white'}
+              containerViewStyle={{width: 200}}
+              large
+            />
+            <Button
+              onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
+              title={'Latest'}
+              backgroundColor={'#000000'}
+              color={'white'}
+              containerViewStyle={{width: 200}}
+              large
+            />
+          </View>
+        </Modal>
 
         <ScrollView>
           <SearchBar
@@ -108,6 +162,7 @@ class RumorMill extends Component {
                     onPress={this._onSubmit.bind(this)}
                   />
                 </View>
+
               :
                 <View style={styles.list}>
                   {
@@ -144,12 +199,18 @@ class RumorMill extends Component {
                   <Text style={styles.credibility}>
                     Rumor credibility rating: {rumor.points}
                   </Text>
-
                 </View>
               )
             })
           }
         </ScrollView>
+      {this.state.blur ?
+      <BlurView
+        style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+        blurType="light"
+        blurAmount={5}
+      />
+      : null }
       </Container>
     );
   };
