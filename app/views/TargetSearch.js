@@ -7,7 +7,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -39,9 +40,10 @@ class TargetSearch extends Component {
   }
 
   render(){
+    console.log(this.state)
     return (
     <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.backgroundImage}>
-      <View>
+      <ScrollView>
         <SearchBar
           containerStyle={styles.textContainer}
           inputStyle={styles.textInput}
@@ -52,7 +54,7 @@ class TargetSearch extends Component {
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
-          placeholder='Choose victim...' />
+          placeholder='Search' />
         { this.state.selected ?
           <View style={styles.transparent}>
             <Text style={styles.text}>
@@ -81,7 +83,7 @@ class TargetSearch extends Component {
              }
           </View>
         }
-      </View>
+      </ScrollView>
     </ImageBackground>
     );
   }
