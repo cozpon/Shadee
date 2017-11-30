@@ -8,7 +8,8 @@ import {
   ImageBackground,
   FlatList,
   ActivityIndicator,
-  Modal
+  Modal,
+  AsyncStorage
 } from 'react-native';
 
 import {
@@ -35,7 +36,7 @@ import {
 import ModalDropdown from 'react-native-modal-dropdown';
 
 import { connect } from 'react-redux';
-import { loadMessages, voteOnMessage } from '../actions/messages';
+import { loadMessages, voteOnMessage, deleteMessage } from '../actions/messages';
 import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
@@ -53,13 +54,22 @@ class TestFeed extends Component {
       page: 1,
       error: null,
       end: 2,
-      modalVisible: false,
-      blur: false
+      sortModalVisible: false,
+      deleteModalVisible: false,
+      blur: false,
+      user: {}
     }
   }
 
   componentDidMount(){
     this.props.loadMessages();
+    AsyncStorage.getItem('data')
+    .then((value) => {
+      this.setState({
+        user: JSON.parse(value)
+      });
+    })
+    .done();
   }
 
   loadMore = () => {
@@ -85,13 +95,13 @@ class TestFeed extends Component {
     const navigation = this.props.navigation;
     let shades = '';
     if(this.state.sorting === "Most Extra"){
-      shades = (this.props.messages).sort((a, b) => {return b.points - a.points}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return b.points - a.points}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
     }else if(this.state.sorting === "Latest"){
-      shades = (this.props.messages).sort((a, b) => {return b.id - a.id}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return b.id - a.id}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
     }else if(this.state.sorting === "Oldest"){
-      shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
     }else if(this.state.sorting === "Most Basic"){
-      shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
     }
     return(
       <Container>
@@ -114,20 +124,20 @@ class TestFeed extends Component {
         </Header>
 
         <Button
-          onPress={(e) => this.setState({modalVisible: true, blur: true})}
+          onPress={(e) => this.setState({sortModalVisible: true, blur: true})}
           title={`Sort: ${this.state.sorting}`}
           color={'black'}
           backgroundColor={'transparent'}
         />
 
           <Modal
-            visible={this.state.modalVisible}
+            visible={this.state.sortModalVisible}
             transparent={true}
             animationType={'fade'}
           >
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Button
-                onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Latest', sortModalVisible: false, blur: false})}
                 title={'Latest'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -135,7 +145,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Oldest', modalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Oldest', sortModalVisible: false, blur: false})}
                 title={'Oldest'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -143,7 +153,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Extra', modalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Most Extra', sortModalVisible: false, blur: false})}
                 title={'Most Extra'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -151,7 +161,7 @@ class TestFeed extends Component {
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Basic', modalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Most Basic', sortModalVisible: false, blur: false})}
                 title={'Most Basic'}
                 backgroundColor={'#000000'}
                 color={'white'}
@@ -174,7 +184,6 @@ class TestFeed extends Component {
                 <VideoPlayer media={item.media}/>
                 <Vote id={item.id}/>
                 <Message
-                  body={item.body}
                   points={item.points}
                   shader={item.shader.username}
                   victim={item.victim.username}
@@ -182,6 +191,36 @@ class TestFeed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
+                {this.state.user.id === item.shader_id ?
+                <Button
+                  onPress={(e) => this.setState({deleteModalVisible: true, blur: true})}
+                  backgroundColor={'transparent'}
+                  icon={{name: 'delete', color: '#433D3F'}}
+                  containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
+                  large
+                />
+                : null}
+                <Modal
+                  visible={this.state.deleteModalVisible}
+                  transparent={true}
+                  animationType={'fade'}
+                >
+                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.props.deleteMessage(item.id);
+                        this.setState({
+                          deleteModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      title={'Delete Shade'}
+                      backgroundColor={'black'}
+                      large
+                    />
+                  </View>
+                </Modal>
               </View>
             )}
           />
@@ -214,6 +253,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadMessages: () => {
       dispatch(loadMessages());
+    },
+    deleteMessage: (id) => {
+      dispatch(deleteMessage(id));
     }
   }
 }
