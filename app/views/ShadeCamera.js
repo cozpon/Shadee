@@ -112,7 +112,7 @@ class ShadeCamera extends Component {
       mode: Camera.constants.CaptureMode.video,
       audio: true,
       target: Camera.constants.CaptureTarget.disk,
-      totalSeconds: 60
+      totalSeconds: 15
     })
     .then((data) => {
       VideoPath = data.path;
