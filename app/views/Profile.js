@@ -68,7 +68,7 @@ class Profile extends Component {
           .map(message => {
             const fromNow = Moment(message.createdAt).fromNow()
             console.log(message, 'message');
-            if(message.shader_id === user.id)
+            if(message.shader_id === user.id && !message.deletedAt)
             return (
             <View key={'view' + message.id}>
             <VideoPlayer media={message.media}/>
