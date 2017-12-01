@@ -61,10 +61,13 @@ class Profile extends Component {
           </Body>
           <Right />
         </Header>
-        <ScrollView>
-        <Text>
-        Welcom 2 ur profile {user.username}, here u can c all ur shades daddio!
-        </Text>
+        <ScrollView style={{backgroundColor: '#FDFFFC'}}>
+        <View style={{marginTop: 20}}>
+          <Text style={{textAlign: 'center', fontSize: 20, color: '#011627'}}>
+            Welcom 2 ur profile <Text style={{fontSize: 20, color: '#E71D36'}}>{user.username}</Text>, here u can c all ur shades daddio!
+          </Text>
+          <Icon name="ios-glasses" type="ionicon" size={60}/>
+        </View>
         {
           this.props.messages
           .map(message => {
