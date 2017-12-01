@@ -5,7 +5,7 @@ class EasterEgg extends Component {
   render() {
     return (
         <ScrollView>
-          <Text style={{size: 40, fontWeight: 'bold'}}> Welcome 2 Hell </Text>
+          <Text style={{fontSize: 40, fontWeight: 'bold'}}> Welcome 2 Hell </Text>
           <Image source={require('../assets/easteregg.jpg')}>
           </Image>
         </ScrollView>
