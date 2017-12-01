@@ -215,10 +215,13 @@ class TestFeed extends Component {
                           blur: false
                         })
                       }}
+                      raised={true}
                       title={'Delete Shade'}
                       backgroundColor={'black'}
                       large
+                      underlayColor={'red'}
                       containerViewStyle={{width: 200}}
+                      buttonStyle={{marginBottom: 5}}
                     />
                     <Button
                       onPress={(e) => {
@@ -228,6 +231,7 @@ class TestFeed extends Component {
                           blur: false
                         })
                       }}
+                      raised={true}
                       title={'Cancel'}
                       backgroundColor={'black'}
                       large
