@@ -125,13 +125,15 @@ class Feed extends Component {
             <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
           </Body>
           <Right>
-             <Icon
-              name='sliders'
-              type='font-awesome'
-              size={25}
+            <Button
+              title={this.state.sorting}
+              iconRight={{name: 'sliders', type: 'font-awesome', color: '#FF9F1C'}}
+              backgroundColor={'transparent'}
               color={'#FF9F1C'}
-              underlayColor={'white'}
-              onPress={(e) => this.setState({sortModalVisible: true, blur: true})}
+              fontSize={15}
+              //textStyle={{fontWeight: 'bold'}}
+              onPress={(e) => this.setState({blur: true, sortModalVisible: true})}
+              containerViewStyle={{marginRight: 0}}
             />
           </Right>
         </Header>
