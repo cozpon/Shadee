@@ -6,9 +6,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import DrawerContent from "../views/Sidebar"
 import SignUp from "../views/SignUp";
 import SignIn from "../views/SignIn";
-// ...
 import HowTo from "../views/HowTo";
-//import SecondScreen from "../views/SecondScreen";
 import Profile from "../views/Profile";
 import Logout from "../views/Logout";
 import Feed from '../views/Feed';

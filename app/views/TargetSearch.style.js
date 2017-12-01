@@ -1,18 +1,19 @@
 export default {
   textContainer: {
-    backgroundColor: '#ffb6c1'
+    marginTop: 50,
+    backgroundColor: 'transparent'
   },
   textInput: {
+    margin: 0,
     height: 60,
-    borderColor: '#ffb6c1',
-    borderWidth: 1,
     fontSize: 40,
-    backgroundColor: 'white',
-    color: '#433D3F'
+    backgroundColor: '#FDFFFC',
+    color: '#011627',
+    padding: 0
   },
   text: {
     fontSize: 40,
-    color: '#433D3F'
+    color: '#011627'
   },
   backgroundImage: {
     flex: 1
@@ -21,6 +22,6 @@ export default {
     alignItems: 'center'
   },
   scrollView: {
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FDFFFC'
   }
 };
