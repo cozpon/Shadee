@@ -130,17 +130,17 @@ class RumorMill extends Component {
 
           <View style={{flex: 1, zIndex: 2}}>
           <SearchBar
+            clearIcon
+            noIcon
             containerStyle={styles.textContainer}
             inputStyle={styles.search}
-            round
-            noIcon
             autoCorrect={false}
             autoCapitalize='none'
             keyboardType='default'
             ref={search => this.search = search}
             onChangeText={this._onChange.bind(this)}
             onClearText={this._onClear.bind(this)}
-            placeholder='Find a target...'
+            placeholder='Search...'
             />
           {
             this.state.submitted ? null :
@@ -162,8 +162,11 @@ class RumorMill extends Component {
                   />
                   <Button
                     textStyle={{ color: "white" }}
-                    backgroundColor="#ffb6c1"
-                    title="Spread rumor"
+                    raised={true}
+                    iconRight={{name: 'comment', type: 'font-awesome'}}
+                    backgroundColor="#E71D36"
+                    title="Spread Rumor"
+                    buttonStyle={{ marginTop: 10 }}
                     onPress={this._onSubmit.bind(this)}
                   />
                 </View>
@@ -194,7 +197,7 @@ class RumorMill extends Component {
           </View>
 
         {this.state.showRumors ?
-        <List containerStyle={{ paddingTop: '15%' }}>
+        <List containerStyle={{ paddingTop: '15%', marginTop: 0 }}>
           <FlatList
             data={rumors}
             ItemSeparatorComponent={this.renderSeparator}
@@ -205,6 +208,7 @@ class RumorMill extends Component {
             renderItem={({ item }) => (
               <View>
                 <Rumor
+                  id={item.id}
                   body={item.body}
                   points={item.points}
                   user={item.user.username}
@@ -291,15 +295,17 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: 'transparent',
-    zIndex: 2
+    zIndex: 2,
+    borderColor: '#FF9F1C'
+
   },
   search: {
-    height: 60,
-    borderColor: '#ffb6c1',
+    height: 56,
+    borderColor: '#FF9F1C',
     borderWidth: 1,
-    fontSize: 40,
+    fontSize: 30,
     backgroundColor: 'white',
-    color: '#ffb6c1'
+    color: '#011627'
   },
   textInput: {
     height: 80,
@@ -308,10 +314,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 20,
     backgroundColor: 'white',
-    color: '#ffb6c1'
+    color: '#011627'
   },
   text: {
-    fontSize: 40
+    fontSize: 40,
+    color: '#011627'
   },
   list: {
     alignItems: 'center'

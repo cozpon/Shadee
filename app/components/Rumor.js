@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   rumor: {
     borderWidth: .5,
-    borderColor: '#ffb6c1',
+    borderColor: '#FF9F1C',
     padding: 20
   },
 })
