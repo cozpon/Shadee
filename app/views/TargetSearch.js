@@ -40,10 +40,8 @@ class TargetSearch extends Component {
   }
 
   render(){
-    console.log(this.state)
     return (
-    <ImageBackground source={require('../assets/birthday-party.jpg')} style={styles.backgroundImage}>
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         <SearchBar
           containerStyle={styles.textContainer}
           inputStyle={styles.textInput}
@@ -74,9 +72,9 @@ class TargetSearch extends Component {
                       })
                       this.props.selectVictim(user);
                   }}>
-                    <Text style={styles.text}>
-                      {user.username}
-                    </Text>
+                      <Text style={styles.text}>
+                        {user.username}
+                      </Text>
                   </TouchableOpacity>
                   )
                 })
@@ -84,7 +82,6 @@ class TargetSearch extends Component {
           </View>
         }
       </ScrollView>
-    </ImageBackground>
     );
   }
 
