@@ -94,17 +94,22 @@ class Login extends Component {
             onChange={this._onChange}
           />
           <Button
-            buttonStyle={{ marginTop: 20 }}
+            large
+            buttonStyle={{ marginTop: 20, marginRight: 13 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
             raised={true}
             title="SIGN IN"
+
             onPress={this._handleSubmit}
           />
           <Text style={{marginTop: 40, fontSize: 8, fontWeight: 'bold', textAlign: 'center'}}>
             <Text style={{color: 'white'}}> {`by using this site you agree to our `}</Text>
-            <Text style={{color: '#add8e6'}} onPress={() => navigation.navigate("Terms")}>{`Terms of Use`}</Text>
+              <Text style={{color: '#add8e6'}}
+              onLongPress={() => navigation.navigate("EasterEgg")}
+              onPress={() => navigation.navigate("Terms")}>{`Terms of Use`}
+              </Text>
           </Text>
         </KeyboardAvoidingView>
       </View>
