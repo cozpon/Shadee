@@ -22,7 +22,7 @@ class RumorVote extends Component {
       this.props.editRumor(rumor);
       this.setState({
         voted: true,
-        upcolor: '#2EC4B6',
+        upcolor: '#E71D36',
         downcolor: '#666'
       });
     }
@@ -34,7 +34,7 @@ class RumorVote extends Component {
       this.props.editRumor(rumor);
       this.setState({
         voted: true,
-        downcolor: '#2EC4B6',
+        downcolor: '#E71D36',
         upcolor: '#666'
       });
     }

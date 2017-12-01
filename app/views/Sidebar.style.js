@@ -4,16 +4,16 @@ export default {
     flex: 1,
 
   },
-  separatorTop: {
-    backgroundColor: 'lightgrey',
-    marginTop: 10,
-    height: 7,
-  },
-  separatorBottom: {
-    backgroundColor: 'lightgrey',
-    marginBottom: 10,
-    height: 7,
-  },
+  // separatorTop: {
+  //   backgroundColor: 'lightgrey',
+  //   marginTop: 10,
+  //   height: 7,
+  // },
+  // separatorBottom: {
+  //   backgroundColor: 'lightgrey',
+  //   marginBottom: 10,
+  //   height: 7,
+  // },
   navItemStyle: {
     padding: 2
   },
@@ -23,6 +23,6 @@ export default {
     paddingHorizontal: 5
   },
   button: {
-    backgroundColor: '#EAA7B1',
+    backgroundColor: '#E71D36',
   }
 };

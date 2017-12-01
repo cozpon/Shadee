@@ -16,6 +16,7 @@ import ShadeCamera from '../views/ShadeCamera';
 import Terms from '../views/TermsOfService';
 import EasterEgg from '../views/EasterEgg';
 
+
 export const Drawer = DrawerNavigator({
   Feed: {
     screen: Feed,
@@ -94,7 +95,7 @@ export const SignedIn = TabNavigator({
   swipeEnabled: true,
   tabBarOptions: {
     activeTintColor: '#f2f2f2',
-    activeBackgroundColor: "#9f473a",
+    activeBackgroundColor: "#2EC4B6",
     inactiveTintColor: '#666',
     labelStyle: {
       fontSize: 12,

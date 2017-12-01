@@ -38,8 +38,7 @@ class DrawerContent extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-        <Image source={require('../assets/logo.png')}>
-        </Image>
+
 
         <Text style={styles.separatorBottom}>
           </Text>
@@ -79,7 +78,7 @@ class DrawerContent extends Component {
          raised
          icon={{name: 'blind', type: 'font-awesome', size: 20}}
          title='How To: Use Shade'
-         backgroundColor="#c56d60"
+         backgroundColor="#011627"
          onPress={this.navigateToScreen('HowTo')}/>
 
          <Text style={styles.sectionHeadingStyle}>
@@ -89,7 +88,7 @@ class DrawerContent extends Component {
          raised
          icon={{name: 'hand-peace-o', type: 'font-awesome'}}
          title='Log Out'
-         backgroundColor="#c56d60"
+         backgroundColor="#011627"
          onPress={this._handleSubmit}/>
         <Text style={styles.separatorTop}>
           </Text>

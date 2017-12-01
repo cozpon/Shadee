@@ -45,19 +45,19 @@ class Profile extends Component {
     let user = this.state.data;
     return(
       <Container>
-        <Header>
+        <Header style={{backgroundColor: '#2EC4B6'}}>
           <Left>
             <Icon
               name='map-o'
               type='font-awesome'
               size={25}
-              color={'#EAA7B1'}
+              color={'#FF9F1C'}
               underlayColor={'white'}
               onPress={() => navigation.navigate("DrawerOpen")}
             />
           </Left>
           <Body>
-            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>{user.username}</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>{user.username}</Title>
           </Body>
           <Right />
         </Header>
