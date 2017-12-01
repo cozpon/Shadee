@@ -1,6 +1,6 @@
 export default {
   textContainer: {
-    marginTop: 50,
+    marginTop: 0,
     backgroundColor: 'transparent'
   },
   textInput: {
@@ -8,8 +8,11 @@ export default {
     height: 60,
     fontSize: 40,
     backgroundColor: '#FDFFFC',
-    color: '#011627',
-    padding: 0
+    padding: 0,
+    borderColor: '#FF9F1C',
+    borderWidth: 1,
+    fontSize: 30,
+    color: '#011627'
   },
   text: {
     fontSize: 40,
