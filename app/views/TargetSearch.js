@@ -42,6 +42,7 @@ class TargetSearch extends Component {
   render(){
     return (
       <ScrollView style={styles.scrollView}>
+      <View style={styles.searchView}>
         <SearchBar
           containerStyle={styles.textContainer}
           inputStyle={styles.textInput}
@@ -53,6 +54,7 @@ class TargetSearch extends Component {
           ref="search"
           onChangeText={this._onChange.bind(this)}
           placeholder='Search' />
+        </View>
         { this.state.selected ?
           <View style={styles.transparent}>
             <Text style={styles.text}>
@@ -73,7 +75,7 @@ class TargetSearch extends Component {
                       this.props.selectVictim(user);
                   }}>
                       <Text style={styles.text}>
-                        {user.username}
+                        <Icon name="ios-person" size={50} color="#E71D36"/> {user.username}
                       </Text>
                   </TouchableOpacity>
                   )
