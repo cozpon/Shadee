@@ -38,8 +38,8 @@ class DrawerContent extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-
-
+        <Image source={require('../assets/logo.png')}>
+        </Image>
         <Text style={styles.separatorBottom}>
           </Text>
 
