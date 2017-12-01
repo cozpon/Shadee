@@ -73,7 +73,7 @@ class TargetSearch extends Component {
                       this.props.selectVictim(user);
                   }}>
                       <Text style={styles.text}>
-                        {user.username}
+                        <Icon name="ios-person" size={50} color="#E71D36"/> {user.username}
                       </Text>
                   </TouchableOpacity>
                   )

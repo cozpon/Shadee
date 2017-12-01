@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, View, AsyncStorage } from 'react-native';
+import { ScrollView, Image, View, AsyncStorage, Modal } from 'react-native';
 import { onSignOut } from '../auth';
 import {
   Container,
@@ -8,15 +8,15 @@ import {
   Title,
   Left,
   Right,
-  Button,
   Body,
   Text
 } from "native-base";
-import { Icon } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
+import { BlurView, VibrancyView } from 'react-native-blur';
 import VideoPlayer from '../components/VideoPlayer';
 import Moment from 'moment';
 import { connect } from 'react-redux';
-import { loadMessages } from '../actions/messages';
+import { loadMessages, deleteMessage } from '../actions/messages';
 import Message from '../components/Message';
 
 class Profile extends Component {
@@ -24,7 +24,9 @@ class Profile extends Component {
     super(props)
     this.state = {
       messages: [],
-      data: ''
+      data: '',
+      deleteModalVisible: false,
+      blur: false
     }
   }
 
@@ -71,7 +73,7 @@ class Profile extends Component {
             if(message.shader_id === user.id && !message.deletedAt)
             return (
             <View key={'view' + message.id}>
-            <VideoPlayer media={message.media}/>
+            <VideoPlayer/>
             <Message
               body={message.body}
               points={message.points}
@@ -81,12 +83,60 @@ class Profile extends Component {
               posted={fromNow}
               key={message.id}
             />
+            <Button
+              onPress={(e) => {this.setState({deleteModalVisible: true, blur: true})}}
+              backgroundColor={'transparent'}
+              icon={{name: 'delete', color: '#433D3F'}}
+              containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
+              large
+            />
+            <Modal
+              visible={this.state.deleteModalVisible}
+              transparent={true}
+              animationType={'fade'}
+            >
+              <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                <Button
+                  onPress={(e) => {
+                    e.preventDefault();
+                    this.props.deleteMessage(message.id);
+                    this.setState({
+                      deleteModalVisible: false,
+                      blur: false
+                    })
+                  }}
+                  title={'Delete Shade'}
+                  backgroundColor={'black'}
+                  large
+                  containerViewStyle={{width: 200}}
+                />
+                <Button
+                  onPress={(e) => {
+                    this.setState({
+                      deleteModalVisible: false,
+                      blur: false
+                    })
+                  }}
+                  title={'Cancel'}
+                  backgroundColor={'black'}
+                  large
+                  containerViewStyle={{width: 200}}
+                />
+              </View>
+            </Modal>
             </View>
             )
           })
         }
 
         </ScrollView>
+      {this.state.blur ?
+      <BlurView
+        style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+        blurType="light"
+        blurAmount={5}
+      />
+      : null }
       </Container>
     )
   }
@@ -102,6 +152,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadMessages: () => {
       dispatch(loadMessages());
+    },
+    deleteMessage: (id) => {
+      dispatch(deleteMessage(id));
     }
   }
 }
