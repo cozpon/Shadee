@@ -57,7 +57,11 @@ class Feed extends Component {
       sortModalVisible: false,
       deleteModalVisible: false,
       blur: false,
-      user: {}
+      user: {},
+      latest: '#FF9F1C',
+      oldest: '#011627',
+      basic: '#011627',
+      extra: '#011627'
     }
   }
 
@@ -139,33 +143,33 @@ class Feed extends Component {
           >
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
               <Button
-                onPress={(e) => this.setState({sorting: 'Latest', sortModalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Latest', sortModalVisible: false, blur: false, latest: '#FF9F1C', oldest: '#011627', basic: '#011627', extra: '#011627'})}
                 title={'Latest'}
-                backgroundColor={'#011627'}
+                backgroundColor={this.state.latest}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Oldest', sortModalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Oldest', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#FF9F1C', basic: '#011627', extra: '#011627'})}
                 title={'Oldest'}
-                backgroundColor={'#011627'}
+                backgroundColor={this.state.oldest}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Extra', sortModalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Most Extra', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#011627', basic: '#011627', extra: '#FF9F1C'})}
                 title={'Most Extra'}
-                backgroundColor={'#011627'}
+                backgroundColor={this.state.extra}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
               />
               <Button
-                onPress={(e) => this.setState({sorting: 'Most Basic', sortModalVisible: false, blur: false})}
+                onPress={(e) => this.setState({sorting: 'Most Basic', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#011627', basic: '#FF9F1C', extra: '#011627'})}
                 title={'Most Basic'}
-                backgroundColor={'#011627'}
+                backgroundColor={this.state.basic}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
