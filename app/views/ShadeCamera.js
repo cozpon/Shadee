@@ -112,7 +112,8 @@ class ShadeCamera extends Component {
       mode: Camera.constants.CaptureMode.video,
       audio: true,
       target: Camera.constants.CaptureTarget.disk,
-      totalSeconds: 15
+      totalSeconds: 200,
+      captureQuality: Camera.constants.CaptureQuality["480p"]
     })
     .then((data) => {
       VideoPath = data.path;
