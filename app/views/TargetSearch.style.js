@@ -23,8 +23,5 @@ export default {
   },
   scrollView: {
     backgroundColor: '#FDFFFC'
-  },
-  searchView: {
-    borderColor: 'transparent'
   }
 };

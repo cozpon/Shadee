@@ -42,7 +42,6 @@ class TargetSearch extends Component {
   render(){
     return (
       <ScrollView style={styles.scrollView}>
-      <View style={styles.searchView}>
         <SearchBar
           containerStyle={styles.textContainer}
           inputStyle={styles.textInput}
@@ -54,7 +53,6 @@ class TargetSearch extends Component {
           ref="search"
           onChangeText={this._onChange.bind(this)}
           placeholder='Search' />
-        </View>
         { this.state.selected ?
           <View style={styles.transparent}>
             <Text style={styles.text}>
