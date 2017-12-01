@@ -99,13 +99,13 @@ class Feed extends Component {
     const navigation = this.props.navigation;
     let shades = '';
     if(this.state.sorting === "Most Extra"){
-      shades = (this.props.messages).sort((a, b) => {return b.points - a.points}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return b.points - a.points}).filter((message) => {return !message.deletedAt && message.points > -10}).slice(0, this.state.end);
     }else if(this.state.sorting === "Latest"){
-      shades = (this.props.messages).sort((a, b) => {return b.id - a.id}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return b.id - a.id}).filter((message) => {return !message.deletedAt && message.points > -10}).slice(0, this.state.end);
     }else if(this.state.sorting === "Oldest"){
-      shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return a.id - b.id}).filter((message) => {return !message.deletedAt && message.points > -10}).slice(0, this.state.end);
     }else if(this.state.sorting === "Most Basic"){
-      shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).filter((message) => {return !message.deletedAt}).slice(0, this.state.end);
+      shades = (this.props.messages).sort((a, b) => {return a.points - b.points}).filter((message) => {return !message.deletedAt && message.points > -10}).slice(0, this.state.end);
     }
     return(
       <Container>
@@ -221,10 +221,13 @@ class Feed extends Component {
                           blur: false
                         })
                       }}
+                      raised={true}
                       title={'Delete Shade'}
                       backgroundColor={'black'}
                       large
+                      underlayColor={'red'}
                       containerViewStyle={{width: 200}}
+                      buttonStyle={{marginBottom: 5}}
                     />
                     <Button
                       onPress={(e) => {
@@ -234,6 +237,7 @@ class Feed extends Component {
                           blur: false
                         })
                       }}
+                      raised={true}
                       title={'Cancel'}
                       backgroundColor={'black'}
                       large
