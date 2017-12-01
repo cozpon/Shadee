@@ -33,7 +33,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: true,
-        extraBackground: '#fb9fa4',
+        extraBackground: '#E71D36',
         extraFont: 'DancingScript-Bold',
         extraSize: 20
       })
@@ -60,7 +60,7 @@ class Vote extends Component {
       this.setState({
         upvoted: true,
         downvoted: false,
-        extraBackground: '#fb9fa4',
+        extraBackground: '#E71D36',
         extraFont: 'DancingScript-Bold',
         extraSize: 20,
         basicBackground: 'transparent',
@@ -81,7 +81,7 @@ class Vote extends Component {
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: true,
-        basicBackground: '#fb9fa4',
+        basicBackground: '#E71D36',
         basicFont: 'AmaticSC-Bold',
         basicSize: 20
       })
@@ -108,7 +108,7 @@ class Vote extends Component {
       this.setState({
         downvoted: true,
         upvoted: false,
-        basicBackground: '#fb9fa4',
+        basicBackground: '#E71D36',
         basicFont: 'AmaticSC-Bold',
         basicSize: 20,
         extraBackground: 'transparent',

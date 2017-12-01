@@ -79,30 +79,33 @@ class RumorMill extends Component {
       }
     return (
       <Container>
-        <Header>
+        <Header style={{backgroundColor: '#2EC4B6'}}>
           <Left>
             <Icon
               name='map-o'
               type='font-awesome'
               size={25}
-              color={'#EAA7B1'}
+              color={'#FF9F1C'}
               underlayColor={'white'}
               onPress={() => navigation.navigate("DrawerOpen")}
             />
 
           </Left>
           <Body>
-            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>Shade</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
           </Body>
-          <Right />
+          <Right>
+            <Icon
+              name='bars'
+              type='font-awesome'
+              size={25}
+              color={'#FF9F1C'}
+              underlayColor={'white'}
+              onPress={(e) => this.setState({modalVisible: true, blur: true})}
+            />
+          </Right>
         </Header>
 
-        <Button
-          onPress={(e) => this.setState({modalVisible: true, blur: true})}
-          title={`Sort: ${this.state.sorting}`}
-          color={'black'}
-          backgroundColor={'transparent'}
-        />
         <Modal
           visible={this.state.modalVisible}
           transparent={true}
@@ -112,7 +115,7 @@ class RumorMill extends Component {
             <Button
               onPress={(e) => this.setState({sorting: 'Most Credible', modalVisible: false, blur: false})}
               title={'Most Credible'}
-              backgroundColor={'#000000'}
+              backgroundColor={'#011627'}
               color={'white'}
               containerViewStyle={{width: 200}}
               large
@@ -120,7 +123,7 @@ class RumorMill extends Component {
             <Button
               onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
               title={'Latest'}
-              backgroundColor={'#000000'}
+              backgroundColor={'#011627'}
               color={'white'}
               containerViewStyle={{width: 200}}
               large
@@ -197,7 +200,7 @@ class RumorMill extends Component {
           </View>
 
         {this.state.showRumors ?
-        <List containerStyle={{ paddingTop: '15%', marginTop: 0 }}>
+        <List containerStyle={{ paddingTop: '15%',  marginTop: 0 , borderTopWidth: 0 }}>
           <FlatList
             data={rumors}
             ItemSeparatorComponent={this.renderSeparator}
@@ -295,9 +298,11 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: 'transparent',
-    zIndex: 2,
-    borderColor: '#FF9F1C'
-
+    zIndex: 2
+  },
+  search: {
+    height: 60,
+    borderColor: '#E71D36'
   },
   search: {
     height: 56,
