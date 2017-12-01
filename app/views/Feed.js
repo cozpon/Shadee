@@ -183,7 +183,7 @@ class Feed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer />
+                <VideoPlayer media={item.media}/>
                 <Vote id={item.id}/>
                 <Message
                   points={item.points}

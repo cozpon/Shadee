@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Image,
   ImageBackground,
   Dimensions,
   StyleSheet,
@@ -10,6 +11,17 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
+import {
+  Container,
+  Header,
+  Title,
+  Left,
+  Right,
+  Body,
+  Content,
+  Card,
+  CardItem
+} from "native-base";
 
 import { connect } from 'react-redux';
 import { loadUsers } from '../actions/users';
@@ -40,7 +52,18 @@ class TargetSearch extends Component {
   }
 
   render(){
+    const navigation = this.props.navigation;
     return (
+      <Container>
+        <Header style={{backgroundColor: '#2EC4B6', margin: 0}}>
+          <Left>
+          </Left>
+          <Body>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
+          </Body>
+          <Right>
+          </Right>
+        </Header>
       <ScrollView style={styles.scrollView}>
         <SearchBar
           containerStyle={styles.textContainer}
@@ -58,6 +81,7 @@ class TargetSearch extends Component {
             <Text style={styles.text}>
               Swipe right to throw shade at {this.props.victim.username}, or search for someone else.
             </Text>
+            <Image source={require('../assets/default.png')}/>
           </View>
           :
           <View style={styles.transparent}>
@@ -79,9 +103,11 @@ class TargetSearch extends Component {
                   )
                 })
              }
+             <Image source={require('../assets/default.png')}/>
           </View>
         }
       </ScrollView>
+    </Container>
     );
   }
 
