@@ -126,7 +126,7 @@ class Feed extends Component {
           </Body>
           <Right>
              <Icon
-              name='bars'
+              name='sliders'
               type='font-awesome'
               size={25}
               color={'#FF9F1C'}
