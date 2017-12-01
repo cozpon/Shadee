@@ -7,7 +7,7 @@ const Rumor = ({id, body, points, user, posted }) => {
   return (
     <View style={styles.rumor} key={ id }>
       <Text style={styles.rumorText}>
-        Someone heard that { user.username } { body }
+        Someone heard that { user } { body }
       </Text>
       <RumorVote id={ id } />
       <Text style={styles.credibility}>

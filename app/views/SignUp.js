@@ -100,7 +100,8 @@ class Register extends Component {
           />
 
           <Button
-            buttonStyle={{ marginTop: 20 }}
+            large
+            buttonStyle={{ marginTop: 10 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
@@ -109,6 +110,7 @@ class Register extends Component {
             onPress={this._handleAdd}
           />
           <Button
+            large
             buttonStyle={{ marginBottom: 10 }}
             backgroundColor="transparent"
             textStyle={{ color: "#ffb6c1" }}
@@ -122,7 +124,7 @@ class Register extends Component {
           <Text style={{color: '#add8e6'}} onPress={() => navigation.navigate("Terms")}>{`Terms of Use`}</Text>
         </Text>
          </KeyboardAvoidingView>
-        </ScrollView>
+      </ScrollView>
       </ImageBackground>
     );
   }

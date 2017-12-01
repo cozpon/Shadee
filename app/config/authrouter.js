@@ -16,6 +16,7 @@ import RumorMill from '../views/RumorMill';
 import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 import Terms from '../views/TermsOfService';
+import EasterEgg from '../views/EasterEgg';
 
 
 export const Drawer = DrawerNavigator({
@@ -56,6 +57,12 @@ export const SignedOut = StackNavigator({
     screen: Terms,
     navigationOptions: {
       title: "Terms"
+    }
+  },
+  EasterEgg: {
+    screen: EasterEgg,
+    navigationOptions: {
+      title: "EasterEgg"
     }
   },
 });

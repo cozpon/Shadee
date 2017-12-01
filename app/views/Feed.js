@@ -218,6 +218,20 @@ class TestFeed extends Component {
                       title={'Delete Shade'}
                       backgroundColor={'black'}
                       large
+                      containerViewStyle={{width: 200}}
+                    />
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.setState({
+                          deleteModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      title={'Cancel'}
+                      backgroundColor={'black'}
+                      large
+                      containerViewStyle={{width: 200}}
                     />
                   </View>
                 </Modal>
