@@ -45,7 +45,7 @@ import { BlurView, VibrancyView } from 'react-native-blur';
 
 const ITEMS_PER_PAGE = 2;
 
-class TestFeed extends Component {
+class Feed extends Component {
 
   constructor(props) {
     super(props)
@@ -85,7 +85,7 @@ class TestFeed extends Component {
         style={{
           height: 5,
           width: '100%',
-          backgroundColor: '#fb9fa4'
+          backgroundColor: '#FF9F1C'
         }}
       />
     )
@@ -105,30 +105,32 @@ class TestFeed extends Component {
     }
     return(
       <Container>
-        <Header>
+        <Header style={{backgroundColor: '#2EC4B6'}}>
           <Left>
             <Icon
               name='map-o'
               type='font-awesome'
               size={25}
-              color={'#EAA7B1'}
+              color={'#FF9F1C'}
               underlayColor={'white'}
               onPress={() => navigation.navigate("DrawerOpen")}
             />
 
           </Left>
           <Body>
-            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23}}>Shade</Title>
+            <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
           </Body>
-          <Right />
+          <Right>
+             <Icon
+              name='bars'
+              type='font-awesome'
+              size={25}
+              color={'#FF9F1C'}
+              underlayColor={'white'}
+              onPress={(e) => this.setState({sortModalVisible: true, blur: true})}
+            />
+          </Right>
         </Header>
-
-        <Button
-          onPress={(e) => this.setState({sortModalVisible: true, blur: true})}
-          title={`Sort: ${this.state.sorting}`}
-          color={'black'}
-          backgroundColor={'transparent'}
-        />
 
           <Modal
             visible={this.state.sortModalVisible}
@@ -139,7 +141,7 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Latest', sortModalVisible: false, blur: false})}
                 title={'Latest'}
-                backgroundColor={'#000000'}
+                backgroundColor={'#011627'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
@@ -147,7 +149,7 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Oldest', sortModalVisible: false, blur: false})}
                 title={'Oldest'}
-                backgroundColor={'#000000'}
+                backgroundColor={'#011627'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
@@ -155,7 +157,7 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Extra', sortModalVisible: false, blur: false})}
                 title={'Most Extra'}
-                backgroundColor={'#000000'}
+                backgroundColor={'#011627'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
@@ -163,7 +165,7 @@ class TestFeed extends Component {
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Basic', sortModalVisible: false, blur: false})}
                 title={'Most Basic'}
-                backgroundColor={'#000000'}
+                backgroundColor={'#011627'}
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
@@ -171,7 +173,7 @@ class TestFeed extends Component {
             </View>
           </Modal>
 
-        <List containerStyle={{ paddingBottom: '25%' }}>
+        <List containerStyle={{ paddingBottom: '15%', marginTop: 0 , borderTopWidth: 0}}>
           <FlatList
             data={shades}
             ItemSeparatorComponent={this.renderSeparator}
@@ -274,4 +276,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestFeed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
