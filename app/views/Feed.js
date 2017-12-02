@@ -131,7 +131,6 @@ class Feed extends Component {
               backgroundColor={'transparent'}
               color={'#FF9F1C'}
               fontSize={15}
-              //textStyle={{fontWeight: 'bold'}}
               onPress={(e) => this.setState({blur: true, sortModalVisible: true})}
               containerViewStyle={{marginRight: 0}}
             />
@@ -189,7 +188,7 @@ class Feed extends Component {
             extraData={this.state}
             renderItem={({ item }) => (
               <View>
-                <VideoPlayer/>
+                <VideoPlayer media={item.media}/>
                 <Vote id={item.id}/>
                 <Message
                   points={item.points}
@@ -199,54 +198,6 @@ class Feed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
-                {this.state.user.id === item.shader_id ?
-                <Button
-                  onPress={(e) => this.setState({deleteModalVisible: true, blur: true})}
-                  backgroundColor={'transparent'}
-                  icon={{name: 'delete', color: '#433D3F'}}
-                  containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
-                  large
-                />
-                : null}
-                <Modal
-                  visible={this.state.deleteModalVisible}
-                  transparent={true}
-                  animationType={'fade'}
-                >
-                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <Button
-                      onPress={(e) => {
-                        e.preventDefault();
-                        this.props.deleteMessage(item.id);
-                        this.setState({
-                          deleteModalVisible: false,
-                          blur: false
-                        })
-                      }}
-                      raised={true}
-                      title={'Delete Shade'}
-                      backgroundColor={'black'}
-                      large
-                      underlayColor={'red'}
-                      containerViewStyle={{width: 200}}
-                      buttonStyle={{marginBottom: 5}}
-                    />
-                    <Button
-                      onPress={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                          deleteModalVisible: false,
-                          blur: false
-                        })
-                      }}
-                      raised={true}
-                      title={'Cancel'}
-                      backgroundColor={'black'}
-                      large
-                      containerViewStyle={{width: 200}}
-                    />
-                  </View>
-                </Modal>
               </View>
             )}
           />
