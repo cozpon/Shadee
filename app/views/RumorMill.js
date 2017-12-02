@@ -147,7 +147,7 @@ class RumorMill extends Component {
             ref={search => this.search = search}
             onChangeText={this._onChange.bind(this)}
             onClearText={this._onClear.bind(this)}
-            placeholder='Search...'
+            placeholder='Search for a user...'
             />
           {
             this.state.submitted ? null :
