@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Moment from 'react-moment';
 
-const Message = ({id, body, points, media, shader, victim, status, posted}) => {
+const Message = ({id, body, points, media, shader, victim, status, posted, flag}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{points} upvotes. This shade is so {status}.</Text>

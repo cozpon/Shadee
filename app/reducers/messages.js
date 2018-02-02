@@ -2,7 +2,8 @@ import { LOAD_MESSAGES,
           ADD_MESSAGE,
           EDIT_MESSAGE,
           DELETE_MESSAGE,
-          VOTE_ON_MESSAGE
+          VOTE_ON_MESSAGE,
+          FLAG_MESSAGE
           } from '../actions/messages';
 
 const initialState = [];
@@ -28,6 +29,11 @@ const messages = (state = initialState, action) => {
         return message.id !== action.message.id;
       });
       return [ ...deletedRemoved ];
+    case FLAG_MESSAGE:
+      let hideFlagged = state.filter((message) => {
+        return message.id !== action.message.id;
+      });
+      return [ ...hideFlagged ];
     default:
       return state
   }
