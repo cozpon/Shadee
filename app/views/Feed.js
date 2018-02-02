@@ -36,7 +36,7 @@ import {
 import ModalDropdown from 'react-native-modal-dropdown';
 
 import { connect } from 'react-redux';
-import { loadMessages, voteOnMessage, deleteMessage } from '../actions/messages';
+import { loadMessages, voteOnMessage, deleteMessage, flagMessage } from '../actions/messages';
 import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
@@ -56,12 +56,14 @@ class Feed extends Component {
       end: 2,
       sortModalVisible: false,
       deleteModalVisible: false,
+      flagModalVisible: false,
       blur: false,
       user: {},
       latest: '#FF9F1C',
       oldest: '#011627',
       basic: '#011627',
-      extra: '#011627'
+      extra: '#011627',
+      inappropriate: 0
     }
   }
 
@@ -198,6 +200,102 @@ class Feed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
+
+                { this.state.user.id === item.shader_id ?
+                  <Button
+                    onPress={(e) => this.setState({deleteModalVisible: true, blur: true})}
+                    backgroundColor={'transparent'}
+                    icon={{name: 'delete', color: '#433D3F'}}
+                    containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
+                    large
+                  />
+                :
+                  <Button
+                    onPress={(e) => this.setState({flagModalVisible: true, blur: true})}
+                    backgroundColor={'transparent'}
+                    icon={{name: 'flag', color: '#433D3F'}}
+                    containerViewStyle={{alignItems: 'flex-start', marginTop: -25}}
+                    large
+                  />
+                 }
+                <Modal
+                  visible={this.state.deleteModalVisible}
+                  transparent={true}
+                  animationType={'fade'}
+                >
+                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.props.deleteMessage(item.id);
+                        this.setState({
+                          deleteModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      raised={true}
+                      title={'Delete Shade'}
+                      backgroundColor={'black'}
+                      large
+                      underlayColor={'red'}
+                      containerViewStyle={{width: 200}}
+                      buttonStyle={{marginBottom: 5}}
+                    />
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.setState({
+                          deleteModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      raised={true}
+                      title={'Cancel'}
+                      backgroundColor={'black'}
+                      large
+                      containerViewStyle={{width: 200}}
+                    />
+                  </View>
+                </Modal>
+                <Modal
+                  visible={this.state.flagModalVisible}
+                  transparent={true}
+                  animationType={'fade'}
+                >
+                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                      <Button
+                        onPress={(e) => {
+                          e.preventDefault();
+                          this.props.flagMessage(item.id);
+                          this.setState({
+                            flagModalVisible: false,
+                            blur: false
+                          })
+                        }}
+                        raised={true}
+                        title={'Report As Inappropriate'}
+                        backgroundColor={'black'}
+                        large
+                        underlayColor={'red'}
+                        containerViewStyle={{width: 200}}
+                        buttonStyle={{marginBottom: 5}}
+                    />
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.setState({
+                          flagModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      raised={true}
+                      title={'Cancel'}
+                      backgroundColor={'black'}
+                      large
+                      containerViewStyle={{width: 200}}
+                    />
+                  </View>
+                </Modal>
               </View>
             )}
           />
@@ -233,6 +331,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteMessage: (id) => {
       dispatch(deleteMessage(id));
+    },
+    flagMessage: (id) => {
+      dispatch(flagMessage(id));
     }
   }
 }

@@ -6,6 +6,7 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const EDIT_MESSAGE = 'EDIT_MESSAGE';
 export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const VOTE_ON_MESSAGE = 'VOTE_ON_MESSAGE';
+export const FLAG_MESSAGE = 'FLAG_MESSAGE';
 
 import { url } from '../lib/url';
 
@@ -75,6 +76,21 @@ export const deleteMessage = (id) => {
     .then( message => {
       dispatch({
         type: DELETE_MESSAGE,
+        message: message.data
+      });
+    });
+  }
+}
+
+
+//not sure what we're making/naming the database side as
+export const flagMessage = (id) => {
+  return function(dispatch){
+    return axios.put(`${url}messages/${id}/inappropriate`)
+    .then( message => {
+      console.log('FLAG', message.data)
+      dispatch({
+        type: FLAG_MESSAGE,
         message: message.data
       });
     });
