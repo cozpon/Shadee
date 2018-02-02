@@ -43,7 +43,7 @@ class RumorMill extends Component {
   constructor(){
     super();
     this.state = {
-      sorting: "Most Credible",
+      sorting: "Latest",
       users: [],
       victim: null,
       selected: false,
@@ -53,7 +53,9 @@ class RumorMill extends Component {
       page: 1,
       end: 4,
       modalVisible: false,
-      showRumors: true
+      showRumors: true,
+      credible: '#011627',
+      latest: '#FF9F1C'
     }
   }
 
@@ -69,6 +71,7 @@ class RumorMill extends Component {
   }
 
   render(){
+    console.log(this.state)
     const textInput = {};
     const navigation = this.props.navigation;
     let rumors = '';
@@ -95,13 +98,14 @@ class RumorMill extends Component {
             <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
           </Body>
           <Right>
-            <Icon
-              name='bars'
-              type='font-awesome'
-              size={25}
+            <Button
+              title={this.state.sorting}
+              iconRight={{name: 'sliders', type: 'font-awesome', color: '#FF9F1C'}}
+              backgroundColor={'transparent'}
               color={'#FF9F1C'}
-              underlayColor={'white'}
-              onPress={(e) => this.setState({modalVisible: true, blur: true})}
+              fontSize={15}
+              onPress={(e) => this.setState({blur: true, modalVisible: true})}
+              containerViewStyle={{marginRight: 0}}
             />
           </Right>
         </Header>
@@ -113,17 +117,17 @@ class RumorMill extends Component {
         >
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Button
-              onPress={(e) => this.setState({sorting: 'Most Credible', modalVisible: false, blur: false})}
+              onPress={(e) => this.setState({sorting: 'Most Credible', modalVisible: false, blur: false, latest: '#011627', credible: '#FF9F1C'})}
               title={'Most Credible'}
-              backgroundColor={'#011627'}
+              backgroundColor={this.state.credible}
               color={'white'}
               containerViewStyle={{width: 200}}
               large
             />
             <Button
-              onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false})}
+              onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false, latest: '#FF9F1C', credible: '#011627'})}
               title={'Latest'}
-              backgroundColor={'#011627'}
+              backgroundColor={this.state.latest}
               color={'white'}
               containerViewStyle={{width: 200}}
               large
@@ -260,9 +264,9 @@ class RumorMill extends Component {
   }
 
   _onClear(){
-    console.log('hello')
     this.setState({
-      showRumors: true
+      showRumors: true,
+      selected: false
     })
   }
 

@@ -23,7 +23,7 @@ class ShadeCamera extends Component {
   constructor(){
     super();
     this.state = {
-      cameraType : 'back',
+      cameraType : 'front',
       mirrorMode: false,
       recording: false,
       data: ''
@@ -104,6 +104,14 @@ class ShadeCamera extends Component {
   }
 
   _startRecord(){
+    AsyncStorage.getItem('data')
+    .then((value) => {
+      this.setState({
+        data: JSON.parse(value)
+      });
+    })
+    .done();
+
     startVideo = setTimeout(this._recordVideo.bind(this), 50);
   }
 
@@ -118,17 +126,6 @@ class ShadeCamera extends Component {
     .then((data) => {
       VideoPath = data.path;
       if (VideoPath){
-
-        AsyncStorage.getItem('data')
-        .then((value) => {
-          console.log('value', value);
-          this.setState({
-            data: JSON.parse(value)
-          });
-        })
-        .done();
-
-        console.log('this.state', this.state);
 
         let data = new FormData();
         data.append('upl', { uri: VideoPath, name: `${this.props.victim.id}.mp4`, type: 'video'});

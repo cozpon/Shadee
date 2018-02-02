@@ -133,7 +133,6 @@ class Feed extends Component {
               backgroundColor={'transparent'}
               color={'#FF9F1C'}
               fontSize={15}
-              //textStyle={{fontWeight: 'bold'}}
               onPress={(e) => this.setState({blur: true, sortModalVisible: true})}
               containerViewStyle={{marginRight: 0}}
             />
