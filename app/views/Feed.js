@@ -78,6 +78,15 @@ class Feed extends Component {
     .done();
   }
 
+  onFlagButton() {
+    AsyncStorage.setItem('OFFENSIVE', 'true')
+      .then(() => {
+        this.setState({ flagModalVisible: false, blur: false });
+        console.log('flagged');
+      })
+      .done();
+  }
+
   loadMore = () => {
     this.setState({
       end: (this.state.page+1)*ITEMS_PER_PAGE,
@@ -264,14 +273,7 @@ class Feed extends Component {
                 >
                   <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                       <Button
-                        onPress={(e) => {
-                          e.preventDefault();
-                          this.props.flagMessage(item.id);
-                          this.setState({
-                            flagModalVisible: false,
-                            blur: false
-                          })
-                        }}
+                        onPress={this.onFlagButton.bind(this)}
                         raised={true}
                         title={'Report As Inappropriate'}
                         backgroundColor={'black'}
