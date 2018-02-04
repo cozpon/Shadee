@@ -1,3 +1,3 @@
 import App from './app/index';
-import './ReactotronConfig'
+//import './ReactotronConfig'
 export default App;
