@@ -26,6 +26,7 @@ class ShadeCamera extends Component {
       cameraType : 'front',
       mirrorMode: false,
       recording: false,
+      recordingButton: "ios-radio-button-on-outline",
       data: ''
     }
   }
@@ -51,27 +52,13 @@ class ShadeCamera extends Component {
             />
           </TouchableHighlight>
 
-          <View style={ this.state.recording ? null : styles.noUpload }>
-
-            <TouchableHighlight
-              onPressIn={this._endVideo.bind(this)}
-            >
-              <Icon
-                name="ios-cloud-upload"
-                style={ styles.basic }
-                size={90}
-              />
-            </TouchableHighlight>
-
-          </View>
-
           <View style={ styles.recordButton }>
             <TouchableHighlight
-              onPressIn={this._startRecord.bind(this)}
-              onPressOut={this._nowRecording.bind(this)}
+              onPressIn={this.state.recording ? null : this._startRecord.bind(this)}
+              onPressOut={this.state.recording ? this._endVideo.bind(this) : this._nowRecording.bind(this)}
             >
               <Icon
-                name="ios-radio-button-on-outline"
+                name={ this.state.recordingButton }
                 style={ this.state.recording ? styles.recording : styles.basic }
                 size={90}
               />
@@ -99,8 +86,10 @@ class ShadeCamera extends Component {
 
   _nowRecording(){
     this.setState({
-      recording: true
+      recording: true,
+      recordingButton: 'md-radio-button-on'
     })
+
   }
 
   _startRecord(){
@@ -169,7 +158,8 @@ class ShadeCamera extends Component {
   _endVideo(){
     this.refs.camera.stopCapture();
     this.setState({
-      recording: false
+      recording: false,
+      recordingButton: "ios-radio-button-on-outline"
     });
     alert('Success!');
   }
