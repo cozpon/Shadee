@@ -139,6 +139,7 @@ class RumorMill extends Component {
           <SearchBar
             clearIcon
             noIcon
+            round
             containerStyle={styles.textContainer}
             inputStyle={styles.search}
             autoCorrect={false}
@@ -149,8 +150,7 @@ class RumorMill extends Component {
             onClearText={this._onClear.bind(this)}
             placeholder='Search for a user...'
             />
-          {
-            this.state.submitted ? null :
+          { this.state.submitted ? null :
 
             <View style={styles.container}>
               { this.state.selected ?
@@ -178,9 +178,8 @@ class RumorMill extends Component {
                   />
                 </View>
               :
-                <View style={styles.list}>
-                  {
-                    this.state.users.map(user => {
+                <ScrollView>
+                  { this.state.users.map(user => {
                       return(
                         <TouchableOpacity
                           key={user.id}
@@ -190,14 +189,14 @@ class RumorMill extends Component {
                               victim: user
                             })
                         }}>
-                          <Text style={styles.text}>
+                          <Text style={styles.username}>
                             {user.username}
                           </Text>
                         </TouchableOpacity>
                       )
                     })
                   }
-                </View>
+                </ScrollView>
               }
             </View>
           }
@@ -206,6 +205,7 @@ class RumorMill extends Component {
         {this.state.showRumors ?
         <List containerStyle={{ paddingTop: '15%',  marginTop: 0 , borderTopWidth: 0 }}>
           <FlatList
+            style={{marginTop: 18}}
             data={rumors}
             ItemSeparatorComponent={this.renderSeparator}
             keyExtractor={item => item.id}
@@ -258,7 +258,8 @@ class RumorMill extends Component {
     }else{
       this.setState({
         users: [],
-        showRumors: true
+        showRumors: true,
+        selected: false
       })
     }
   }
@@ -266,7 +267,7 @@ class RumorMill extends Component {
   _onClear(){
     this.setState({
       showRumors: true,
-      selected: false
+      selected: false,
     })
   }
 
@@ -305,13 +306,11 @@ const styles = StyleSheet.create({
     zIndex: 2
   },
   search: {
+    marginLeft: 3,
+    marginRight: 3,
     height: 60,
-    borderColor: '#E71D36'
-  },
-  search: {
-    height: 56,
     borderColor: '#FF9F1C',
-    borderWidth: 1,
+    borderWidth: 2,
     fontSize: 30,
     backgroundColor: 'white',
     color: '#011627'
@@ -319,7 +318,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 80,
     width: 300,
-    //borderColor: '#ffb6c1',
+    borderColor: '#E71D36',
     borderWidth: 1,
     fontSize: 20,
     backgroundColor: 'white',
@@ -327,10 +326,15 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 40,
-    color: '#011627'
+    color: '#011627',
   },
   list: {
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  username: {
+    textAlign: 'center',
+    fontSize: 35,
+    color: '#011617'
   }
 });
 

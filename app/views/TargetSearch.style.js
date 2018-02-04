@@ -4,13 +4,13 @@ export default {
     backgroundColor: 'transparent'
   },
   textInput: {
-    margin: 0,
+    marginLeft: 3,
+    marginRight: 3,
     height: 60,
     fontSize: 40,
     backgroundColor: '#FDFFFC',
-    padding: 0,
     borderColor: '#FF9F1C',
-    borderWidth: 1,
+    borderWidth: 2,
     fontSize: 30,
     color: '#011627'
   },
@@ -19,7 +19,7 @@ export default {
     color: '#011627'
   },
   backgroundImage: {
-    flex: 1
+    flex: 1,
   },
   transparent: {
     alignItems: 'center'

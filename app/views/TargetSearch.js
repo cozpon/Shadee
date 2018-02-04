@@ -70,12 +70,13 @@ class TargetSearch extends Component {
           inputStyle={styles.textInput}
           round
           noIcon
+          clearIcon
           autoCorrect={false}
           autoCapitalize='none'
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
-          placeholder='Search' />
+          placeholder='Search for a user...' />
         { this.state.selected ?
           <View style={styles.transparent}>
             <Text style={styles.text}>
