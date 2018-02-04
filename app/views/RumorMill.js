@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import {
+  KeyboardAvoidingView,
   View,
   StyleSheet,
   Keyboard,
@@ -152,7 +153,7 @@ class RumorMill extends Component {
             />
           { this.state.submitted ? null :
 
-            <View style={styles.container}>
+            <KeyboardAvoidingView behavior="padding" style={styles.container}>
               { this.state.selected ?
                 <View style={styles.list}>
                   <Text style={styles.text}>
@@ -198,7 +199,7 @@ class RumorMill extends Component {
                   }
                 </ScrollView>
               }
-            </View>
+            </KeyboardAvoidingView>
           }
           </View>
 
