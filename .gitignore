@@ -54,3 +54,7 @@ buck-out/
 
 # config
 /server/_lib/
+
+
+# Reactotron tool
+/ReactotronConfig.js
