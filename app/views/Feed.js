@@ -208,7 +208,6 @@ class Feed extends Component {
                 <Message
                   currentUser={this.state.user.id}
                   id={item.id}
-                  deleteMessage={this.props.deleteMessage}
                   shadeId={item.shader.id}
                   points={item.points}
                   shader={item.shader.username}
@@ -216,7 +215,6 @@ class Feed extends Component {
                   status={item.message_status.name}
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
-                  flagMessage={this.props.flagMessage}
                 />
               </View>
             )}

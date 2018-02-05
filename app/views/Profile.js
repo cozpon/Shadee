@@ -25,7 +25,6 @@ class Profile extends Component {
     this.state = {
       messages: [],
       data: '',
-      deleteModalVisible: false,
       blur: false
     }
   }
@@ -87,7 +86,6 @@ class Profile extends Component {
               status={message.message_status.name}
               posted={fromNow}
               key={message.id}
-              deleteMessage={this.props.deleteMessage}
             />
             </View>
             )
