@@ -5,7 +5,9 @@ import {
   Text,
   TouchableHighlight,
   View,
-  AsyncStorage
+  AsyncStorage,
+  Modal,
+  Button
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -13,6 +15,8 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import RNFS from 'react-native-fs';
+import ModalDropdown from 'react-native-modal-dropdown';
+import { BlurView } from 'react-native-blur';
 
 import { url } from '../lib/url';
 import { addMessage } from '../actions/messages';
@@ -20,18 +24,19 @@ import { addMessage } from '../actions/messages';
 const VideoPath = "";
 
 class ShadeCamera extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       cameraType : 'front',
       mirrorMode: false,
       recording: false,
       recordingButton: "ios-radio-button-on-outline",
-      data: ''
+      data: '',
+      ModalVisible: true,
     }
   }
-  render() {
 
+  render() {
     return (
       <View style={styles.container}>
         <Camera
@@ -41,7 +46,6 @@ class ShadeCamera extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           >
-
           <TouchableHighlight
             onPressIn={this._switchCamera.bind(this)}
           >
@@ -64,8 +68,21 @@ class ShadeCamera extends Component {
               />
             </TouchableHighlight>
           </View>
-
         </Camera>
+      { !this.props.victim.id ?
+      <View>
+
+      <BlurView
+        style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+        blurType="light"
+        blurAmount={5}
+      />
+      <Text style={ styles.text }>
+          Please Select a Player before Recording Your Shade...
+      </Text>
+
+      </View>
+      : null }
       </View>
     );
   }
@@ -189,6 +206,14 @@ const styles = StyleSheet.create({
   },
   recordButton: {
     alignSelf: 'center'
+  },
+  text: {
+    fontSize: 40,
+    color: '#011627',
+    paddingTop: 200,
+    padding: 50,
+    paddingBottom: 500,
+    width: 450,
   }
 });
 

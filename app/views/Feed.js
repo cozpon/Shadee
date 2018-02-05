@@ -41,7 +41,7 @@ import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
-import { BlurView, VibrancyView } from 'react-native-blur';
+import { BlurView } from 'react-native-blur';
 
 const ITEMS_PER_PAGE = 2;
 

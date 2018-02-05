@@ -9,7 +9,8 @@ import {
   TextInput,
   ScrollView,
   Modal,
-  FlatList
+  FlatList,
+  AsyncStorage
 } from 'react-native';
 
 import {
@@ -27,16 +28,12 @@ import { SearchBar, Button, Icon, ListItem, List } from 'react-native-elements';
 
 import ModalDropdown from 'react-native-modal-dropdown';
 
-import { BlurView, VibrancyView } from 'react-native-blur';
-
 import { connect } from 'react-redux';
-import {loadRumors,
-          addRumor,
-          editRumor
-        } from '../actions/rumors';
+import { loadRumors, addRumor, editRumor } from '../actions/rumors';
 import Moment from 'moment';
 import RumorVote from '../components/RumorVote';
 import Rumor from '../components/Rumor';
+import { BlurView } from 'react-native-blur';
 
 const ITEMS_PER_PAGE = 4;
 
@@ -45,15 +42,16 @@ class RumorMill extends Component {
     super();
     this.state = {
       sorting: "Latest",
+      page: 1,
+      end: 4,
       users: [],
       victim: null,
       selected: false,
       rumor: null,
       submitted: false,
-      blur: false,
-      page: 1,
-      end: 4,
+      flagModalVisible: false,
       modalVisible: false,
+      blur: false,
       showRumors: true,
       credible: '#011627',
       latest: '#FF9F1C'
@@ -62,6 +60,15 @@ class RumorMill extends Component {
 
   componentWillMount(){
     this.props.loadRumors();
+  }
+
+  onFlagButton() {
+    AsyncStorage.setItem('OFFENSIVE', 'true')
+      .then(() => {
+        this.setState({ flagModalVisible: false, blur: false });
+        console.log('flagged');
+      })
+      .done();
   }
 
   loadMore = () => {
@@ -203,7 +210,7 @@ class RumorMill extends Component {
           }
           </View>
 
-        {this.state.showRumors ?
+        { this.state.showRumors ?
         <List containerStyle={{ paddingTop: '15%',  marginTop: 0 , borderTopWidth: 0 }}>
           <FlatList
             style={{marginTop: 18}}
@@ -223,11 +230,50 @@ class RumorMill extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.rumorText}
                 />
+                <Button
+                    onPress={(e) => this.setState({flagModalVisible: true, blur: true})}
+                    backgroundColor={'transparent'}
+                    icon={{name: 'flag', color: '#433D3F'}}
+                    containerViewStyle={{alignItems: 'flex-end', marginTop: -55, flex: 1}}
+                    large
+                  />
+                <Modal
+                  visible={this.state.flagModalVisible}
+                  transparent={true}
+                  animationType={'fade'}
+                >
+                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                      <Button
+                        onPress={this.onFlagButton.bind(this)}
+                        raised={true}
+                        title={'Report As Inappropriate'}
+                        backgroundColor={'black'}
+                        large
+                        underlayColor={'red'}
+                        containerViewStyle={{width: 200}}
+                        buttonStyle={{marginBottom: 5}}
+                    />
+                    <Button
+                      onPress={(e) => {
+                        e.preventDefault();
+                        this.setState({
+                          flagModalVisible: false,
+                          blur: false
+                        })
+                      }}
+                      raised={true}
+                      title={'Cancel'}
+                      backgroundColor={'black'}
+                      large
+                      containerViewStyle={{width: 200}}
+                    />
+                  </View>
+                </Modal>
               </View>
             )}
           />
         </List>
-        : null}
+        : null }
 
       {this.state.blur ?
       <BlurView
