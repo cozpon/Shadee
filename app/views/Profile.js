@@ -77,6 +77,8 @@ class Profile extends Component {
             <View key={'view' + message.id}>
             <VideoPlayer media={message.media}/>
             <Message
+              currentUser={user.id}
+              shadeId={message.shader.id}
               id={message.id}
               body={message.body}
               points={message.points}
