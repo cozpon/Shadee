@@ -206,7 +206,6 @@ class RumorMill extends Component {
                           onPress={(e) => this.setState({selected: true, victim: user})}
                         >
                           <Text style={styles.username}>
-                            <Icon name="ios-person" size={50} color="#E71D36"/>
                             {user.username}
                           </Text>
                         </TouchableOpacity>
@@ -390,7 +389,7 @@ const styles = StyleSheet.create({
   username: {
     textAlign: 'center',
     fontSize: 35,
-    color: '#011627'
+    color: '#011627',
   },
   rumorText: {
     color: 'red',

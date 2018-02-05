@@ -41,7 +41,6 @@ import Message from '../components/Message';
 import Vote from '../components/Vote';
 import Moment from 'moment';
 import VideoPlayer from '../components/VideoPlayer';
-import { BlurView } from 'react-native-blur';
 
 const ITEMS_PER_PAGE = 2;
 
@@ -57,7 +56,6 @@ class Feed extends Component {
       sortModalVisible: false,
       deleteModalVisible: false,
       flagModalVisible: false,
-      blur: false,
       user: {},
       latest: '#FF9F1C',
       oldest: '#011627',
@@ -216,17 +214,11 @@ class Feed extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.text}
                 />
+
               </View>
             )}
           />
         </List>
-    {this.state.blur ?
-    <BlurView
-      style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-      blurType="light"
-      blurAmount={5}
-    />
-    : null }
     </Container>
     )
   }
