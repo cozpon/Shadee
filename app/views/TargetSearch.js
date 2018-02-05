@@ -76,6 +76,7 @@ class TargetSearch extends Component {
           keyboardType='default'
           ref="search"
           onChangeText={this._onChange.bind(this)}
+          onClearText={this._onClear.bind(this)}
           placeholder='Search for a user...' />
         { this.state.selected ?
           <View style={styles.transparent}>
@@ -85,20 +86,18 @@ class TargetSearch extends Component {
             <Image source={require('../assets/default.png')}/>
           </View>
           :
-          <View style={styles.transparent}>
-            {
-              this.state.users.map((user) => {
+          <View style={ styles.transparent }>
+            { this.state.users.map((user) => {
                 return(
                   <TouchableOpacity
                     key={user.id}
                     onPress={() => {
-                      this.setState({
-                        selected: true
-                      })
+                      this.setState({ selected: true })
                       this.props.selectVictim(user);
-                  }}>
+                    }}>
                       <Text style={styles.text}>
-                        <Icon name="ios-person" size={50} color="#E71D36"/> {user.username}
+                        <Icon name="ios-person" size={50} color="#E71D36"/>
+                        {user.username}
                       </Text>
                   </TouchableOpacity>
                   )
@@ -113,24 +112,28 @@ class TargetSearch extends Component {
   }
 
   _onChange(value){
-
     if(value.length > 0){
       this.setState({
         selected: false
       });
-
       let filteredUsers = this.props.users.filter(user => {
         return user.username.toLowerCase().includes(value.toLowerCase())
       });
-
       this.setState({
         users: filteredUsers
       });
-    }else{
+    } else {
       this.setState({
         users: []
       });
     }
+  }
+
+  _onClear(){
+    this.setState({
+      selected: false,
+      users: [],
+    })
   }
 
 }
