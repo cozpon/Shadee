@@ -16,7 +16,7 @@ export default {
   },
   text: {
     fontSize: 40,
-    color: '#011627'
+    color: '#011627',
   },
   backgroundImage: {
     flex: 1,
