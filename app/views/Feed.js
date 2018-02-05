@@ -78,6 +78,7 @@ class Feed extends Component {
     .done();
   }
 
+// this should be going to DB flagging as offensive instead of async storage
   onFlagButton() {
     AsyncStorage.setItem('OFFENSIVE', 'true')
       .then(() => {
@@ -161,6 +162,7 @@ class Feed extends Component {
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
+                buttonStyle={{marginBottom: 3}}
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Oldest', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#FF9F1C', basic: '#011627', extra: '#011627'})}
@@ -169,6 +171,7 @@ class Feed extends Component {
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
+                buttonStyle={{marginBottom: 3}}
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Extra', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#011627', basic: '#011627', extra: '#FF9F1C'})}
@@ -177,6 +180,7 @@ class Feed extends Component {
                 color={'white'}
                 containerViewStyle={{width: 200}}
                 large
+                buttonStyle={{marginBottom: 3}}
               />
               <Button
                 onPress={(e) => this.setState({sorting: 'Most Basic', sortModalVisible: false, blur: false, latest: '#011627', oldest: '#011627', basic: '#FF9F1C', extra: '#011627'})}
@@ -222,7 +226,7 @@ class Feed extends Component {
                   <Button
                     onPress={(e) => this.setState({flagModalVisible: true, blur: true})}
                     backgroundColor={'transparent'}
-                    icon={{name: 'flag', color: '#433D3F'}}
+                    icon={{name: 'flag', color: '#666'}}
                     containerViewStyle={{alignItems: 'flex-start', marginTop: -25}}
                     large
                   />

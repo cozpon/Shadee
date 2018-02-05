@@ -12,7 +12,7 @@ import {
   Text
 } from "native-base";
 import { Button, Icon } from 'react-native-elements';
-import { BlurView, VibrancyView } from 'react-native-blur';
+import { BlurView } from 'react-native-blur';
 import VideoPlayer from '../components/VideoPlayer';
 import Moment from 'moment';
 import { connect } from 'react-redux';
@@ -64,7 +64,7 @@ class Profile extends Component {
         <ScrollView style={{backgroundColor: '#FDFFFC'}}>
         <View style={{marginTop: 20}}>
           <Text style={{textAlign: 'center', fontSize: 20, color: '#011627'}}>
-            Welcom 2 ur profile <Text style={{fontSize: 20, color: '#E71D36'}}>{user.username}</Text>, here u can c all ur shades daddio!
+            Welcom 2 ur profile <Text style={{fontSize: 20, color: '#E71D36'}}>{user.username}</Text>, here u can c all ur shades, daddio!
           </Text>
           <Icon name="ios-glasses" type="ionicon" size={60}/>
         </View>
@@ -72,7 +72,7 @@ class Profile extends Component {
           this.props.messages
           .map(message => {
             const fromNow = Moment(message.createdAt).fromNow()
-            console.log(message, 'message');
+            console.log(message.id, "MESSAGE");
             if(message.shader_id === user.id && !message.deletedAt && message.points > -10)
             return (
             <View key={'view' + message.id}>
@@ -112,6 +112,7 @@ class Profile extends Component {
                   backgroundColor={'black'}
                   large
                   containerViewStyle={{width: 200}}
+                  buttonStyle={{marginBottom: 5}}
                 />
                 <Button
                   onPress={(e) => {
@@ -131,7 +132,6 @@ class Profile extends Component {
             )
           })
         }
-
         </ScrollView>
       {this.state.blur ?
       <BlurView
