@@ -54,7 +54,7 @@ class Message extends Component {
       { this.state.blur ?
         <BlurView
           style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-          blurType="light"
+          blurType="xlight"
           blurAmount={5}
           />
          : null }
@@ -101,7 +101,7 @@ class Message extends Component {
       { this.state.blur ?
         <BlurView
           style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-          blurType="light"
+          blurType="xlight"
           blurAmount={5}
           />
          : null }
