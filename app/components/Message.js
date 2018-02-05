@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 
 import { connect } from 'react-redux';
 import { deleteMessage, flagMessage } from '../actions/messages';
+import { BlurView } from 'react-native-blur';
 
 class Message extends Component {
   constructor(props) {
@@ -119,6 +120,13 @@ class Message extends Component {
             />
           </View>
         </Modal>
+        {this.state.blur ?
+          <BlurView
+          style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+          blurType="light"
+          blurAmount={5}
+        />
+    : null }
       </View>
 
 
@@ -155,4 +163,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapDispatchToProps)(Message);
+export default connect(null, mapDispatchToProps)(Message);
