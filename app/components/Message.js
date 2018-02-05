@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Modal } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Moment from 'react-moment';
 
@@ -9,6 +9,11 @@ import { deleteMessage, flagMessage } from '../actions/messages';
 class Message extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      deleteModalVisible: false,
+      flagModalVisible: false,
+      blur: false
+    }
   }
 
   render(){
@@ -23,16 +28,16 @@ class Message extends Component {
         {
           (this.props.currentUser === this.props.shadeId) ? <Button
           onPress={(e) => {
-            e.preventDefault();
-            this.props.deleteMessage(id);
+            this.setState({deleteModalVisible: true, blur: true})
           }}
           title={'Delete Shade'}
           backgroundColor={'transparent'}
           icon={{name: 'delete', color: '#433D3F'}}
+          containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
+                    large
         /> : <Button
                 onPress={(e) => {
-                  e.preventDefault();
-                  this.props.flagMessage(id, currentUser);
+                  this.setState({flagModalVisible: true, blur: true})
                 }}
                 backgroundColor={'transparent'}
                 icon={{name: 'flag', color: '#666'}}
@@ -40,6 +45,80 @@ class Message extends Component {
                 large
               />
         }
+        <Modal
+          visible={this.state.deleteModalVisible}
+          transparent={true}
+          animationType={'fade'}
+        >
+          <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <Button
+              onPress={(e) => {
+                e.preventDefault();
+                this.props.deleteMessage(this.props.id);
+                this.setState({
+                  deleteModalVisible: false,
+                  blur: false
+                })
+              }}
+              raised={true}
+              title={'Delete Shade'}
+              backgroundColor={'black'}
+              large
+              underlayColor={'red'}
+              containerViewStyle={{width: 200}}
+              buttonStyle={{marginBottom: 5}}
+            />
+            <Button
+              onPress={(e) => {
+                e.preventDefault();
+                this.setState({
+                  deleteModalVisible: false,
+                  blur: false
+                })
+              }}
+              raised={true}
+              title={'Cancel'}
+              backgroundColor={'black'}
+              large
+              containerViewStyle={{width: 200}}
+            />
+          </View>
+        </Modal>
+        <Modal
+          visible={this.state.flagModalVisible}
+          transparent={true}
+          animationType={'fade'}
+        >
+          <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+              <Button
+                onPress={(e) => {
+                  e.preventDefault();
+                  this.props.flagMessage(this.props.id, this.props.currentUser);
+                }}
+                raised={true}
+                title={'Report As Inappropriate'}
+                backgroundColor={'black'}
+                large
+                underlayColor={'red'}
+                containerViewStyle={{width: 200}}
+                buttonStyle={{marginBottom: 5}}
+            />
+            <Button
+              onPress={(e) => {
+                e.preventDefault();
+                this.setState({
+                  flagModalVisible: false,
+                  blur: false
+                })
+              }}
+              raised={true}
+              title={'Cancel'}
+              backgroundColor={'black'}
+              large
+              containerViewStyle={{width: 200}}
+            />
+          </View>
+        </Modal>
       </View>
 
 
