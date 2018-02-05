@@ -45,12 +45,19 @@ class Message extends Component {
           containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -10, top: 24}}
           large
         />
-        }
+         }
         <Modal
           visible={this.state.deleteModalVisible}
           transparent={true}
           animationType={'fade'}
         >
+      { this.state.blur ?
+        <BlurView
+          style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+          blurType="light"
+          blurAmount={5}
+          />
+         : null }
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Button
               onPress={(e) => {
@@ -85,11 +92,19 @@ class Message extends Component {
             />
           </View>
         </Modal>
+
         <Modal
           visible={this.state.flagModalVisible}
           transparent={true}
           animationType={'fade'}
         >
+      { this.state.blur ?
+        <BlurView
+          style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
+          blurType="light"
+          blurAmount={5}
+          />
+         : null }
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Button
               onPress={(e) => { e.preventDefault();
@@ -118,14 +133,9 @@ class Message extends Component {
               containerViewStyle={{width: 200}}
             />
           </View>
+
         </Modal>
-        { this.state.blur ?
-          <BlurView
-          style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-          blurType="light"
-          blurAmount={5}
-          />
-    : null }
+
       </View>
     )
   }
