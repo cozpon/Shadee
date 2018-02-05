@@ -18,7 +18,6 @@ class Message extends Component {
   }
 
   render(){
-
     return(
       <View style={styles.container}>
         <Text style={styles.text}>{this.props.points} upvotes. This shade is so {this.props.status}.</Text>
@@ -27,25 +26,28 @@ class Message extends Component {
         <Text style={styles.body}>{this.props.body}</Text>
         <Text style={styles.moment}>{this.props.posted}</Text>
         {
-          (this.props.currentUser === this.props.shadeId) ? <Button
+          (this.props.currentUser === this.props.shadeId) ?
+        <Button
           onPress={(e) => {
             this.setState({deleteModalVisible: true, blur: true})
           }}
           title={'Delete Shade'}
           backgroundColor={'transparent'}
-          icon={{name: 'delete', color: '#433D3F'}}
-          containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
-                    large
-        /> : <Button
-                onPress={(e) => {
-                  this.setState({flagModalVisible: true, blur: true})
-                }}
-                backgroundColor={'transparent'}
-                icon={{name: 'flag', color: '#666'}}
-                containerViewStyle={{alignItems: 'flex-start', marginTop: -25}}
-                large
-              />
-        }
+          icon={{name: 'delete', color: '#666'}}
+          containerViewStyle={{alignItems: 'flex-start', marginTop: -40, top: 30}}
+          large
+        />
+        : null }
+        {
+          (this.props.currentUser !== this.props.shadeId) ?
+        <Button
+          onPress={(e) => { this.setState({flagModalVisible: true, blur: true}) }}
+          backgroundColor={'transparent'}
+          icon={{name: 'flag', color: '#666'}}
+          containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -10, top: 24}}
+          large
+        />
+        : null }
         <Modal
           visible={this.state.deleteModalVisible}
           transparent={true}
@@ -91,18 +93,17 @@ class Message extends Component {
           animationType={'fade'}
         >
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-              <Button
-                onPress={(e) => {
-                  e.preventDefault();
-                  this.props.flagMessage(this.props.id, this.props.currentUser);
-                }}
-                raised={true}
-                title={'Report As Inappropriate'}
-                backgroundColor={'black'}
-                large
-                underlayColor={'red'}
-                containerViewStyle={{width: 200}}
-                buttonStyle={{marginBottom: 5}}
+            <Button
+              onPress={(e) => { e.preventDefault();
+                this.props.flagMessage(this.props.id, this.props.currentUser);
+              }}
+              raised={true}
+              title={'Report As Inappropriate'}
+              backgroundColor={'black'}
+              large
+              underlayColor={'red'}
+              containerViewStyle={{width: 200}}
+              buttonStyle={{marginBottom: 5}}
             />
             <Button
               onPress={(e) => {
@@ -120,16 +121,14 @@ class Message extends Component {
             />
           </View>
         </Modal>
-        {this.state.blur ?
+        { this.state.blur ?
           <BlurView
           style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
           blurType="light"
           blurAmount={5}
-        />
+          />
     : null }
       </View>
-
-
     )
   }
 
