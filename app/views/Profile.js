@@ -72,12 +72,12 @@ class Profile extends Component {
           this.props.messages
           .map(message => {
             const fromNow = Moment(message.createdAt).fromNow()
-            console.log(message.id, "MESSAGE");
-            if(message.shader_id === user.id && !message.deletedAt && message.points > -10)
+            if(message.shader_id === user.id && message.points > -10)
             return (
             <View key={'view' + message.id}>
             <VideoPlayer media={message.media}/>
             <Message
+              id={message.id}
               body={message.body}
               points={message.points}
               shader={message.shader.username}
@@ -85,49 +85,8 @@ class Profile extends Component {
               status={message.message_status.name}
               posted={fromNow}
               key={message.id}
+              deleteMessage={this.props.deleteMessage}
             />
-            <Button
-              onPress={(e) => {this.setState({deleteModalVisible: true, blur: true})}}
-              backgroundColor={'transparent'}
-              icon={{name: 'delete', color: '#433D3F'}}
-              containerViewStyle={{alignItems: 'flex-end', marginTop: -25}}
-              large
-            />
-            <Modal
-              visible={this.state.deleteModalVisible}
-              transparent={true}
-              animationType={'fade'}
-            >
-              <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Button
-                  onPress={(e) => {
-                    e.preventDefault();
-                    this.props.deleteMessage(message.id);
-                    this.setState({
-                      deleteModalVisible: false,
-                      blur: false
-                    })
-                  }}
-                  title={'Delete Shade'}
-                  backgroundColor={'black'}
-                  large
-                  containerViewStyle={{width: 200}}
-                  buttonStyle={{marginBottom: 5}}
-                />
-                <Button
-                  onPress={(e) => {
-                    this.setState({
-                      deleteModalVisible: false,
-                      blur: false
-                    })
-                  }}
-                  title={'Cancel'}
-                  backgroundColor={'black'}
-                  large
-                  containerViewStyle={{width: 200}}
-                />
-              </View>
-            </Modal>
             </View>
             )
           })
