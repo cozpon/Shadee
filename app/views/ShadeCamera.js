@@ -6,7 +6,6 @@ import {
   TouchableHighlight,
   View,
   AsyncStorage,
-  Modal,
   Button
 } from 'react-native';
 
@@ -15,8 +14,6 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Camera from 'react-native-camera';
 import RNFS from 'react-native-fs';
-import ModalDropdown from 'react-native-modal-dropdown';
-import { BlurView } from 'react-native-blur';
 
 import { url } from '../lib/url';
 import { addMessage } from '../actions/messages';
@@ -32,11 +29,11 @@ class ShadeCamera extends Component {
       recording: false,
       recordingButton: "ios-radio-button-on-outline",
       data: '',
-      ModalVisible: true,
     }
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Camera
@@ -71,16 +68,18 @@ class ShadeCamera extends Component {
         </Camera>
       { !this.props.victim.id ?
       <View>
-
-      <BlurView
-        style={{position: "absolute", top: 0, left: 0, bottom: 0, right: 0}}
-        blurType="light"
-        blurAmount={5}
-      />
-      <Text style={ styles.text }>
-          Please Select a Player before Recording Your Shade...
-      </Text>
-
+        <Icon
+          name="ios-hand-outline"
+          style={ styles.player }
+          size={80}
+          onPress={() => { navigate("TargetSearch") }
+          }/>
+        <TouchableHighlight onPress={() => { navigate("TargetSearch") }}>
+          <Text style={ styles.text }>
+          Hold up! {"\n"}
+          You gotta select a player before you can record your Shade...
+          </Text>
+        </TouchableHighlight>
       </View>
       : null }
       </View>
@@ -210,10 +209,15 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     color: '#011627',
-    paddingTop: 200,
-    padding: 50,
+    padding: 20,
     paddingBottom: 500,
-    width: 450,
+    width: 380,
+    textAlign: 'center'
+  },
+  player: {
+    color: '#666',
+    alignSelf: 'center',
+    marginTop: 175
   }
 });
 
