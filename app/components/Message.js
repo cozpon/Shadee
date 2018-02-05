@@ -34,7 +34,7 @@ class Message extends Component {
           title={'Delete Shade'}
           backgroundColor={'transparent'}
           icon={{name: 'delete', color: '#666'}}
-          containerViewStyle={{alignItems: 'flex-start', marginTop: -40, top: 30}}
+          containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -120}}
           large
         />
         :
@@ -42,7 +42,7 @@ class Message extends Component {
           onPress={(e) => { this.setState({flagModalVisible: true, blur: true}) }}
           backgroundColor={'transparent'}
           icon={{name: 'flag', color: '#666'}}
-          containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -10, top: 24}}
+          containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -10, bottom: 3}}
           large
         />
          }
