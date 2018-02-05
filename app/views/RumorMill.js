@@ -31,7 +31,6 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
 import { loadRumors, addRumor, editRumor } from '../actions/rumors';
 import Moment from 'moment';
-import RumorVote from '../components/RumorVote';
 import Rumor from '../components/Rumor';
 import { BlurView } from 'react-native-blur';
 
@@ -62,6 +61,7 @@ class RumorMill extends Component {
     this.props.loadRumors();
   }
 
+// this should be going to DB flagging as offensive instead of async storage
   onFlagButton() {
     AsyncStorage.setItem('OFFENSIVE', 'true')
       .then(() => {
@@ -76,6 +76,18 @@ class RumorMill extends Component {
       end: (this.state.page+1)*ITEMS_PER_PAGE,
       page: this.state.page+1
     })
+  }
+
+  renderSeparator = () => {
+    return(
+      <View
+        style={{
+          height: 3,
+          width: '100%',
+          backgroundColor: '#FF9F1C'
+        }}
+      />
+    )
   }
 
   render(){
@@ -100,7 +112,6 @@ class RumorMill extends Component {
               underlayColor={'white'}
               onPress={() => navigation.navigate("DrawerOpen")}
             />
-
           </Left>
           <Body>
             <Title style={{fontFamily: 'Georgia-BoldItalic', fontSize: 23, color: '#011627'}}>Shade</Title>
@@ -125,6 +136,15 @@ class RumorMill extends Component {
         >
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Button
+              onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false, latest: '#FF9F1C', credible: '#011627'})}
+              title={'Latest'}
+              backgroundColor={this.state.latest}
+              color={'white'}
+              containerViewStyle={{width: 200}}
+              large
+              buttonStyle={{marginBottom: 3}}
+            />
+            <Button
               onPress={(e) => this.setState({sorting: 'Most Credible', modalVisible: false, blur: false, latest: '#011627', credible: '#FF9F1C'})}
               title={'Most Credible'}
               backgroundColor={this.state.credible}
@@ -132,17 +152,8 @@ class RumorMill extends Component {
               containerViewStyle={{width: 200}}
               large
             />
-            <Button
-              onPress={(e) => this.setState({sorting: 'Latest', modalVisible: false, blur: false, latest: '#FF9F1C', credible: '#011627'})}
-              title={'Latest'}
-              backgroundColor={this.state.latest}
-              color={'white'}
-              containerViewStyle={{width: 200}}
-              large
-            />
           </View>
         </Modal>
-
           <View style={{flex: 1, zIndex: 2}}>
           <SearchBar
             clearIcon
@@ -159,7 +170,7 @@ class RumorMill extends Component {
             placeholder='Search for a user...'
             />
           { this.state.submitted ? null :
-
+            // After searching, but before showing up, this is displayed
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
               { this.state.selected ?
                 <View style={styles.list}>
@@ -186,17 +197,14 @@ class RumorMill extends Component {
                   />
                 </View>
               :
+              //displays this when searching for USER
                 <ScrollView>
                   { this.state.users.map(user => {
                       return(
                         <TouchableOpacity
                           key={user.id}
-                          onPress={() => {
-                            this.setState({
-                              selected: true,
-                              victim: user
-                            })
-                        }}>
+                          onPress={(e) => this.setState({selected: true, victim: user})}
+                        >
                           <Text style={styles.username}>
                             {user.username}
                           </Text>
@@ -211,9 +219,9 @@ class RumorMill extends Component {
           </View>
 
         { this.state.showRumors ?
-        <List containerStyle={{ paddingTop: '15%',  marginTop: 0 , borderTopWidth: 0 }}>
+        <List containerStyle={{ paddingTop: '13%' }}>
           <FlatList
-            style={{marginTop: 18}}
+            style={{marginTop: 1}}
             data={rumors}
             ItemSeparatorComponent={this.renderSeparator}
             keyExtractor={item => item.id}
@@ -233,7 +241,7 @@ class RumorMill extends Component {
                 <Button
                     onPress={(e) => this.setState({flagModalVisible: true, blur: true})}
                     backgroundColor={'transparent'}
-                    icon={{name: 'flag', color: '#433D3F'}}
+                    icon={{name: 'flag', color: '#666'}}
                     containerViewStyle={{alignItems: 'flex-end', marginTop: -55, flex: 1}}
                     large
                   />
@@ -350,7 +358,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     backgroundColor: 'transparent',
-    zIndex: 2
+    zIndex: 2,
   },
   search: {
     marginLeft: 3,
@@ -381,7 +389,10 @@ const styles = StyleSheet.create({
   username: {
     textAlign: 'center',
     fontSize: 35,
-    color: '#011617'
+    color: 'red'
+  },
+  rumorText: {
+    color: 'red',
   }
 });
 
