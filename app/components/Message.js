@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
 import Moment from 'react-moment';
 
-const Message = ({currentUser, shadeId, deleteMessage, id, body, points, media, shader, victim, status, posted, flag}) => {
+const Message = ({currentUser, shadeId, flagMessage, deleteMessage, id, body, points, media, shader, victim, status, posted, flag}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{points} upvotes. This shade is so {status}.</Text>
@@ -20,7 +20,16 @@ const Message = ({currentUser, shadeId, deleteMessage, id, body, points, media, 
         title={'Delete Shade'}
         backgroundColor={'transparent'}
         icon={{name: 'delete', color: '#433D3F'}}
-      /> : null
+      /> : <Button
+              onPress={(e) => {
+                e.preventDefault();
+                flagMessage(id, currentUser);
+              }}
+              backgroundColor={'transparent'}
+              icon={{name: 'flag', color: '#666'}}
+              containerViewStyle={{alignItems: 'flex-start', marginTop: -25}}
+              large
+            />
 
       }
     </View>
