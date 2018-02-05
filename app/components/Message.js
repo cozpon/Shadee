@@ -37,9 +37,7 @@ class Message extends Component {
           containerViewStyle={{alignItems: 'flex-start', marginTop: -40, top: 30}}
           large
         />
-        : null }
-        {
-          (this.props.currentUser !== this.props.shadeId) ?
+        :
         <Button
           onPress={(e) => { this.setState({flagModalVisible: true, blur: true}) }}
           backgroundColor={'transparent'}
@@ -47,7 +45,7 @@ class Message extends Component {
           containerViewStyle={{alignItems: 'flex-end', marginTop: -40, marginRight: -10, top: 24}}
           large
         />
-        : null }
+        }
         <Modal
           visible={this.state.deleteModalVisible}
           transparent={true}
