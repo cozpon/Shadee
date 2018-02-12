@@ -107,8 +107,13 @@ class Message extends Component {
          : null }
           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             <Button
-              onPress={(e) => { e.preventDefault();
-                this.props.flagMessage(this.props.id, this.props.currentUser);
+              onPress={(e) => {
+                e.preventDefault();
+                let flagData = {
+                  id : this.props.id,
+                  user : this.props.currentUser
+                };
+                this.props.flagMessage(flagData);
               }}
               raised={true}
               title={'Report As Inappropriate'}
@@ -161,8 +166,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    flagMessage: (id, currentUser) => {
-      dispatch(flagMessage(id, currentUser));
+    flagMessage: (flagData) => {
+      dispatch(flagMessage(flagData));
     },
     deleteMessage: (id) => {
       dispatch(deleteMessage(id));
