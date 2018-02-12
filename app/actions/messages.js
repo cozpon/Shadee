@@ -84,15 +84,18 @@ export const deleteMessage = (id) => {
 
 
 //not sure what we're making/naming the database side as
-export const flagMessage = (id, user) => {
+export const flagMessage = (flagObject) => {
   return function(dispatch){
-    return axios.put(`${url}messages/${id}/inappropriate`, user)
+    return axios.put(`${url}messages/${flagObject.id}/inappropriate`, flagObject)
     .then( message => {
       console.log('FLAG', message.data)
       dispatch({
         type: FLAG_MESSAGE,
         message: message.data
       });
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 }
