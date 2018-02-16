@@ -1,6 +1,6 @@
 import React from "react";
 import { StatusBar, View, Text, Image } from "react-native";
-import { StackNavigator, TabNavigator, DrawerNavigator, DrawerItems } from "react-navigation";
+import { StackNavigator, TabNavigator, DrawerNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import DrawerContent from "../views/Sidebar"
@@ -15,6 +15,7 @@ import TargetSearch from '../views/TargetSearch';
 import ShadeCamera from '../views/ShadeCamera';
 import Terms from '../views/TermsOfService';
 import EasterEgg from '../views/EasterEgg';
+import Forgot from '../views/Forgot';
 
 
 export const Drawer = DrawerNavigator({
@@ -55,6 +56,12 @@ export const SignedOut = StackNavigator({
     screen: Terms,
     navigationOptions: {
       title: "Terms"
+    }
+  },
+  Forgot: {
+    screen: Forgot,
+    navigationOptions: {
+      title: "Forgot"
     }
   },
   EasterEgg: {
