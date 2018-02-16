@@ -104,6 +104,11 @@ class Login extends Component {
 
             onPress={this._handleSubmit}
           />
+
+        <Text style={{fontSize: 12, fontWeight: 'bold', textAlign: 'center'}}>
+          <Text style={{color: '#add8e6'}} onPress={() => navigation.navigate("Forgot")}>{`Forgot Password?`}</Text>
+        </Text>
+
           <Text style={{marginTop: 40, fontSize: 8, fontWeight: 'bold', textAlign: 'center'}}>
             <Text style={{color: 'white'}}> {`by using this site you agree to our `}</Text>
               <Text style={{color: '#add8e6'}}
