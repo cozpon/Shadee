@@ -1,4 +1,7 @@
 {
-  "name": "Shadee",
-  "displayName": "Shadee"
+  "expo": {
+    "name": "Shadee",
+    "slug": "Shadee",
+    "sdkVersion": "22.0.0"
+  }
 }
