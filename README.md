@@ -3,7 +3,7 @@
 ## A social video platform for iOS built with React Native
 
 > - Currently in development (beta release on Apple TestFlight)
-> - Public release planned for March 2018
+> - Public release planned for August 2018
 > - Back end can be found at https://github.com/KaleyKrim/Shade-Backend
 
 ## Video Demo
