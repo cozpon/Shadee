@@ -16,7 +16,7 @@ const forgotPassForm = t.struct({
 
 class Forgot extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       value: {
         email: ''
@@ -32,10 +32,11 @@ class Forgot extends Component {
       value: {
         email: ''
       }
-    }
+    };
   }
 
   handlePasswordRecovery(evt) {
+
     evt.preventDefault();
     let forgotPasswordEmail = {
       value: {
@@ -43,7 +44,6 @@ class Forgot extends Component {
       }
     };
     this.props.forgotPassword(forgotPasswordEmail);
-
     this.setState({
       value: {
         email: ''
@@ -51,10 +51,11 @@ class Forgot extends Component {
     });
   }
 
-  handleEmailInput = (value) => {
+  handleEmailInput(value) {
+    console.log(value);
     this.setState({
       value
-    })
+    });
   }
 
   render() {
@@ -68,6 +69,7 @@ class Forgot extends Component {
             options={options}
             value={this.state.value}
             onChange={this.handleEmailInput}
+            style={styles.form}
           />
           <Button
             large
@@ -104,7 +106,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const options = {
-  label: 'Fill Out Form',
+  label: 'Fill Out Your Email Below',
 };
 
 const styles = StyleSheet.create({
@@ -119,6 +121,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 20,
+  },
+  form: {
+    marginTop: 50,
   }
 });
 

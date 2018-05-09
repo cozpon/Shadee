@@ -62,9 +62,9 @@ class Login extends Component {
         body: json
       }
       fetch(`${url}auth/login`, config)
-      .then((response) => {
+      .then(response => {
         response.json()
-        .then((response) => {
+        .then(response => {
           setStorage(response)
           if(response.success === true){
             onSignIn()

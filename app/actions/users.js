@@ -21,6 +21,7 @@ export const LOAD_USER = 'LOAD_USER';
 export const LOAD_DETAIL_USERS = 'LOAD_DETAIL_USERS';
 export const LOAD_USERS = 'LOAD_USERS';
 export const DELETE_USER = 'DELETE_USER';
+export const ERROR = 'ERROR';
 
 export const registerUser = (registerCreds) => {
   return (dispatch) => {
@@ -135,28 +136,29 @@ export const editEmail = (user) => {
 }
 
 export const forgotPassword = (userEmail) => {
-  console.log("hitting");
-  console.log(userEmail, "USEREMAIL)");
+  let emailAddress = userEmail.value;
+  console.log(emailAddress, "ACTION");
   return (dispatch) => {
-    return Axios.post(forgot, userEmail)
-    .then((response) => {
+    return Axios.post(forgot, emailAddress)
+    .then(response => {
       dispatch({
         type: FORGOT_PASS,
         userDetails: response.data
       });
     })
-    .then((response) => {
+    .then(response => {
      response.json()
-    .then((response) => {
+    .then(response => {
     if(response.success === true){
-    alert("Email Sent! Check Spam Filter If You Don't See It")
+    alert(`Email Sent to ${emailAddress}! Check Spam Filter If You Don't See It`)
     .then(() => navigation.navigate("SignIn"));
-    } else { return alert("Something wrent wrong!")
-        }
-      })
-      .done()
+    } else {
+      return alert("Something wrent wrong!");
+      }
     })
-    .catch((err) => {
+    .done();
+    })
+    .catch(err => {
       dispatch({
         type: ERROR,
         error: 'something went wrong, please try again!'
