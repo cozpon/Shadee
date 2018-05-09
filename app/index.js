@@ -5,7 +5,7 @@ import { createRootNavigator } from "./config/authrouter";
 import { isSignedIn } from "./auth";
 import configureStore from './store';
 import { View } from 'react-native';
-const store = configureStore()
+const store = configureStore();
 
 export default class App extends Component {
   constructor(props) {
