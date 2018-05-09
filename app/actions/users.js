@@ -5,16 +5,16 @@ import { url } from '../lib/url';
 const register = `${url}auth/register`;
 const login = `${url}auth/login`;
 const logout = `${url}auth/logout`;
-const forgot = `${url}auth/forgot`;
-const reset = `${url}auth/reset`;
+// const forgot = `${url}auth/forgot`;
+// const reset = `${url}auth/reset`;
 const editpass = `${url}auth/editpass`;
 const editemail = `${url}auth/editemail`;
 
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
-export const FORGOT_PASS = 'FORGOT_PASS';
-export const RESET_PASS = 'RESET_PASS';
+// export const FORGOT_PASS = 'FORGOT_PASS';
+// export const RESET_PASS = 'RESET_PASS';
 export const EDIT_PASSWORD = 'EDIT_PASSWORD';
 export const EDIT_EMAIL = 'EDIT_EMAIL';
 export const LOAD_USER = 'LOAD_USER';
@@ -135,53 +135,53 @@ export const editEmail = (user) => {
   }
 }
 
-export const forgotPassword = (userEmail) => {
-  let emailAddress = userEmail.value;
-  console.log(emailAddress, "ACTION");
-  return (dispatch) => {
-    return Axios.post(forgot, emailAddress)
-    .then(response => {
-      dispatch({
-        type: FORGOT_PASS,
-        userDetails: response.data
-      });
-    })
-    .then(response => {
-     response.json()
-    .then(response => {
-    if(response.success === true){
-    alert(`Email Sent to ${emailAddress}! Check Spam Filter If You Don't See It`)
-    .then(() => navigation.navigate("SignIn"));
-    } else {
-      return alert("Something wrent wrong!");
-      }
-    })
-    .done();
-    })
-    .catch(err => {
-      dispatch({
-        type: ERROR,
-        error: 'something went wrong, please try again!'
-      });
-    });
-  };
-};
+// export const forgotPassword = (userEmail) => {
+//   let emailAddress = userEmail.value;
+//   console.log(emailAddress, "ACTION");
+//   return (dispatch) => {
+//     return Axios.post(forgot, emailAddress)
+//     .then(response => {
+//       dispatch({
+//         type: FORGOT_PASS,
+//         userDetails: response.data
+//       });
+//     })
+//     .then(response => {
+//      response.json()
+//     .then(response => {
+//     if(response.success === true){
+//     alert(`Email Sent to ${emailAddress}! Check Spam Filter If You Don't See It`)
+//     .then(() => navigation.navigate("SignIn"));
+//     } else {
+//       return alert("Something wrent wrong!");
+//       }
+//     })
+//     .done();
+//     })
+//     .catch(err => {
+//       dispatch({
+//         type: ERROR,
+//         error: 'something went wrong, please try again!'
+//       });
+//     });
+//   };
+// };
 
 
-export const resetPassword = (password) => {
-  return (dispatch) => {
-    return Axios.put(`${reset}/${password.token}`, password)
-    .then((response) => {
-      dispatch({
-        type: RESET_PASS,
-        userDetails: response.data
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: ERROR,
-        error: 'something went wrong, please try again!'
-      });
-    });
-  };
-};
+// export const resetPassword = (password) => {
+//   return (dispatch) => {
+//     return Axios.put(`${reset}/${password.token}`, password)
+//     .then((response) => {
+//       dispatch({
+//         type: RESET_PASS,
+//         userDetails: response.data
+//       });
+//     })
+//     .catch((err) => {
+//       dispatch({
+//         type: ERROR,
+//         error: 'something went wrong, please try again!'
+//       });
+//     });
+//   };
+// };
