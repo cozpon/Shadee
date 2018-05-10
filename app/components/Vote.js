@@ -6,7 +6,7 @@ import { Button } from 'react-native-elements';
 
 class Vote extends Component {
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = {
       upvoted: false,
@@ -19,7 +19,7 @@ class Vote extends Component {
       basicFont: '',
       extraSize: '',
       basicSize: ''
-    }
+    };
   }
 
   handleUpvote(event){
@@ -29,33 +29,33 @@ class Vote extends Component {
         id: this.props.id,
         vote: 'up',
         amount: 1
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: true,
         extraBackground: '#E71D36',
         extraFont: 'DancingScript-Bold',
         extraSize: 20
-      })
+      });
     }else if((this.state.upvoted === true) && (this.state.downvoted === false)){
       let vote = {
         id: this.props.id,
         vote: 'down',
         amount: 1
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: false,
         extraBackground: 'transparent',
         extraFont: '',
         extraSize: ''
-      })
+      });
     }else if((this.state.upvoted === false) && (this.state.downvoted === true)){
       let vote = {
         id: this.props.id,
         vote: 'up',
         amount: 2
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         upvoted: true,
@@ -66,7 +66,7 @@ class Vote extends Component {
         basicBackground: 'transparent',
         basicFont: '',
         basicSize: ''
-      })
+      });
     }
   }
 
@@ -77,33 +77,33 @@ class Vote extends Component {
         id: this.props.id,
         vote: 'down',
         amount: 1
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: true,
         basicBackground: '#E71D36',
         basicFont: 'AmaticSC-Bold',
         basicSize: 20
-      })
+      });
     }else if((this.state.downvoted === true) && (this.state.upvoted === false)){
       let vote = {
         id: this.props.id,
         vote: 'up',
         amount: 1
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: false,
         basicBackground: 'transparent',
         basicFont: '',
         basicSize: ''
-      })
+      });
     }else if((this.state.downvoted === false) && (this.state.upvoted === true)){
       let vote = {
         id: this.props.id,
         vote: 'down',
         amount: 2
-      }
+      };
       this.props.voteOnMessage(vote);
       this.setState({
         downvoted: true,
@@ -114,7 +114,7 @@ class Vote extends Component {
         extraBackground: 'transparent',
         extraFont: '',
         extraSize: ''
-      })
+      });
     }
   }
 

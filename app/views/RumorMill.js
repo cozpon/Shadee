@@ -29,7 +29,7 @@ import { SearchBar, Button, Icon, ListItem, List } from 'react-native-elements';
 import ModalDropdown from 'react-native-modal-dropdown';
 
 import { connect } from 'react-redux';
-import { loadRumors, addRumor, editRumor } from '../actions/rumors';
+import { loadRumors, addRumor, editRumor, flagRumor } from '../actions/rumors';
 import Moment from 'moment';
 import Rumor from '../components/Rumor';
 import { BlurView } from 'react-native-blur';
@@ -37,8 +37,8 @@ import { BlurView } from 'react-native-blur';
 const ITEMS_PER_PAGE = 4;
 
 class RumorMill extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       sorting: "Latest",
       page: 1,
@@ -54,21 +54,19 @@ class RumorMill extends Component {
       showRumors: true,
       credible: '#011627',
       latest: '#FF9F1C'
-    }
+    };
   }
 
   componentWillMount(){
     this.props.loadRumors();
-  }
-
-// this should be going to DB flagging as offensive instead of async storage
-  onFlagButton() {
-    AsyncStorage.setItem('OFFENSIVE', 'true')
-      .then(() => {
-        this.setState({ flagModalVisible: false, blur: false });
-        console.log('flagged');
-      })
-      .done();
+    AsyncStorage.getItem('data')
+    .then((value) => {
+      console.log(JSON.parse(value), "VALUE");
+      this.setState({
+        user: JSON.parse(value)
+      });
+    })
+    .done();
   }
 
   loadMore = () => {
@@ -90,8 +88,10 @@ class RumorMill extends Component {
     )
   }
 
+
   render(){
-    console.log(this.state)
+    // console.log(this.props.id, "PROPS ID");
+    // console.log(this.props.currentUser);
     const textInput = {};
     const navigation = this.props.navigation;
     let rumors = '';
@@ -238,45 +238,6 @@ class RumorMill extends Component {
                   posted={Moment(item.createdAt).fromNow()}
                   style={styles.rumorText}
                 />
-                <Button
-                    onPress={(e) => this.setState({flagModalVisible: true, blur: true})}
-                    backgroundColor={'transparent'}
-                    icon={{name: 'flag', color: '#666'}}
-                    containerViewStyle={{alignItems: 'flex-end', marginTop: -55, flex: 1}}
-                    large
-                  />
-                <Modal
-                  visible={this.state.flagModalVisible}
-                  transparent={true}
-                  animationType={'fade'}
-                >
-                  <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                      <Button
-                        onPress={this.onFlagButton.bind(this)}
-                        raised={true}
-                        title={'Report As Inappropriate'}
-                        backgroundColor={'black'}
-                        large
-                        underlayColor={'red'}
-                        containerViewStyle={{width: 200}}
-                        buttonStyle={{marginBottom: 5}}
-                    />
-                    <Button
-                      onPress={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                          flagModalVisible: false,
-                          blur: false
-                        })
-                      }}
-                      raised={true}
-                      title={'Cancel'}
-                      backgroundColor={'black'}
-                      large
-                      containerViewStyle={{width: 200}}
-                    />
-                  </View>
-                </Modal>
               </View>
             )}
           />
@@ -294,8 +255,8 @@ class RumorMill extends Component {
     );
   };
 
-  _onChange(value){
 
+  _onChange(value){
     if(value.length > 0){
       this.setState({
         selected: false,
@@ -329,6 +290,18 @@ class RumorMill extends Component {
   _onGossip(text){
     textInput = {text: text};
   }
+      // this should be going to DB flagging as offensive instead of async storage
+  // _onFlag(event) {
+  //   console.log(this.props, "evnet props");
+  //   let rumor = {id : this.props.id, offensive : 1};
+  //   console.log(this.props, "prOpS");
+  //   this.props.flagRumor(rumor);
+  //   this.setState({
+  //     flagModalVisible: false,
+  //     blur: false
+  //   });
+  //   console.log('flagged');
+  // }
 
   _onSubmit(){
     let data = {
@@ -348,7 +321,6 @@ class RumorMill extends Component {
     textInput = {};
     this.search.clearText();
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -397,6 +369,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
+  console.log(state.users)
   return{
     users: state.users,
     rumors: state.rumors
@@ -413,7 +386,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     editRumor: (rumor) => {
       dispatch(editRumor(rumor));
-    }
+    },
+    // flagRumor: (rumor) => {
+    //   dispatch(flagRumor(rumor));
+    // }
   }
 }
 

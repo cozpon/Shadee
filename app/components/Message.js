@@ -9,12 +9,12 @@ import { BlurView } from 'react-native-blur';
 
 class Message extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       deleteModalVisible: false,
       flagModalVisible: false,
       blur: false
-    }
+    };
   }
 
   render(){

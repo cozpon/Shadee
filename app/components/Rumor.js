@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Moment from 'react-moment';
 import RumorVote from '../components/RumorVote';
+import RumorFlag from '../components/RumorFlag';
 
 const Rumor = ({id, body, points, user, posted }) => {
   return (
@@ -14,6 +15,7 @@ const Rumor = ({id, body, points, user, posted }) => {
         Rumor credibility rating: { points }
       </Text>
       <Text style={styles.moment}>{posted}</Text>
+       <RumorFlag id={ id }/>
     </View>
   )
 }

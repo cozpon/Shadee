@@ -47,7 +47,7 @@ const ITEMS_PER_PAGE = 2;
 class Feed extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       sorting: "Latest",
       page: 1,
@@ -62,7 +62,7 @@ class Feed extends Component {
       basic: '#011627',
       extra: '#011627',
       inappropriate: 0
-    }
+    };
   }
 
   componentDidMount(){
