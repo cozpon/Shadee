@@ -19,9 +19,9 @@ const rumors = (state = initialState, action) => {
       });
       return [ ...(state.slice(0, index)), action.rumor, ...(state.slice((index + 1), state.length)) ];
     case FLAG_RUMOR:
-            console.log("HERE REDUCER");
       let hideFlagged = state.filter((rumor) => {
-
+        console.log(rumor.id, "RUMOR ID");
+        console.log(action.rumor.id, "action rumor ID");
         return rumor.id !== action.rumor.id;
       });
       return [ ...hideFlagged ];

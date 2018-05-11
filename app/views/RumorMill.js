@@ -90,8 +90,6 @@ class RumorMill extends Component {
 
 
   render(){
-    // console.log(this.props.id, "PROPS ID");
-    // console.log(this.props.currentUser);
     const textInput = {};
     const navigation = this.props.navigation;
     let rumors = '';
@@ -221,7 +219,7 @@ class RumorMill extends Component {
         { this.state.showRumors ?
         <List containerStyle={{ paddingTop: '13%' }}>
           <FlatList
-            style={{marginTop: 1}}
+            style={{marginTop: 1, marginBottom: 45}}
             data={rumors}
             ItemSeparatorComponent={this.renderSeparator}
             keyExtractor={item => item.id}
