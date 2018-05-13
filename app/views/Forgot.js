@@ -1,111 +1,34 @@
 import React, {Component} from "react";
-import { connect } from 'react-redux';
-import { View, ScrollView, StyleSheet, Text,
-  TouchableHighlight, ImageBackground, KeyboardAvoidingView } from "react-native";
+
+import { Linking, View, ScrollView,
+  StyleSheet, ImageBackground, KeyboardAvoidingView } from "react-native";
 import { Button } from "react-native-elements";
-import { forgotPassword } from '../actions/users';
-import { url } from '../lib/url';
 
-import t from 'tcomb-form-native';
-
-const Form = t.form.Form;
-
-const forgotPassForm = t.struct({
-    email: t.String,
-});
+const forgotURL = 'http://localhost:3000/forgot';
+// will change this to http://shadeetheapp.com/forgot when we buy the domain
 
 class Forgot extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: {
-        email: ''
-      }
-    };
-
-  this.handlePasswordRecovery = this.handlePasswordRecovery.bind(this);
-  this.handleEmailInput = this.handleEmailInput.bind(this);
-  }
-
-  componentWillUnmount() {
-    this.setState = {
-      value: {
-        email: ''
-      }
-    }
-  }
-
-  handlePasswordRecovery(evt) {
-    evt.preventDefault();
-    let forgotPasswordEmail = {
-      value: {
-        email: this.state.value.email
-      }
-    };
-    this.props.forgotPassword(forgotPasswordEmail);
-
-    this.setState({
-      value: {
-        email: ''
-      }
-    });
-  }
-
-  handleEmailInput = (value) => {
-    this.setState({
-      value
-    })
-  }
 
   render() {
-    return(
+    return (
       <ImageBackground source={require('../assets/splash.jpg')} style={styles.image}>
       <ScrollView style={styles.form}>
-        <KeyboardAvoidingView behavior="padding">
-          <Form
-            ref='form' //assign a ref
-            type={forgotPassForm}
-            options={options}
-            value={this.state.value}
-            onChange={this.handleEmailInput}
-          />
+        <View style={styles.container}>
           <Button
+            title="Password Recovery"
+            onPress={ ()=>{ Linking.openURL(`${forgotURL}`)}}
             large
-            rounded
-            buttonStyle={{ marginTop: 10 }}
-            backgroundColor="grey"
+            buttonStyle={{ marginTop: 20, marginRight: 13 }}
+            backgroundColor="#666"
             textStyle={{ color: "#ffb6c1" }}
             fontWeight="bold"
-            raised={true}
-            title="Send Recovery Email"
-            onPress={this.handlePasswordRecovery}
-          />
-         </KeyboardAvoidingView>
+            raised={true} />
+        </View>
       </ScrollView>
       </ImageBackground>
     );
   }
 }
-
-// maps store state to local props
-const mapStateToProps = (state) => {
-  return {
-    singleUser : state.singleUser
-  };
-};
-
-//maps store dispatch to local props
-const mapDispatchToProps = (dispatch) => {
-  return{
-    forgotPassword: (forgotPasswordEmail) => {
-      dispatch(forgotPassword(forgotPasswordEmail));
-    }
-  };
-};
-
-const options = {
-  label: 'Fill Out Form',
-};
 
 const styles = StyleSheet.create({
   image: {
@@ -122,7 +45,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Forgot);
+export default (Forgot);

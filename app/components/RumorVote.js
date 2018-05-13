@@ -7,17 +7,18 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 class RumorVote extends Component {
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = {
       voted: false,
       upcolor: '#666',
       downcolor: '#666'
-     }
+     };
   }
 
   _upvote(event){
     if(!this.state.voted){
+      console.log(this.props, "upvote props");
       let rumor = {id : this.props.id, points : 1};
       this.props.editRumor(rumor);
       this.setState({

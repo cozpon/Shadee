@@ -2,7 +2,8 @@ import { LOAD_USER,
          LOGIN_USER,
          LOGOUT_USER,
          EDIT_EMAIL,
-         EDIT_PASSWORD
+         EDIT_PASSWORD,
+         ERROR
        } from '../actions/users';
 
 const initialState = {};
@@ -24,10 +25,13 @@ const user = (state = initialState, action) => {
     case EDIT_EMAIL:
       return Object.assign({}, state, action.user);
 
+    case ERROR:
+      return Object.assign({}, state, action.type);
+
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default user;
