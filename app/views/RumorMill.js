@@ -367,7 +367,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  console.log(state.users)
+  console.log(state.users);
+  console.log(state.rumors, "RUMORS");
   return{
     users: state.users,
     rumors: state.rumors
