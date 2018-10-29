@@ -1,6 +1,6 @@
 # Shade :sunglasses:
 
-## A social video platform for iOS built with React Native
+## A social video application for iOS built with React Native
 
 > - Currently in development (beta release on Apple TestFlight)
 > - Public release planned for August 2018
